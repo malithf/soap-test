@@ -39,7 +39,7 @@
         <con:name>openingHours</con:name>
         <con:value>Non Stop</con:value>
       </con:property>
-    </con:properties>
+    <con:property><con:name>test</con:name><con:value>123</con:value></con:property></con:properties>
     <con:reportParameters/>
     <con:environmentSpec>
       <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">

@@ -5,7 +5,7 @@
       <con:setting id="soapUIObjectSourceType">soapUIObjectSourceType_RestRequest</con:setting>
       <con:setting id="91db6cad-86d2-43fa-b584-aa2d5ae4c478fileName">Non-integrated-scenarious---5-min-100-VUs---Default-LoadTest</con:setting>
     </con:settings>
-    <con1:loadui-project id="8ae7a3c0-2a00-4a74-8e53-22abaf284d5f" label="Load Test 1" xmlns:con1="http://eviware.com/loadui/config">
+    <con1:loadui-project id="8ae7a3c0-2a00-4a74-8e53-22abaf284d5f" label="Non-integrated scenarious - 5 min 100 VUs - Default LoadTest" xmlns:con1="http://eviware.com/loadui/config">
       <con1:properties>
         <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
         <con1:property propagates="true" key="CanvasItem.abortOnFinish" type="java.lang.Boolean">false</con1:property>

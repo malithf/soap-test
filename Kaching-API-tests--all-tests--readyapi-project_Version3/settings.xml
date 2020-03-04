@@ -28,7 +28,7 @@
   <con:entry key="Save Project" value="false"/>
   <con:entry key="LoadUITest" value="Bambora - Seller - Create and pay for order LoadTest"/>
 </xml-fragment>]]></con:setting>
-  </con:settings>
+  <con:setting id="WsdlSettings@cache-wsdls">false</con:setting></con:settings>
   <con:savedRecentRuns>1</con:savedRecentRuns>
   <con:requirements/>
   <con:properties>

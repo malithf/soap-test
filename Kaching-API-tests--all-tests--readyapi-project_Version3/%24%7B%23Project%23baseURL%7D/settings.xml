@@ -3,7 +3,7 @@
     <con:settings>
       <con:setting id="2ba21207-3a92-4a2a-9c21-08c946e0b046fileName">%24%7B%23Project%23baseURL%7D</con:setting>
     </con:settings>
-    <con:definitionCache type="TEXT" rootPart=""/>
+    
     <con:endpoints>
       <con:endpoint>${#Project#baseURL}</con:endpoint>
     </con:endpoints>

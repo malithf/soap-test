@@ -16,12 +16,7 @@
   "orderId": "${#TestCase#orderId}"
 }</con:request>
             <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
-              <con:settings/>
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
+            
             <con:assertion type="JsonPath Match" id="a28e8ad6-0292-4126-8efe-b50f3c420061" name="Match content of [orderId]">
               <con:configuration>
                 <path>$['response']['orderId']</path>

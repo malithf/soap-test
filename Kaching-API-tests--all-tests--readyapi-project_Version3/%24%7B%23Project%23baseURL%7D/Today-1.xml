@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource name="Today" path="/stock/since/{date}" id="14669686-d0e9-4ca7-afbd-982e061dc30a" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+<con:resource name="Today" path="/catalog/price/since/{today}" id="27c54f11-58b9-49bc-ba32-5f3f655378e0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
       <con:settings>
-        <con:setting id="14669686-d0e9-4ca7-afbd-982e061dc30afileName">Today-1</con:setting>
+        <con:setting id="27c54f11-58b9-49bc-ba32-5f3f655378e0fileName">Today-1</con:setting>
       </con:settings>
-      <con:parameters>
-        <con:parameter>
-          <con:name>date</con:name>
-          <con:style>TEMPLATE</con:style>
-        </con:parameter>
-      </con:parameters>
-      <con:method name="Today" id="8683bb17-77e7-4be0-b546-5cfe94130d83" method="GET">
+      <con:parameters/>
+      <con:method name="Today" id="db6a3ada-a343-4a7d-8832-847c03b3e60e" method="GET">
         <con:settings/>
         <con:parameters>
           <con:parameter required="true">
-            <con:name>date</con:name>
+            <con:name>today</con:name>
             <con:value>${#Project#today}</con:value>
             <con:style>TEMPLATE</con:style>
             <con:default>${#Project#today}</con:default>
@@ -21,54 +16,43 @@
             <con:description xsi:nil="true"/>
           </con:parameter>
           <con:parameter>
-            <con:name>Authorization</con:name>
-            <con:value>Bearer ${#Project#token}</con:value>
+            <con:name>Content-Type</con:name>
+            <con:value>application/json</con:value>
             <con:style>HEADER</con:style>
             <con:default/>
             <con:path xsi:nil="true"/>
             <con:description xsi:nil="true"/>
           </con:parameter>
         </con:parameters>
-        <con:representation type="FAULT">
-          <con:mediaType>application/json; charset=UTF-8</con:mediaType>
-          <con:status>404 401</con:status>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
           <con:params/>
-          <con:element xmlns:t05="https://api-dev.kachingretail.com/api/stock/since/2019-08-27T05%3A03%3A29.418Z">t05:Fault</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html</con:mediaType>
+          <con:status>503</con:status>
+          <con:params/>
+          <con:element>html</con:element>
         </con:representation>
         <con:representation type="RESPONSE">
           <con:mediaType>application/json; charset=utf-8</con:mediaType>
           <con:status>200</con:status>
           <con:params/>
-          <con:element xmlns:t05="https://api-dev.kachingretail.com/api/stock/since/2019-08-27T05%3A03%3A29.418Z">t05:Response</con:element>
+          <con:element xmlns:t05="https://api-dev.kachingretail.com/api/catalog/price/since/2019-08-27T05%3A03%3A29.418Z">t05:Response</con:element>
         </con:representation>
-        <con:representation type="FAULT">
-          <con:mediaType>text/html; charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
-          <con:params/>
-          <con:element>html</con:element>
-        </con:representation>
-        <con:representation type="FAULT">
-          <con:mediaType>application/xml; charset=UTF-8</con:mediaType>
-          <con:status>404</con:status>
-          <con:params/>
-          <con:element xmlns:apim="http://wso2.org/apimanager">apim:fault</con:element>
-        </con:representation>
-        <con:request name="List recently updated stock" id="b07f4360-e33a-4110-b719-d3cbd6633f05" mediaType="application/json">
-          <con:settings>
-            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-          </con:settings>
+        <con:request name="List recently updated prices" id="4ad95baa-3428-4f64-88d3-f6cd989b89b4" mediaType="application/json">
+          <con:settings/>
           <con:endpoint>${#Project#baseURL}</con:endpoint>
           <con:request/>
-          <con:originalUri>https://api-dev.kachingretail.com/api/stock/since/2019-10-23</con:originalUri>
           <con:credentials>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-          <con:parameters><con:entry key="Authorization" value="Bearer ${#Project#token}"/><con:entry key="date" value="${#Project#today}"/></con:parameters>
+          <con:parameters><con:entry key="today" value="${#Project#today}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
           <con:parameterOrder>
-            <con:entry>date</con:entry>
-            <con:entry>Authorization</con:entry>
+            <con:entry>today</con:entry>
+            <con:entry>Content-Type</con:entry>
           </con:parameterOrder>
           <con:environmentSpec>
             <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
