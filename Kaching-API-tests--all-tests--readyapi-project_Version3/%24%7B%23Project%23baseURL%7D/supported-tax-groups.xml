@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="supported-tax-groups" path="/catalog/price/supported-tax-groups" id="22f501a9-7a7c-46e7-a099-980ea17e13cf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="22f501a9-7a7c-46e7-a099-980ea17e13cffileName">supported-tax-groups</con:setting>
+      </con:settings>
+      <con:parameters/>
+      <con:method name="Method 1" id="493439be-fe4e-4615-9619-4ccdce2c5eec" method="GET">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element xmlns:sup="https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups">sup:Response</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="b2b9ed61-7fad-4586-9ed3-1c885223d4f3" mediaType="application/json">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseURL}</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+          <con:environmentSpec>
+            <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+          </con:environmentSpec>
+        </con:request>
+      </con:method>
+    </con:resource>

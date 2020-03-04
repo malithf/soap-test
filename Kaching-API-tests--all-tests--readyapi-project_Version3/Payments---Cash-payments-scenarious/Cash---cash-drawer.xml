@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="eb86fafc-cb02-46ec-bf34-a6470d5506f3" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Cash - cash drawer" searchProperties="true" timeout="0" maxResults="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="eb86fafc-cb02-46ec-bf34-a6470d5506f3fileName">Cash---cash-drawer</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="groovy" name="Generate serial number for cash-drawer" id="c9ee06de-8ae0-48eb-ae7e-a5967297bbab">
+        <con:settings/>
+        <con:config>
+          <script>def basketId = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("basketId", basketId)
+
+def orderId = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("orderId", orderId)
+
+def lastPartOrderId = orderId[-8..-1]
+def date = new Date().format('yyMMdd')
+def orderNumber = date.toString() + "-" + lastPartOrderId
+testRunner.testCase.setPropertyValue("orderNumber", orderNumber)</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Cashdrawer - Create a cash drawer" id="c7910054-980e-4dba-ba4a-ee7321527ff3">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/cashdrawer" methodName="Cashdrawer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Cashdrawer - Create a cash drawer" id="522bbf4e-19d8-4d99-a4f7-93defe7597f7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"name": "${#TestSuite#name}",
+	"serialNumber": "${#TestSuite#serialNumber}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/cashdrawer</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="0f052009-3b59-49bb-a369-7b00f1a7633a" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="105ecf63-030b-4ddd-abfd-a0808de0806a" name="Check for existence of [cashdrawerId]">
+              <con:configuration>
+                <path>$['response']['cashdrawerId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="6dacbc43-2bf4-4d4a-bf89-3c3b08459ccb" name="Check for existence of [organizationId]">
+              <con:configuration>
+                <path>$['response']['organizationId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="cf0a9c9a-6e9a-44cf-a766-04442297c137" name="Match content of [name]">
+              <con:configuration>
+                <path>$['response']['name']</path>
+                <content>${#TestSuite#name}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="d4087835-ca8c-4966-aaf7-effd96cba7d4" name="Match content of [serialNumber]">
+              <con:configuration>
+                <path>$['response']['serialNumber']</path>
+                <content>${#TestSuite#serialNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Cashdrawer - Get list of all cash-drawers" id="b14bbfc3-351b-4727-a57e-99fe9ad00052">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/cashdrawer" methodName="Cashdrawer 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Cashdrawer - Get list of all cash-drawers" id="8a30328a-2513-4f9b-bf11-49d3d841fcc0" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/cashdrawer</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="18d5d682-1d2a-4dbf-96dc-b3889856784c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer-CashDrawerID" id="f0f2fb5b-91c2-4b33-9ca6-88193607027f">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false" disabled="true">
+            <con:name>CashDrawerID</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Cashdrawer - Create a cash drawer</con:sourceStep>
+            <con:sourcePath>$['response']['cashdrawerId']</con:sourcePath>
+            <con:targetType xsi:nil="true"/>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Assign-device - Assign device to cash drawer" id="ec85c063-31cf-4f43-83dc-ca8723805c6e">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/cashdrawer/{cashdrawerId}/assign-device" methodName="Assign-device" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Assign-device - Assign device to cash drawer" id="479e2a23-413a-48e2-9492-2394a1b2734c" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/cashdrawer/assign-device</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d5c54cbe-e5b0-409c-a84d-05c1d634d073" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e5837e6a-4722-45b2-ba11-de34d6a8d62e" name="Match content of [cashdrawerId]">
+              <con:configuration>
+                <path>$['response']['cashdrawerId']</path>
+                <content>${#TestSuite#cashdrawerID}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="cashdrawerId" value="${#TestSuite#cashdrawerID}"/><con:entry key="deviceid" value="123"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>cashdrawerId</con:entry>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>deviceid</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Remove-device - Remove device to cash drawer" id="648107c2-6bc6-4362-a0fb-c497a24e736b">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/cashdrawer/{cashdrawerId}/remove-device" methodName="Remove-device" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Remove-device - Remove device to cash drawer" id="3a6af142-8a91-42b9-88a7-613e5ddf3785" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/cashdrawer/remove-device</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="9ae1b2d5-6a30-4028-9d43-1bc066e6bdd9" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c8901434-ea25-4705-8247-2af2de641104" name="Match content of [cashdrawerId]">
+              <con:configuration>
+                <path>$['response']['cashdrawerId']</path>
+                <content>${#TestSuite#cashdrawerID}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="817dafad-4798-491f-ac2b-22cfe70350df" name="Match content of [name]">
+              <con:configuration>
+                <path>$['response']['name']</path>
+                <content>${#TestSuite#name}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="cashdrawerId" value="${#TestSuite#cashdrawerID}"/><con:entry key="deviceid" value="123"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>cashdrawerId</con:entry>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>deviceid</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Cashdrawer 2 - List cash-drawers" id="b1a960ac-3858-4885-8443-58be08d2d622">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/cashdrawer" methodName="Cashdrawer 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Cashdrawer 2 - List cash-drawers" id="8a30328a-2513-4f9b-bf11-49d3d841fcc0" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/cashdrawer</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="18d5d682-1d2a-4dbf-96dc-b3889856784c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Virtual - List virtual cash-drawers" id="b7374f36-fece-42fe-9e45-40a5dad3f8ec">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/cashdrawer/virtual" methodName="Virtual" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Virtual - List virtual cash-drawers" id="848200f7-3c79-434c-8a6c-daddfbf5edd0" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/cashdrawer/virtual</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="3e47766b-627b-4f04-a90d-419fec5c0947" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>name</con:name>
+        </con:property>
+        <con:property>
+          <con:name>serialNumber</con:name>
+        </con:property>
+        <con:property>
+          <con:name>cashdrawerID</con:name>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>04cc28e8-3518-4ed5-9ea5-bf320821ebd7</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>6e26b144-c227-433c-97e7-da6d4045a9c5</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>2eaa3fbe-af4b-41ef-a141-5425b7f831b9</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:environmentSpec>
+        <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:testCase>

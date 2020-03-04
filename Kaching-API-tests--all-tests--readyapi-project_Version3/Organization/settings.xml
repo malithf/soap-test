@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="5aca10a2-7230-42be-8a36-fd4860c727e4" name="Organization" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="5aca10a2-7230-42be-8a36-fd4860c727e4fileName">Organization</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>contactEmailSignatureUrl</con:name>
+        <con:value>https://example.logo.com/logo</con:value>
+      </con:property>
+      <con:property>
+        <con:name>website</con:name>
+        <con:value>https://www.soapui.org/</con:value>
+      </con:property>
+      <con:property>
+        <con:name>returnReceiptEmailSubjectText</con:name>
+        <con:value>returnReceiptEmailSubjectText</con:value>
+      </con:property>
+      <con:property>
+        <con:name>contactEmail</con:name>
+        <con:value>test.automation@email.com</con:value>
+      </con:property>
+      <con:property>
+        <con:name>organizationNumber</con:name>
+        <con:value>1122334455</con:value>
+      </con:property>
+      <con:property>
+        <con:name>contactName</con:name>
+        <con:value>Test orgnaization contact person</con:value>
+      </con:property>
+      <con:property>
+        <con:name>receiptEmailSubjectText</con:name>
+        <con:value>receiptEmailSubjectText</con:value>
+      </con:property>
+      <con:property>
+        <con:name>returnPolicy</con:name>
+        <con:value>14 dagars öppet köp</con:value>
+      </con:property>
+      <con:property>
+        <con:name>logoUrl</con:name>
+        <con:value>https://www.soapui.org/soapui/media/assets/Images/soapui-logo.svg</con:value>
+      </con:property>
+      <con:property>
+        <con:name>phoneNumber</con:name>
+        <con:value>+4677777777</con:value>
+      </con:property>
+      <con:property>
+        <con:name>vatRegistrationNumber</con:name>
+        <con:value>1234567890</con:value>
+      </con:property>
+      <con:property>
+        <con:name>receiptEmailContentText</con:name>
+        <con:value>receiptEmailContentText</con:value>
+      </con:property>
+      <con:property>
+        <con:name>name</con:name>
+        <con:value>Test Automation orgnaization</con:value>
+      </con:property>
+      <con:property>
+        <con:name>orgnaizationIdToTestWith</con:name>
+        <con:value>7d55a4ee-c495-4261-b0a2-34c8e94e60ce</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currencyCode</con:name>
+        <con:value>SEK</con:value>
+      </con:property>
+      <con:property>
+        <con:name>organizationNameToTestWith</con:name>
+        <con:value>eevvv5</con:value>
+      </con:property>
+      <con:property>
+        <con:name>documentLogoDataURI</con:name>
+        <con:value>http://2.bp.blogspot.com/-3cAYNQzkRK4/UHIIi9uZL-I/AAAAAAAAAuc/TEmfzvRpDIQ/s1600/soapUI_header_logo.png</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+    
+  </con:testSuite>

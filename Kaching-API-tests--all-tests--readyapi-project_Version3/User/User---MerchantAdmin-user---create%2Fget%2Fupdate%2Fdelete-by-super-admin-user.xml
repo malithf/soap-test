@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="58fe95a2-3e14-4d1b-8e9b-d7626ed87e77" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="User - MerchantAdmin user - create/get/update/delete by super admin user" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="58fe95a2-3e14-4d1b-8e9b-d7626ed87e77fileName">User---MerchantAdmin-user---create%2Fget%2Fupdate%2Fdelete-by-super-admin-user</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="groovy" name="RandomNoGenerator" id="28f8f14b-669d-4aaf-83e7-d253029f7b94">
+        <con:settings/>
+        <con:config>
+          <script>def random = (Math.abs(new Random().nextInt() % 10000000) + 1).toString()
+def randomNo = random+random+random
+
+testRunner.testCase.setPropertyValue( "randomNo" , randomNo )
+testRunner.testCase.setPropertyValue( "firstName" , "firstName$randomNo")
+testRunner.testCase.setPropertyValue( "lastName" , "lastName$randomNo")
+testRunner.testCase.setPropertyValue( "nickName" , "nickName$randomNo")
+testRunner.testCase.setPropertyValue( "email" , "email$randomNo@test.com")
+testRunner.testCase.setPropertyValue( "userName" , "email$randomNo")
+
+log.info "response   is $randomNo"</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Create a new MerchantAdmin user by super admin" id="702ed05c-c706-4300-8646-b9d79244a087">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user" methodName="User" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Create a new MerchantAdmin user by super admin" id="c8339c6f-2bd8-47c7-904b-f08ed3eabdc0" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "userName": "${#TestCase#userName}",
+  "firstName": "${#TestCase#firstName}",
+  "lastName": "${#TestCase#lastName}",
+  "password": "${#TestCase#password}",
+  "nickName": "${#TestCase#nickName}",
+  "email": "${#TestCase#email}",
+  "roleList": {
+    "StoreManager": false,
+    "Seller": false,
+    "MerchantAdmin": true
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/user</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="4df149ad-5c2a-416c-b0d9-9c17c05d1ce1" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="087b2113-8815-4c44-ae4e-b57f34fc5cee" name="JSONPath Match-Success Message">
+              <con:configuration>
+                <path>$['message']</path>
+                <content>user created successfully</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="db37bbd4-278a-4a17-bc42-9298b8c0e31b" name="Match content of [userName]">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#TestCase#userName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - get user by Username" id="764f5c44-b2a5-4dad-aae7-3510be8a1603">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/{username}" methodName="UserId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - get user by Username" id="e1d23f9a-cf50-48bf-b8ee-3819adead476" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="f843ec97-8a45-4f83-afd4-9339ee0d636f" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="MessageContentAssertion" id="f11b4524-8d01-425d-a99a-b844d9f03409" name="Message Content Assertion">
+              <con:configuration xsi:type="con:MessageContentAssertion">
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:userName[1]</con:xpath>
+                  <con:element>userName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#userName}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:nickName[1]</con:xpath>
+                  <con:element>nickName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#nickName}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:organizationId[1]</con:xpath>
+                  <con:element>organizationId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#Project#organizationId}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:userId[1]</con:xpath>
+                  <con:element>userId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>580fe1cf-85a6-4441-bd7b-aa88e30ceea0</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:lastName[1]</con:xpath>
+                  <con:element>lastName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#lastName}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:email[1]</con:xpath>
+                  <con:element>email</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#email}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:firstName[1]</con:xpath>
+                  <con:element>firstName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#firstName}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7';
+//ns1:Response[1]/ns1:roleList[1]/ns1:Seller[1]</con:xpath>
+                  <con:element>Seller</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>true</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:originalMessage><![CDATA[<Response xmlns="https://api-dev.kachingretail.com/api/users/user/99246672-10fb-40eb-a569-4bb8392309e7">
+   <userName>email860911786091178609117@test.com</userName>
+   <nickName>nickName860911786091178609117</nickName>
+   <organizationId>755ff39e-c872-41a8-aa9f-2b2a461b8491</organizationId>
+   <userId>580fe1cf-85a6-4441-bd7b-aa88e30ceea0</userId>
+   <lastName>lastName860911786091178609117</lastName>
+   <email>email860911786091178609117@test.com</email>
+   <firstName>firstName860911786091178609117</firstName>
+   <roleList>
+      <Seller>true</Seller>
+   </roleList>
+</Response>]]></con:originalMessage>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="efc93e51-47af-4856-bad2-a2dd576e9d69" name="Match content of [MerchantAdmin]">
+              <con:configuration>
+                <path>$['roleList']['MerchantAdmin']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/><con:entry key="username" value="${#TestCase#userName}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>username</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="24f84e45-af96-450e-9eea-b399013d43a1">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50090d36-6dc4-45fa-9e69-7787c9c1042f">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="da8afcfb-5aed-4f19-907b-ab0f832d77f9">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - userId" id="e6bb4e6b-8407-4602-b2a3-35f35f7ab6c6">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>userId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>User - get user by Username</con:sourceStep>
+            <con:sourcePath>$['userId']</con:sourcePath>
+            <con:targetType>userId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Search for MerchantAdmin user by userId" id="5a9dcefa-5667-4e3c-b2bd-52e5c9adef02">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/search/{userId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Search for MerchantAdmin user by userId" id="95dc2d1f-e865-4f73-ba01-c4b11cec8d49" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/users/user/search/53a45ae3-e054-4507-b98a-58f6a10dbc9e</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7a61ea99-3c1f-4d9e-a6e8-21084f6b2272" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="JSONPath Match-Validate userName " id="1a76a289-d81f-4eaa-a144-c46998deef14">
+              <con:configuration>
+                <path>$['response']['userName']</path>
+                <content>${#TestCase#userName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="JSONPath Match-Validate Nick Name" id="d9c91b3e-bb57-4160-9d0c-0bd019903977">
+              <con:configuration>
+                <path>$['response']['nickName']</path>
+                <content>${#TestCase#nickName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="JSONPath Match -Validate LastName" id="9d1e5996-2618-41f8-9ced-7e3d1ea956fc">
+              <con:configuration>
+                <path>$['response']['lastName']</path>
+                <content>${#TestCase#lastName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="JSONPath Match-Validate email" id="766d92a6-9503-4663-9519-2a3ba2b568fa">
+              <con:configuration>
+                <path>$['response']['email']</path>
+                <content>${#TestCase#email}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="JSONPath Match-Validate First Name" id="a0f851ac-c0eb-4374-a59c-11efcd5ebe37">
+              <con:configuration>
+                <path>$['response']['firstName']</path>
+                <content>${#TestCase#firstName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [Seller]" id="2ef93928-ec4b-4e6f-9713-5bddb832ff8b">
+              <con:configuration>
+                <path>$['response']['roleList']['Seller']</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="498f1859-df98-486e-976a-9f4152caee04" name="Match content of [StoreManager]">
+              <con:configuration>
+                <path>$['response']['roleList']['StoreManager']</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3b63f7fa-d22f-4ff5-b396-1b38c7c7d469" name="Match content of [MerchantAdmin]">
+              <con:configuration>
+                <path>$['response']['roleList']['MerchantAdmin']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e9c5c549-4c19-4133-bc4d-111824c0f6f7" name="Match content of [userId]">
+              <con:configuration>
+                <path>$['response']['userId']</path>
+                <content>${#TestCase#userId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="userId" value="${#TestCase#userId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Get all users" id="d4adfbe4-c73d-4fb5-9c8a-de95199447f0">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user" methodName="User 3" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Get all users" id="500c7656-b91a-4e51-80e6-a015b137788c" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/user</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="f42b4b21-3955-4509-8404-ac24e620d4ad" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="c9e1e8bb-48b2-4a5e-9118-b8a3235490d1" name="Validate at least One user is returned">
+              <con:configuration>
+                <path>$['response'][0]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="3dbdda60-1a28-4ef9-bc53-358f215ee5ed" name="Contains">
+              <con:configuration>
+                <token>${#TestCase#userName}</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="d5ba7efd-3d00-4986-a085-38d03610cd22" name="Contains 2">
+              <con:configuration>
+                <token>${#TestCase#userId}</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="maxResults" value="100"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>maxResults</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Change password by super admin" id="977ee49d-07d7-4409-b9af-2bd9468454b8">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/change-password/{userName}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Change password by super admin" id="a1909d4d-7bd1-47a2-898c-b51c85368763" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:request>{
+  "oldPassword": "${#TestCase#password}",
+  "newPassword": "${#TestCase#newPassword}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/users/user/change-password/email113703411370341137034%40test.com</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="3cb9019b-0e1a-4e72-8d7a-356a8c3788d6" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>202</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9b8ba3ab-0626-4085-909e-1039db1a3393" name="Match content of [userName]">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#TestCase#userName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b895e61c-ca78-434e-944e-2f43b2e58a62" name="Match content of [message]">
+              <con:configuration>
+                <path>$['message']</path>
+                <content>password updated successfully</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="userName" value="${#TestCase#userName}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Reset password by super admin" id="435d7d25-1d04-4a11-8c88-12883f589bdf">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/reset-password/{userName}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Reset password by super admin" id="a7eb272e-883b-4531-9e88-776b497f2afc" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:request>{
+  "newPassword": "${#TestCase#password}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/users/user/reset-password/userName</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="df1beaa2-bb78-436f-8612-751594bb7200" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>202</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="83b3a719-d142-4b0f-a80c-e0b94d6b9177" name="Match content of [userName]">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#TestCase#userName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="97651638-3edd-4626-8726-bd588bdf04ae" name="Match content of [message]">
+              <con:configuration>
+                <path>$['message']</path>
+                <content>password updated successfully</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="userName" value="${#TestCase#userName}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Fail to Change MerchantAdmin role to Seller" id="7f1d8876-7345-408d-8668-37f819220e78">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/change-role/{username}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Fail to Change MerchantAdmin role to Seller" id="293ec12e-3a6a-4aa6-a078-19e78b7b8691" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:request>{
+"Seller": true,
+"StoreManager": false
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/users/user/change-role/email774805777480577748057%40test.com</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="52275754-cd2c-40cd-b3a3-589c9338a3a3" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="14a45efc-8134-4c19-b871-fbc080e8c4ed" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>insufficient privileges. Role for ${#TestCase#userName} can't be updated.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f5186ca3-3113-4efd-9a38-3a4f433710ba" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>"insufficient privileges. Role for ${#TestCase#userName} can't be updated."</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="username" value="${#TestCase#userName}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Update first/last name, nickname, email" id="65c25c2e-5c26-4360-af32-2dbf7bf05131">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/{username}" methodName="UserId 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Update first/last name, nickname, email" id="d9d5ff3b-dac8-4cb9-8b6c-61a6f81091be" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "firstName": "updated.${#TestCase#firstName}",
+  "lastName": "updated.${#TestCase#lastName}",
+  "nickName": "updated.${#TestCase#nickName}",
+  "email": "updated.${#TestCase#email}",
+  "userName": "updated.${#TestCase#userName}",
+  "roleList": {
+    "Seller": false,
+    "StoreManager": true,
+    "MerchantAdmin": false
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/user/99246672-10fb-40eb-a569-4bb8392309e7</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e1cc4ad3-34db-4441-8d01-fdc551de1fe1" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>202</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="635b138d-bdac-4e10-a9d1-be72acef81d1" name="Match content of [message]">
+              <con:configuration>
+                <path>$['message']</path>
+                <content>user updated successfully</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c236c9c6-d7e0-421f-93b3-0468e3b5f188" name="Match content of [userName]">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#TestCase#userName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/><con:entry key="username" value="${#TestCase#userName}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>username</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Delete MerchantAdmin user" id="70114598-e263-41da-8f26-1a5ee027f30e">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/{username}" methodName="UserId 3" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Delete MerchantAdmin user" id="6eb6bb87-51b7-4781-b7b5-4bbab897ce72" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="organizationId" value="${#Project#organizationId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/user/99246672-10fb-40eb-a569-4bb8392309e7</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="082576e3-1bca-468a-b83e-02d70fb0e99c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3321d326-d05d-4d56-8d93-6557e09cc2ec" name="Validate the error message">
+              <con:configuration>
+                <path>$['message']</path>
+                <content>user deleted successfully</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="454ebfd2-83c7-4581-a11b-1fcca4c0f8d7" name="Validate the deleted user">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#TestCase#userName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>SuperAdmin</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/><con:entry key="username" value="${#TestCase#userName}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>username</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SuperAdmin</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>randomNo</con:name>
+          <con:value>711716711716711716</con:value>
+        </con:property>
+        <con:property>
+          <con:name>userName</con:name>
+          <con:value>email711716711716711716</con:value>
+        </con:property>
+        <con:property>
+          <con:name>firstName</con:name>
+          <con:value>firstName711716711716711716</con:value>
+        </con:property>
+        <con:property>
+          <con:name>lastName</con:name>
+          <con:value>lastName711716711716711716</con:value>
+        </con:property>
+        <con:property>
+          <con:name>password</con:name>
+          <con:value>998877</con:value>
+        </con:property>
+        <con:property>
+          <con:name>nickName</con:name>
+          <con:value>nickName711716711716711716</con:value>
+        </con:property>
+        <con:property>
+          <con:name>email</con:name>
+          <con:value>email711716711716711716@test.com</con:value>
+        </con:property>
+        <con:property>
+          <con:name>userId</con:name>
+          <con:value>0867d511-e04c-479a-a1cb-b35e8a736809</con:value>
+        </con:property>
+        <con:property>
+          <con:name>userId2</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>newPassword</con:name>
+          <con:value>123456</con:value>
+        </con:property>
+        <con:property>
+          <con:name>longString</con:name>
+          <con:value>TestCharacterGreater100TestCharacterGreater100TestCharacterGreater100TestCharacterGreater100@test.com</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>27680f0c-bcb4-4b50-bc0c-576c829a3ead</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ff9bb793-003a-46ec-8f39-d3dfe96daf4d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

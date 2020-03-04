@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="bea22675-e205-4222-972b-123a5b451c47" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Stock -create/get/update/delete by admin user" searchProperties="true" timeout="0" maxResults="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="bea22675-e205-4222-972b-123a5b451c47fileName">Stock--create%2Fget%2Fupdate%2Fdelete-by-admin-user</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="groovy" name="Timestamp" id="58cd76a6-2d0f-4371-abae-7df9148a020d">
+        <con:settings/>
+        <con:config>
+          <script>import java.time.*
+
+LocalDateTime t = LocalDateTime.now();
+def projectProperty = t.toString();
+
+
+testRunner.testCase.setPropertyValue("timestamp",projectProperty);</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Warehouse - Create a warehouse" id="61c13787-1d3e-4103-8a1a-5f4a96c6c721">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/warehouse" methodName="Warehouse" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Warehouse - Create a warehouse" id="16b18f28-617a-469c-8580-22fa909bcf87" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{\r
+   "name" : "Hamza warehouse${#TestCase#timestamp}"\r
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/warehouse</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="70c395b7-2831-4b7c-a597-85b750c581f7" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0fdee368-008e-4bc1-ac73-24d739fab10f" name="Match content of [organizationId]">
+              <con:configuration>
+                <path>$['response']['organizationId']</path>
+                <content>*</content>
+                <allowWildcards>true</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="7f3259a9-a027-4976-a7c2-54a5c028b268" name="Check for existence of [name]">
+              <con:configuration>
+                <path>$['response']['name']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="359b705d-34e0-4014-b8cf-f914efb53275" name="Check for existence of [warehouseId]">
+              <con:configuration>
+                <path>$['response']['warehouseId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Authorization" value="Bearer ${#Project#token}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>Authorization</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="WareHouseID" id="9f42f5de-6808-45fe-bfee-2bfb7ba5e9d5">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>WareHouseID</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Warehouse - Create a warehouse</con:sourceStep>
+            <con:sourcePath>$['response']['warehouseId']</con:sourcePath>
+            <con:targetType>warehouseId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>WareHouseName</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Warehouse - Create a warehouse</con:sourceStep>
+            <con:sourcePath>$['response']['name']</con:sourcePath>
+            <con:targetType>warehouseName</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Stock - Create a stock" id="6a16730a-cbac-4023-8421-97f1c67a3a35">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock" methodName="Stock" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Stock - Create a stock" id="bdb97f0f-baef-4105-9839-161da3972fd5" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "quantity": "${#TestSuite#quantity}",
+  "warehouseId": "${#TestCase#warehouseId}",
+  "productId": "${#TestSuite#productId}",
+  "price": {
+    "centAmountExcludingVAT": "${#TestSuite#centAmountExcludingVAT}",
+    "centVATAmount": "${#TestSuite#centVATAmount}",
+    "currencyCode": "${#TestSuite#currencyCode}",
+    "countryCode": "${#TestSuite#countryCode}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="ac51bb1e-38dc-4f5c-8336-85fe766e622f" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="4550da8f-9232-4cbc-ab0c-fe765a2067c7" name="Check for existence of [stockId]">
+              <con:configuration>
+                <path>$['response']['stockId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="cfcf3cc2-ef25-4f46-bdc4-118af9b5dab2" name="Match content of [warehouseId]">
+              <con:configuration>
+                <path>$['response']['warehouseId']</path>
+                <content>${#TestCase#warehouseId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="811f912e-c027-4546-859c-014a4366bf89" name="Match content of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestSuite#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="87179628-697a-4a30-aeb7-2d097ea5ca29" name="Match content of [centAmountExcludingVAT]">
+              <con:configuration>
+                <path>$['response']['price']['centAmountExcludingVAT']</path>
+                <content>${#TestSuite#centAmountExcludingVAT}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3ff1c56c-5b66-473c-885d-1c6159d6b780" name="Match content of [centVATAmount]">
+              <con:configuration>
+                <path>$['response']['price']['centVATAmount']</path>
+                <content>${#TestSuite#centVATAmount}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8bfc3dfa-4b92-44c2-b2f2-c4f8db9d5398" name="Match content of [currencyCode]">
+              <con:configuration>
+                <path>$['response']['price']['currencyCode']</path>
+                <content>${#TestSuite#currencyCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="1f8440e7-4ba9-4fdc-941a-92b5bfb581cc" name="Match content of [countryCode]">
+              <con:configuration>
+                <path>$['response']['price']['countryCode']</path>
+                <content>${#TestSuite#countryCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="82951389-ac86-4e90-bea9-14831f825e13">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>StockID</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Stock - Create a stock</con:sourceStep>
+            <con:sourcePath>$['response']['stockId']</con:sourcePath>
+            <con:targetType>stockId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>StockProductID</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Stock - Create a stock</con:sourceStep>
+            <con:sourcePath>$['response']['productId']</con:sourcePath>
+            <con:targetType>stockProductId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="StockId - Update a stock with quantity information" id="6a88945f-eae7-4383-b9a7-56b20b91fb53">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock/{stockId}" methodName="StockId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="StockId - Update a stock with quantity information" id="941750b8-dc7b-4060-a345-91d2644ff351" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "quantity": "150",
+  "price": {
+    "centAmountExcludingVAT": 2000,
+    "centVATAmount": 300,
+    "currencyCode": "SEK",
+    "countryCode": "SE"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="470d6962-1124-4846-9d26-c7aa0c887848" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="5befbc39-ea32-48d4-a2ed-ce1681ccf0ca" name="Match content of [available]">
+              <con:configuration>
+                <path>$['response']['available']</path>
+                <content>150</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="3d8584db-4dd8-44ec-b409-7825d2d1af81" name="Check for existence of [organizationId]">
+              <con:configuration>
+                <path>$['response']['organizationId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="11716b3b-676d-4b51-936e-bf3c13538a90" name="Check for existence of [warehouseId]">
+              <con:configuration>
+                <path>$['response']['warehouseId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a4dc0c2e-c2c4-4529-9541-233e13c2d0a3" name="Match content of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestSuite#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="4d543e3f-a5f7-4aee-b060-ac1063b0124a" name="Check for existence of [centAmountExcludingVAT]">
+              <con:configuration>
+                <path>$['response']['price']['centAmountExcludingVAT']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ec0e132e-5426-4179-ad97-998aa725d7ba" name="Match content of [centVATAmount]">
+              <con:configuration>
+                <path>$['response']['price']['centVATAmount']</path>
+                <content>300</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="af4cb681-7ce4-4078-838d-bfa430221be7" name="Match content of [currencyCode]">
+              <con:configuration>
+                <path>$['response']['price']['currencyCode']</path>
+                <content>SEK</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2bd495f1-59ee-49be-a554-eade63284aa1" name="Match content of [countryCode]">
+              <con:configuration>
+                <path>$['response']['price']['countryCode']</path>
+                <content>SE</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="stockId" value="${#TestCase#stockId}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>stockId</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="StockId 2 - Get Stock by ID" id="c666ec09-a182-41f7-91a7-d39da1c46988">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock/{stockId}" methodName="StockId 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="StockId 2 - Get Stock by ID" id="3f353ee9-e2cc-449d-b1cf-744e0b42571e" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="a1358ea4-b65a-4c05-a274-dca20734279f" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="15f45096-12b6-4e36-823b-e8fd8df395c7" name="Match content of [stockId]">
+              <con:configuration>
+                <path>$['response']['stockId']</path>
+                <content>${#TestCase#stockId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a7bda76e-b28b-44b2-a631-2ea85168db5c" name="Match content of [warehouseId]">
+              <con:configuration>
+                <path>$['response']['warehouseId']</path>
+                <content>${#TestCase#warehouseId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="453c1b4b-46f5-4318-b15e-69d667699d43" name="Match content of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestSuite#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="d77ce3b7-659a-4b19-89d1-ce8839ffb858" name="Check for existence of [centAmountExcludingVAT]">
+              <con:configuration>
+                <path>$['response']['price']['centAmountExcludingVAT']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="4484f00e-6f84-4f20-8fc3-a14f5ce84524" name="Check for existence of [centVATAmount]">
+              <con:configuration>
+                <path>$['response']['price']['centVATAmount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="103d32f7-e34c-46fa-ad6d-3e3389c77a7a" name="Check for existence of [currencyCode]">
+              <con:configuration>
+                <path>$['response']['price']['currencyCode']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="2f6b0d30-12c8-4535-a1a3-72f87ecc1cbb" name="Check for existence of [countryCode]">
+              <con:configuration>
+                <path>$['response']['price']['countryCode']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Authorization" value="Bearer ${#Project#token}"/><con:entry key="stockId" value="${#TestCase#stockId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>stockId</con:entry>
+              <con:entry>Authorization</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Stock_productId - Get Stock by product ID" id="419a6b42-4169-4e76-8928-df60a36e570f">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock/product/{stock_productId}" methodName="Stock_productId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Stock_productId - Get Stock by product ID" id="af5d476c-226d-4a98-9128-e527ef31b441" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock/product/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="db9d33f8-76ba-4a04-82ae-b3af6d859920" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b9db7e7d-5497-4e14-a463-4b84f13e8993" name="Match content of [productId]-ValidateProductID">
+              <con:configuration>
+                <path>$['response'][0]['productId']</path>
+                <content>${#TestSuite#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Authorization" value="Bearer ${#Project#token}"/><con:entry key="stock_productId" value="${#TestCase#stockProductId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>stock_productId</con:entry>
+              <con:entry>Authorization</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Groovy Script" id="990c478a-80b1-4a8b-8a38-b827991d576e" disabled="true">
+        <con:settings/>
+        <con:config>
+          <script>def today =new Date().format( 'yyyy-MM-dd' )
+log.info today
+testRunner.testCase.testSuite.project.setPropertyValue("today",today);</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Stock - List Stock items" id="d089aef5-19ba-4063-b67f-c8b01e07f4df">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock/" methodName="Stock" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Stock - List Stock items" id="ac44e8f0-1c7d-45c2-b509-3ffe3bcc4a47" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7e7e5696-1fe1-454b-91b2-5e0c68631215" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Authorization" value="Bearer ${#Project#token}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="StockId 3 - Delete by stockId" id="157b0c4a-1fde-4405-b730-e94dc237cb82">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock/{stockId}" methodName="StockId 3" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="StockId 3 - Delete by stockId" id="f8fae2e0-3a8a-4f46-b078-85e41ee132db" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="8c25d168-4390-432f-acfa-7b60d9881a57" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b4ef8681-deae-4b7d-9cdb-29cc2e448d28" name="Match content of [stockId]-Validate stockID">
+              <con:configuration>
+                <path>$['response']['stockId']</path>
+                <content>${#TestCase#stockId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="stockId" value="${#TestCase#stockId}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>stockId</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Stock 3 - Create a stock for testing delete by productId" id="49063f84-c0fb-403d-be1c-c871652609b2">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/stock" methodName="Stock 3" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Stock 3 - Create a stock for testing delete by productId" id="fb23a934-e578-44e3-abe8-f2edb28d1407" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "warehouseId": "${#TestCase#warehouseId}",
+    "productId": "${#TestSuite#productId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/stock</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="fbbc0bfa-f1c4-450f-b0da-aa3765056843" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e98512f4-70c2-458d-bed1-8d982e28a036" name="Match content of [warehouseId]">
+              <con:configuration>
+                <path>$['response']['warehouseId']</path>
+                <content>${#TestCase#warehouseId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="d6dadad9-c2aa-4ab3-8f3e-d7064ea0f288" name="Match content of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestSuite#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Groovy Script -StockProductId" id="73a87817-a53f-44c0-9609-7b7780f41520">
+        <con:settings/>
+        <con:config>
+          <script>def responseproductId = context.expand( '${Stock 3 - Create a stock for testing delete by productId#Response#$[\'response\'][\'productId\']}' )
+testRunner.testCase.setPropertyValue( "stockProductId" , responseproductId )
+log.info "response stockProductId  is " + testRunner.testCase.getPropertyValue( "stockProductId")</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Warehouse - Delete a warehouse" id="e2f3ece8-18be-424d-8fde-3edc99221150">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/warehouse/{warehouseId}" methodName="WarehouseId 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Warehouse - Delete a warehouse" id="7bba4235-ebb7-487c-99f3-35d8acb44125" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"name": "${#TestCase#warehouseId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/warehouse/9bdf54cb-3bf7-4897-a03b-0f20e03d5a81</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="17737b17-cc2d-4c6e-892e-d2907e811007" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="484f4be2-2126-4f71-9f61-f6895e510c7c" name="Match content of [name]">
+              <con:configuration>
+                <path>$['response']['name']</path>
+                <content>${#TestCase#warehouseName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b25d68aa-5f9b-4de9-96ed-74a524a72654" name="Match content of [warehouseId]">
+              <con:configuration>
+                <path>$['response']['warehouseId']</path>
+                <content>${#TestCase#warehouseId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Authorization" value="Bearer ${#Project#token}"/><con:entry key="warehouseId" value="${#TestCase#warehouseId}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>warehouseId</con:entry>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>Authorization</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>warehouseId</con:name>
+          <con:value>095b2c48-c5ce-4671-920c-f884ce9bb07f</con:value>
+        </con:property>
+        <con:property>
+          <con:name>warehouseName</con:name>
+          <con:value>Hamza warehouse2020-03-04T10:57:15.251009</con:value>
+        </con:property>
+        <con:property>
+          <con:name>stockId</con:name>
+          <con:value>095b2c48-c5ce-4671-920c-f884ce9bb07f_daeee366-9a35-4ada-81db-eb6c79398b1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>stockProductId</con:name>
+          <con:value>daeee366-9a35-4ada-81db-eb6c79398b1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>timestamp</con:name>
+          <con:value>2020-03-04T10:57:15.251009</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>990c478a-80b1-4a8b-8a38-b827991d576e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>6a16730a-cbac-4023-8421-97f1c67a3a35</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>49063f84-c0fb-403d-be1c-c871652609b2</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>58cd76a6-2d0f-4371-abae-7df9148a020d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9f42f5de-6808-45fe-bfee-2bfb7ba5e9d5</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>82951389-ac86-4e90-bea9-14831f825e13</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:environmentSpec>
+        <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:testCase>

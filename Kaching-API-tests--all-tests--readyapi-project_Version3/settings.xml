@@ -1,0 +1,2138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3c64411f-ac15-4b26-880b-321d5ece8b15" created="2.8.2" activeEnvironment="Dev" name="Kaching API tests (Version3)" resourceRoot="" updated="3.1.0" encryptionMode="Not encrypted" abortOnError="false" runType="SEQUENTIAL" soapui-version="5.5.0" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config">
+  <con:description>Backend api tests for features deployed to production V3</con:description>
+  <con:settings>
+    <con:setting id="3c64411f-ac15-4b26-880b-321d5ece8b15fileName">Kaching-API-tests-%28all-tests%29</con:setting>
+    <con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.LoadUITestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Test Duration Limit" value=""/>
+  <con:entry key="" value=""/>
+  <con:entry key="Abort Requests" value=""/>
+  <con:entry key="Report Format" value="Default"/>
+  <con:entry key="Local Mode" value="false"/>
+  <con:entry key="Agents" value=""/>
+  <con:entry key="JUnit-Style Results" value="false"/>
+  <con:entry key="Arriving/Base VUs" value=""/>
+  <con:entry key="Statistics" value=""/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Failure Limit" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="SelectedStatistics" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Target Number Limit" value=""/>
+  <con:entry key="Environment" value="Sandbox"/>
+  <con:entry key="ExportStatistics" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Group results" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Create Reports" value="false"/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="LoadUITest" value="Bambora - Seller - Create and pay for order LoadTest"/>
+</xml-fragment>]]></con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:requirements/>
+  <con:properties>
+    <con:property>
+      <con:name>baseURL</con:name>
+      <con:value>https://api-dev.kachingretail.com/api</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseURLAuth</con:name>
+      <con:value>https://api-dev.kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientId</con:name>
+    </con:property>
+    <con:property>
+      <con:name>clientSecret</con:name>
+    </con:property>
+    <con:property>
+      <con:name>token</con:name>
+      <con:value>e8647472-fcaa-3f50-8504-91d32d9df955</con:value>
+    </con:property>
+    <con:property>
+      <con:name>deviceId</con:name>
+      <con:value>10c0a774-8878-4307-a500-8a0068dfc6ba</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminUserAuth</con:name>
+      <con:value>kaching-admin</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminPasswordAuth</con:name>
+      <con:value>Qwerty!@#</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminUserAuth</con:name>
+      <con:value>merchant.admin@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerUserAuth</con:name>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerPasswordAuth</con:name>
+    </con:property>
+    <con:property>
+      <con:name>sellerUserAuth</con:name>
+      <con:value>seller@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2UserAuth</con:name>
+    </con:property>
+    <con:property>
+      <con:name>seller2PasswordAuth</con:name>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentUserAuth</con:name>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentPasswordAuth</con:name>
+    </con:property>
+    <con:property>
+      <con:name>today</con:name>
+    </con:property>
+    <con:property>
+      <con:name>date</con:name>
+    </con:property>
+    <con:property>
+      <con:name>organizationId</con:name>
+      <con:value>96662149-dd5b-42fd-80ad-f1934efcabe6</con:value>
+    </con:property>
+    <con:property>
+      <con:name>languageCode</con:name>
+    </con:property>
+    <con:property>
+      <con:name>usesFCU</con:name>
+    </con:property>
+    <con:property>
+      <con:name>name</con:name>
+    </con:property>
+    <con:property>
+      <con:name>organizationNumber</con:name>
+    </con:property>
+    <con:property>
+      <con:name>vatRegistrationNumber</con:name>
+    </con:property>
+    <con:property>
+      <con:name>website</con:name>
+    </con:property>
+    <con:property>
+      <con:name>returnPolicy</con:name>
+    </con:property>
+    <con:property>
+      <con:name>contactName</con:name>
+    </con:property>
+    <con:property>
+      <con:name>contactEmail</con:name>
+    </con:property>
+    <con:property>
+      <con:name>contactEmailSignatureUrl</con:name>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailContentText</con:name>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailSubjectText</con:name>
+    </con:property>
+    <con:property>
+      <con:name>returnReceiptEmailSubjectText</con:name>
+    </con:property>
+    <con:property>
+      <con:name>countryCode</con:name>
+    </con:property>
+    <con:property>
+      <con:name>countryCode2</con:name>
+    </con:property>
+    <con:property>
+      <con:name>currencyCode</con:name>
+    </con:property>
+    <con:property>
+      <con:name>phoneNumber</con:name>
+    </con:property>
+    <con:property>
+      <con:name>logoUrl</con:name>
+    </con:property>
+    <con:property>
+      <con:name>documentLogoDataURI</con:name>
+      <con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    </con:property>
+    <con:property>
+      <con:name>dateCreated</con:name>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_newItems</con:name>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_deliveringItemsFromWarehouses</con:name>
+    </con:property>
+    <con:property>
+      <con:name>1_amountToCharge</con:name>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_newItems</con:name>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_deliveringItemsFromWarehouses</con:name>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToCharge</con:name>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToRefund</con:name>
+    </con:property>
+    <con:property>
+      <con:name>2_returningItems</con:name>
+    </con:property>
+  </con:properties>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer>
+    <con:oAuth2Profile>
+      <con:name>AdminUser</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>98dae5ec-071e-3701-a396-972aea8f7864</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315830</con:accessTokenIssuedTime>
+      <con:manualAccessTokenExpirationTimeUnit>SECONDS</con:manualAccessTokenExpirationTimeUnit>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#adminUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#adminPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>e141b73d-90c9-3471-94e8-67759cd1a040</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>817</con:accessTokenExpirationTime>
+      <con:javaScripts>
+        <con:entry>// This function asks for permission to use OAuth. The user must be logged in to use it. Logging in is performed in the script below.
+function consent() {
+    if (document.getElementById('submit_approve_access')){
+        document.getElementById('submit_approve_access').click();
+    }
+}
+
+// This function fills user password in when the user name is already known. It uses the project-level "pass" property.
+function fillpwd() {
+    document.getElementById('Passwd').value = '${#Project#adminPasswordAuth}';
+    document.getElementById('gaia_loginform').submit();
+    window.setInterval(consent, 100);
+}
+
+// This script checks what page is displayed and provides the appropriate data. It uses the project-level "user" and "pass" properties.
+if (document.getElementById('Email') &amp;&amp; document.getElementById('next')) {
+    document.getElementById('Email').value = '${#Project#adminUserAuth}';
+    document.getElementById('next').click();
+    window.setTimeout(fillpwd, 100);
+} else if (document.getElementById('Passwd')) {
+    fillpwd();
+} else if(document.getElementById('submit_approve_access')){
+    window.setInterval(consent, 100);
+}</con:entry>
+        <con:entry/>
+      </con:javaScripts>
+      <con:idToken>eyJ4NXQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVEiLCJraWQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVFfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiclE4ZnhkbDNod2ZsbmNnaFZodjJuQSIsImF1ZCI6WyJudlEzUVM2M0dQN0hUYnFXOFJLdnE1VUlVVEVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6InNhbmRib3gubWVyY2hhbnQuYWRtaW4uYXV0b21hdGlvbiIsIm5iZiI6MTU4MjcyNzU3NywiYXpwIjoibnZRM1FTNjNHUDdIVGJxVzhSS3ZxNVVJVVRFYSIsImFtciI6WyJyZWZyZXNoX3Rva2VuIl0sImlzcyI6Imh0dHBzOlwvXC9pbnRlZ3JhdGlvbi1hcGkua2FjaGluZ2hxLmNvbVwvdG9rZW4iLCJleHAiOjE1ODI3MzExNzcsImlhdCI6MTU4MjcyNzU3N30.VfetA1o5sibWTJMNptDgm2WZ75J8XODIu5wzGyQocTzMqzFU3BQ8hYKHTd0QDEl68oA8VXvLsnuLLIfdMQQa9r6WbVPOw5GhZhS3jgCZ3SJiP941FTMBRZqfizQ8n85aK36ZoXW_IUmCk3S1PWeFG7MeXcwWc3ultrrRspcOGTlVkkXPLUwC7L7Nj9ujn6c1Wcsa-YrU7zZMe5HOthrLqdqNg7J4MhhOtpoJwo6AczBbGjGmky0vrdB9HnG8c0azotPyCRe-9NSZ-iBjkdBKxEOE2Is1Hr1BKeODvk9w_nq2IYL9FhCm98E5PbR0NC5C4WSfWypT1zSwcN0ZjfGNmA</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:useNonce>false</con:useNonce>
+      <con:useAuthHeader>true</con:useAuthHeader>
+      <con:applyJwtAssertion>true</con:applyJwtAssertion>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+    <con:oAuth2Profile>
+      <con:name>SuperAdmin</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>8b3622bf-ab0b-3a88-9172-c59542e4a02f</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315832</con:accessTokenIssuedTime>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#superAdminUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#superAdminPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>b41f8eb5-8cb8-3189-a001-3b8e1c573644</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>815</con:accessTokenExpirationTime>
+      <con:javaScripts>
+        <con:entry>// This function asks for permission to use OAuth. The user must be logged in to use it. Logging in is performed in the script below.
+function consent() {
+    if (document.getElementById('submit_approve_access')){
+        document.getElementById('submit_approve_access').click();
+    }
+}
+
+// This function fills user password in when the user name is already known. It uses the project-level "pass" property.
+function fillpwd() {
+    document.getElementById('Passwd').value = '${#Project#superAdminPasswordAuth}';
+    document.getElementById('gaia_loginform').submit();
+    window.setInterval(consent, 100);
+}
+
+// This script checks what page is displayed and provides the appropriate data. It uses the project-level "user" and "pass" properties.
+if (document.getElementById('Email') &amp;&amp; document.getElementById('next')) {
+    document.getElementById('Email').value = '${#Project#superAdminUserAuth}';
+    document.getElementById('next').click();
+    window.setTimeout(fillpwd, 100);
+} else if (document.getElementById('Passwd')) {
+    fillpwd();
+} else if(document.getElementById('submit_approve_access')){
+    window.setInterval(consent, 100);
+}</con:entry>
+        <con:entry/>
+      </con:javaScripts>
+      <con:idToken>eyJ4NXQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVEiLCJraWQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVFfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiUnBQTHVIdnpzLTJ3LVRKVkVHNEQyUSIsImF1ZCI6WyJudlEzUVM2M0dQN0hUYnFXOFJLdnE1VUlVVEVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6InByZC1zdXBlci1hZG1pbiIsIm5iZiI6MTU4MTY4OTE1NiwiYXpwIjoibnZRM1FTNjNHUDdIVGJxVzhSS3ZxNVVJVVRFYSIsImFtciI6WyJyZWZyZXNoX3Rva2VuIl0sImlzcyI6Imh0dHBzOlwvXC9pbnRlZ3JhdGlvbi1hcGkua2FjaGluZ2hxLmNvbVwvdG9rZW4iLCJleHAiOjE1ODE2OTI3NTYsImlhdCI6MTU4MTY4OTE1Nn0.ScR6adFkI2yUXt8ciiu5s5h3Ky-7l3WOiWdsLTkiBrSb7k06VZgqgnDZz83x01834F8roWMp5vEIrD2dq-K1sggFxUJOx8y4v5XEetw44HUwLLVrA90KqUtMMADLuoyyGDWgt1jaTrYG5TPX_BtW1tWSr3rb07HGiniu5gKSjpOf7Q84glo5-ATdB0Ikkar2epSkkgis5iY2skV5cGnmNQ7wBoyc9yUC_X5erJ9yF76YZakARMVEtlkpl8r3fvpvgXD477McdqdYrAMcq7tFVHOjReGA1apn6EcX_mF7NTH4SGaUW6Rstp-Io8jVzSGLpEjCiTPjyXZ_e0uqW7Tujw</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:useAuthHeader>true</con:useAuthHeader>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+    <con:oAuth2Profile>
+      <con:name>SellerUser</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>52f6f6e6-7fca-3192-89d4-cfab0db423c7</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315829</con:accessTokenIssuedTime>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#sellerUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#sellerPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>35a688bc-ebe9-31f8-afcb-695a24b9eba0</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>818</con:accessTokenExpirationTime>
+      <con:javaScripts>
+        <con:entry>// This function asks for permission to use OAuth. The user must be logged in to use it. Logging in is performed in the script below.
+function consent() {
+    if (document.getElementById('submit_approve_access')){
+        document.getElementById('submit_approve_access').click();
+    }
+}
+
+// This function fills user password in when the user name is already known. It uses the project-level "pass" property.
+function fillpwd() {
+    document.getElementById('Passwd').value = '${#Project#sellerPasswordAuth}';
+    document.getElementById('gaia_loginform').submit();
+    window.setInterval(consent, 100);
+}
+
+// This script checks what page is displayed and provides the appropriate data. It uses the project-level "user" and "pass" properties.
+if (document.getElementById('Email') &amp;&amp; document.getElementById('next')) {
+    document.getElementById('Email').value = '${#Project#sellerUserAuth}';
+    document.getElementById('next').click();
+    window.setTimeout(fillpwd, 100);
+} else if (document.getElementById('Passwd')) {
+    fillpwd();
+} else if(document.getElementById('submit_approve_access')){
+    window.setInterval(consent, 100);
+}</con:entry>
+        <con:entry/>
+      </con:javaScripts>
+      <con:idToken>eyJ4NXQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXciLCJraWQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXdfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiV0pfNURrU3J4MDVZeEZEY0NiYmhGdyIsInN1YiI6InNlbGxlckBhdXRvbWF0aW9uLmNvbSIsImFtciI6WyJyZWZyZXNoX3Rva2VuIl0sInVzZXItaWQiOiIzYzIyMmE3Yy01ZjNlLTQzMTgtOWQ4OS1kOGQwNzRkNTFkYjkiLCJpc3MiOiJcdGh0dHBzOlwvXC9pZHAtc3RhZ2luZy5rYWNoaW5naHEuY29tOjQ0M1wvb2F1dGgyXC90b2tlbiIsImdyb3VwcyI6WyJJbnRlcm5hbFwvZXZlcnlvbmUiLCJJbnRlcm5hbFwvc2VsZnNpZ251cCIsIkludGVybmFsXC9rYWNoaW5nX3NlbGxlciJdLCJnaXZlbl9uYW1lIjoiQXV0b21hdGlvbiIsInNhbmRib3gtb3JnYW5pemF0aW9uIjoiNzU1ZmYzOWUtYzg3Mi00MWE4LWFhOWYtMmIyYTQ2MWI4NDkxIiwiYXVkIjpbImJDeUJITFVJdGk5bEF5RlFDTnFIWmtlUTF5SWEiLCJodHRwOlwvXC9vcmcud3NvMi5hcGltZ3RcL2dhdGV3YXkiXSwibmJmIjoxNTgzMjQ3NDY0LCJwYXJ0bmVyLW5hbWUiOiJrYWNoaW5nLWludGVybmFsIiwiYXpwIjoiYkN5QkhMVUl0aTlsQXlGUUNOcUhaa2VRMXlJYSIsIm9yZ2FuaXphdGlvbiI6Ijc1NWZmMzllLWM4NzItNDFhOC1hYTlmLTJiMmE0NjFiODQ5MSIsImV4cCI6MTU4MzI1MTA2NCwiaWF0IjoxNTgzMjQ3NDY0LCJmYW1pbHlfbmFtZSI6IlNlbGxlciJ9.IFN50oqSJtbxolAGGVXrfxfuqQDtNujhCBC9m4INlLMZjeINljsFqqd5XCJ7ie9_mEE9l9lIlA3rx--kmsS-wtVOuWcFOocJZGsLapDkpYKsuwEmv2vRe6dcHQXd5s8np1CDJ5nNSGg_ihVU7giNEP__3GO03yJe8Z0bwpj40wW0VZoGSFWUvM7Hq0RX2ow5NUSLN7CagXgG1v3QLtzU-zsfV_q6-L2p-FNnHHo-5uiqnmUGFv_KxQCNkNOn5jXzBq7WzUBJBrFT0hE5MjX4mtw1liIK_zupjLS5A_m8ZOqeZo3MSw6jAsAqZsR4W14Ff9KOiXXg0XQRK6hqpnd61w</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:useNonce>true</con:useNonce>
+      <con:useAuthHeader>true</con:useAuthHeader>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+    <con:oAuth2Profile>
+      <con:name>StoreManager</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>47b13af4-ea1c-3a5d-acb1-f74548f33045</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315833</con:accessTokenIssuedTime>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#storeManagerUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#storeManagerPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>cd16f9af-f1ec-390d-9bde-92878e0efc7a</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>815</con:accessTokenExpirationTime>
+      <con:idToken>eyJ4NXQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXciLCJraWQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXdfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoibEJjUFg1X3cwZjFGNWp2U0JGYnZLdyIsInN1YiI6InN0b3JlLm1hbmFnZXJAYXV0b21hdGlvbi5jb20iLCJhbXIiOlsicmVmcmVzaF90b2tlbiJdLCJ1c2VyLWlkIjoiNTkyZTNiNDMtN2Y5NS00ZGYwLTkwZWUtZTM1NDc0NGQ5Yjg3IiwiaXNzIjoiXHRodHRwczpcL1wvaWRwLXN0YWdpbmcua2FjaGluZ2hxLmNvbTo0NDNcL29hdXRoMlwvdG9rZW4iLCJncm91cHMiOlsiSW50ZXJuYWxcL2thY2hpbmdfc3RvcmVfbWFuYWdlciIsIkludGVybmFsXC9ldmVyeW9uZSIsIkludGVybmFsXC9zZWxmc2lnbnVwIl0sImdpdmVuX25hbWUiOiJBdXRvbWF0aW9uIiwic2FuZGJveC1vcmdhbml6YXRpb24iOiI3NTVmZjM5ZS1jODcyLTQxYTgtYWE5Zi0yYjJhNDYxYjg0OTEiLCJhdWQiOlsiYkN5QkhMVUl0aTlsQXlGUUNOcUhaa2VRMXlJYSIsImh0dHA6XC9cL29yZy53c28yLmFwaW1ndFwvZ2F0ZXdheSJdLCJuYmYiOjE1ODMyNDc0NDYsInBhcnRuZXItbmFtZSI6ImthY2hpbmctaW50ZXJuYWwiLCJhenAiOiJiQ3lCSExVSXRpOWxBeUZRQ05xSFprZVExeUlhIiwib3JnYW5pemF0aW9uIjoiNzU1ZmYzOWUtYzg3Mi00MWE4LWFhOWYtMmIyYTQ2MWI4NDkxIiwiZXhwIjoxNTgzMjUxMDQ2LCJpYXQiOjE1ODMyNDc0NDYsImZhbWlseV9uYW1lIjoiU3RvcmVNYW5hZ2VyIn0.Y76xDudRz7NaWue_5nAX9jY-1CNgsfPhHMgAHEx4uKDOI0mgsc_BRpsLG8UJTttzKNkFoM2-udtUHiEhdMx9aFA0pZ1yTKm8ETwlQS0faT9t9ENqyKM4B40rGeZbdaP_k-c3CAVd4CmrJItx0sHeauKQKpI66bL2F7MPlTz6sDQxs1MB4TsP6M4xYJENb8UY933xMR8_i5K1PYalapYkPOFn4ZhG8CXBgTzZ-m--x1L6F1KgObAcQsLzBOqOXce27Q3e0VtL0iOsAzAfFcQdOAEVnl4b7cT0uq_Erfjzu1prWdcEK6Z-pjzxJ53Q9TdZPlltSx8nY9eD2dFByLHCcg</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+  </con:oAuth2ProfileContainer>
+  <con:oAuth1ProfileContainer/>
+  
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// def token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// def token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// def headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestSuiteRunListener.beforeRun" name="TestSuiteRunListener.beforeRun">
+    <con:script>// Import the required classes
+import com.eviware.soapui.impl.rest.actions.oauth.OltuOAuth2ClientFacade
+import com.eviware.soapui.support.editor.inspectors.auth.TokenType
+import com.eviware.soapui.model.support.ModelSupport
+
+// Set up variables for Seller user
+//def sellerCurrentUserAuth = testRunner.testCase.testSuite.project.getPropertyValue("sellerUserAuth")
+//def sellerCurrentPasswordAuth = testRunner.testCase.testSuite.project.getPropertyValue("sellerPasswordAuth")
+//testRunner.testCase.testSuite.project.setPropertyValue( "sellerCurrentUserAuth" , sellerCurrentUserAuth)
+//testRunner.testCase.testSuite.project.setPropertyValue( "sellerCurrentPasswordAuth" , sellerCurrentPasswordAuth)
+
+//Refresh token
+def project = ModelSupport.getModelItemProject(context.getModelItem());
+def profileList = ["SellerUser", "AdminUser", "SuperAdmin", "StoreManager"]
+
+for (authProfileName in profileList){
+	def authProfile = project.getAuthRepository().getEntry(authProfileName);
+	def oldToken = authProfile.getAccessToken();
+	def tokenType = TokenType.ACCESS;
+	
+	// Create a facade object
+	def oAuthFacade = new OltuOAuth2ClientFacade(tokenType);
+	
+	// Request an access token in headless mode
+	oAuthFacade.requestAccessToken(authProfile, true, true);
+	
+	// Wait until the access token gets updated
+	for(int i = 0; i&lt;=1000; i++){
+	        if(oldToken != authProfile.getAccessToken()){
+	        	// Post the info to the log
+			log.info("Set new token: " + authProfile.getAccessToken());
+	          break
+	        }
+	        sleep(1)
+	    }
+}</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="LoadTestRunListener.beforeLoadTest" name="LoadTestRunListener.beforeLoadTest">
+    <con:script>// Import the required classes
+import com.eviware.soapui.impl.rest.actions.oauth.OltuOAuth2ClientFacade
+import com.eviware.soapui.support.editor.inspectors.auth.TokenType
+import com.eviware.soapui.model.support.ModelSupport
+
+// Set up variables for Seller user
+//def sellerCurrentUserAuth = testRunner.testCase.testSuite.project.getPropertyValue("sellerUserAuth")
+//def sellerCurrentPasswordAuth = testRunner.testCase.testSuite.project.getPropertyValue("sellerPasswordAuth")
+//testRunner.testCase.testSuite.project.setPropertyValue( "sellerCurrentUserAuth" , sellerCurrentUserAuth)
+//testRunner.testCase.testSuite.project.setPropertyValue( "sellerCurrentPasswordAuth" , sellerCurrentPasswordAuth)
+
+//Refresh token
+def project = ModelSupport.getModelItemProject(context.getModelItem());
+def profileList = ["SellerUser", "AdminUser", "SuperAdmin", "StoreManager"]
+
+for (authProfileName in profileList){
+	def authProfile = project.getAuthRepository().getEntry(authProfileName);
+	def oldToken = authProfile.getAccessToken();
+	def tokenType = TokenType.ACCESS;
+	
+	// Create a facade object
+	def oAuthFacade = new OltuOAuth2ClientFacade(tokenType);
+	
+	// Request an access token in headless mode
+	oAuthFacade.requestAccessToken(authProfile, true, true);
+	
+	// Wait until the access token gets updated
+	for(int i = 0; i&lt;=1000; i++){
+	        if(oldToken != authProfile.getAccessToken()){
+	        	// Post the info to the log
+			log.info("Set new token: " + authProfile.getAccessToken());
+	          break
+	        }
+	        sleep(1)
+	    }
+}</con:script>
+  </con:eventHandlers>
+  <con:sensitiveInformation/>
+  <con:environment id="12fa4514-9cd8-4cfa-bdff-13f963c9009f" name="Dev">
+    <con:service type="REST" name="${#Project#baseURL}">
+      <con:endpoint authProfile="No Authorization">${#Project#baseURL}</con:endpoint>
+    </con:service>
+    <con:property>
+      <con:name>baseURL</con:name>
+      <con:value>https://api-dev.kachingretail.com/api</con:value>
+    </con:property>
+    <con:property>
+      <con:name>deviceId</con:name>
+      <con:value>10c0a774-8878-4307-a500-8a0068dfc6ba</con:value>
+    </con:property>
+    <con:property>
+      <con:name>userName</con:name>
+      <con:value>Test2019-10-07T14:43:38.930</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminUserAuth</con:name>
+      <con:value>merchant.admin.automation</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminPasswordAuth</con:name>
+      <con:value>Qwer1234</con:value>
+    </con:property>
+    <con:property>
+      <con:name>today</con:name>
+      <con:value>2019-12-20</con:value>
+    </con:property>
+    <con:property>
+      <con:name>date</con:name>
+      <con:value>2019-03-01</con:value>
+    </con:property>
+    <con:property>
+      <con:name>languageCode</con:name>
+      <con:value>sv</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerUserAuth</con:name>
+      <con:value>store.manager@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientId</con:name>
+      <con:value>bCyBHLUIti9lAyFQCNqHZkeQ1yIa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientSecret</con:name>
+      <con:value>pEMVMUj5NVcyZ80gAsYSbSXnLqsa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseURLAuth</con:name>
+      <con:value>https://api-dev.kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>token</con:name>
+      <con:value>e8647472-fcaa-3f50-8504-91d32d9df955</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminUserAuth</con:name>
+      <con:value>kaching-admin</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminPasswordAuth</con:name>
+      <con:value>Qwerty!@#</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerUserAuth</con:name>
+      <con:value>seller@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationId</con:name>
+      <con:value>755ff39e-c872-41a8-aa9f-2b2a461b8491</con:value>
+    </con:property>
+    <con:property>
+      <con:name>usesFCU</con:name>
+      <con:value>false</con:value>
+    </con:property>
+    <con:property>
+      <con:name>name</con:name>
+      <con:value>Cafe "Katja"</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationNumber</con:name>
+      <con:value>12345678900987654321</con:value>
+    </con:property>
+    <con:property>
+      <con:name>vatRegistrationNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>website</con:name>
+      <con:value>https://www.cafekatja.com/info-2</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnPolicy</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>contactName</con:name>
+      <con:value>Katja Veshtort</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmail</con:name>
+      <con:value>katja@kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmailSignatureUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailContentText</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailSubjectText</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>returnReceiptEmailSubjectText</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>countryCode</con:name>
+      <con:value>SE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode2</con:name>
+      <con:value>BE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>currencyCode</con:name>
+      <con:value>SEK</con:value>
+    </con:property>
+    <con:property>
+      <con:name>phoneNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>logoUrl</con:name>
+      <con:value>https://kmp-dev.s3.eu-west-3.amazonaws.com/dc802bab-74f2-49bd-86d3-fbe308c2020e.png</con:value>
+    </con:property>
+    <con:property>
+      <con:name>documentLogoDataURI</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>dateCreated</con:name>
+      <con:value>2019-12-02T16:26:31.168Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2UserAuth</con:name>
+      <con:value>seller2@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2PasswordAuth</con:name>
+      <con:value>112233</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentPasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentUserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_newItems</con:name>
+      <con:value>[{ 			"quantity": 1, 			"id": "REPLACE_THIS_WITH_ITEM_ID_1", 			"product": { 				"id": "88d70ce6-d92c-4686-bc7c-c729c566a651", 				"isService": false, 				"measurementUnitCode": "piece", 				"description": "croutons, lemon, garlic, parmesan ", 				"isFlexiblePrice": false, 				"topGroupID": "6878830C-2539-4B6B-8022-D07F85FAD0BE", 				"groupID": "D9921190-42B9-4061-8A93-1087606C0937", 				"sku": "333333333333", 				"measurementPrecisionDecimalCount": 0, 				"imageURL": "https:\/\/mittkok.expressen.se\/wp-content\/uploads\/2014\/03\/fotolia_157570276_subscription_monthly_m-700x700.jpg", 				"groupName": "Vegetarian", 				"topGroupName": " Lunch", 				"name": "Kale Caesar ", 				"externalReference": "88d70ce6-d92c-4686-bc7c-c729c566a651" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 9600, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 2400, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 9600, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 2400, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 200, 			"id": "REPLACE_THIS_WITH_ITEM_ID_2", 			"product": { 				"measurementUnitCode": "kg", 				"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 				"measurementPrecisionDecimalCount": 3, 				"isService": false, 				"sku": "8888888888", 				"isFlexiblePrice": false, 				"description": "", 				"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 				"name": "Buttered Spätzle" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 4000, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 1000, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 800, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 200, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 1, 			"id": "REPLACE_THIS_WITH_ITEM_ID_3", 			"product": { 				"id": "94975a71-e07c-4198-8b62-7371ec779d29", 				"isService": false, 				"measurementUnitCode": "piece", 				"description": "", 				"topGroupID": "4474A680-96AB-4584-B4A1-A17D398C3E3C", 				"isFlexiblePrice": true, 				"groupID": "4474A680-96AB-4584-B4A1-A17D398C3E3C", 				"sku": "121212121212", 				"measurementPrecisionDecimalCount": 0, 				"groupName": "Desserts", 				"topGroupName": "Desserts", 				"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29", 				"name": "Apfel strudel" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 5050, 				"flexiblePrice": { 					"maxAmountExcludingTax": 9000, 					"minAmountExcludingTax": 4530 				}, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 4999, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 1, 			"id": "REPLACE_THIS_WITH_ITEM_ID_4", 			"product": { 				"measurementUnitCode": "piece", 				"id": "230b90c6-771c-4f59-b304-4b071cdd809e", 				"measurementPrecisionDecimalCount": 0, 				"isService": false, 				"sku": "15151515151", 				"isFlexiblePrice": false, 				"description": "", 				"externalReference": "230b90c6-771c-4f59-b304-4b071cdd809e", 				"name": "Water" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 0, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 0, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{          "itemID": "REPLACE_THIS_WITH_ITEM_ID_1",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "REPLACE_THIS_WITH_ITEM_ID_2",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "REPLACE_THIS_WITH_ITEM_ID_3",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "REPLACE_THIS_WITH_ITEM_ID_4",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_amountToCharge</con:name>
+      <con:value>17999</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_newItems</con:name>
+      <con:value>[{ 			"quantity": 1, 			"id": "REPLACE_THIS_WITH_ITEM_ID_1", 			"product": { 				"id": "06d8cb0c-5861-499d-8320-5ccff297a093", 				"isService": false, 				"measurementUnitCode": "piece", 				"description": "buttermilk dressing, radishes, croutons, parmesan", 				"topGroupID": "6878830C-2539-4B6B-8022-D07F85FAD0BE", 				"isFlexiblePrice": false, 				"groupID": "D9921190-42B9-4061-8A93-1087606C0937", 				"sku": "1111111111", 				"measurementPrecisionDecimalCount": 0, 				"groupName": "Vegetarian", 				"topGroupName": " Lunch", 				"externalReference": "06d8cb0c-5861-499d-8320-5ccff297a093", 				"name": "Little Gem" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 11200, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 2800, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 11200, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 2800, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 300, 			"id": "REPLACE_THIS_WITH_ITEM_ID_2", 			"product": { 				"id": "ea6695ea-5415-44de-9c49-97384e535f49", 				"isService": false, 				"measurementUnitCode": "kg", 				"description": "", 				"topGroupID": "661340C8-BA1A-471A-B980-0D939EA05E3F", 				"isFlexiblePrice": false, 				"groupID": "661340C8-BA1A-471A-B980-0D939EA05E3F", 				"sku": "777777777", 				"measurementPrecisionDecimalCount": 3, 				"groupName": "Side dishes", 				"topGroupName": "Side dishes", 				"externalReference": "ea6695ea-5415-44de-9c49-97384e535f49", 				"name": "Potato Cucumber Salad" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 5857, 				"tax": { 					"groupDisplayName": "12 %", 					"groupID": "VAT12", 					"totalAmount": 703, 					"totalPercentage": 1200000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 1758, 				"tax": { 					"groupDisplayName": "12 %", 					"groupID": "VAT12", 					"totalAmount": 210, 					"totalPercentage": 1200000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 1, 			"id": "REPLACE_THIS_WITH_ITEM_ID_3", 			"product": { 				"id": "94975a71-e07c-4198-8b62-7371ec779d29", 				"isService": false, 				"measurementUnitCode": "piece", 				"description": "", 				"topGroupID": "4474A680-96AB-4584-B4A1-A17D398C3E3C", 				"isFlexiblePrice": true, 				"groupID": "4474A680-96AB-4584-B4A1-A17D398C3E3C", 				"sku": "121212121212", 				"measurementPrecisionDecimalCount": 0, 				"groupName": "Desserts", 				"topGroupName": "Desserts", 				"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29", 				"name": "Apfel strudel" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 5050, 				"flexiblePrice": { 					"maxAmountExcludingTax": 9000, 					"minAmountExcludingTax": 4530 				}, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 4600, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{          "itemID": "REPLACE_THIS_WITH_ITEM_ID_1",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "REPLACE_THIS_WITH_ITEM_ID_2",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "REPLACE_THIS_WITH_ITEM_ID_3",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToCharge</con:name>
+      <con:value>20568</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToRefund</con:name>
+      <con:value>-20568</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_returningItems</con:name>
+      <con:value>[{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"REPLACE_THIS_WITH_ITEM_ID_1","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_2","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_3","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}]</con:value>
+    </con:property>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:environment id="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1" name="Dev_Testing">
+    <con:service type="REST" name="${#Project#baseURL}">
+      <con:endpoint authProfile="No Authorization" username="" password="" domain="" incomingWss="" outgoingWss="" wssTimeToLive="" wssType="" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="">${#Project#baseURL}</con:endpoint>
+    </con:service>
+    <con:property>
+      <con:name>baseURL</con:name>
+      <con:value>https://api-dev.kachingretail.com/api</con:value>
+    </con:property>
+    <con:property>
+      <con:name>deviceId</con:name>
+      <con:value>10c0a774-8878-4307-a500-8a0068dfc6ba</con:value>
+    </con:property>
+    <con:property>
+      <con:name>userName</con:name>
+      <con:value>Test2019-10-07T14:43:38.930</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminUserAuth</con:name>
+      <con:value>merchant.admin.testing</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminPasswordAuth</con:name>
+      <con:value>Qwer1234</con:value>
+    </con:property>
+    <con:property>
+      <con:name>today</con:name>
+      <con:value>2019-12-20</con:value>
+    </con:property>
+    <con:property>
+      <con:name>date</con:name>
+      <con:value>2019-03-01</con:value>
+    </con:property>
+    <con:property>
+      <con:name>languageCode</con:name>
+      <con:value>sv</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerUserAuth</con:name>
+      <con:value>store.manager@testing.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientId</con:name>
+      <con:value>bCyBHLUIti9lAyFQCNqHZkeQ1yIa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientSecret</con:name>
+      <con:value>pEMVMUj5NVcyZ80gAsYSbSXnLqsa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseURLAuth</con:name>
+      <con:value>https://api-dev.kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>token</con:name>
+      <con:value>e8647472-fcaa-3f50-8504-91d32d9df955</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminUserAuth</con:name>
+      <con:value>kaching-admin</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminPasswordAuth</con:name>
+      <con:value>Qwerty!@#</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerUserAuth</con:name>
+      <con:value>seller@testing.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationId</con:name>
+      <con:value>e0620d99-129f-416b-8751-9282330c7a7b</con:value>
+    </con:property>
+    <con:property>
+      <con:name>usesFCU</con:name>
+      <con:value>null</con:value>
+    </con:property>
+    <con:property>
+      <con:name>name</con:name>
+      <con:value>Cooking store for Testing - don't remove or update</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationNumber</con:name>
+      <con:value>11223344556677890000</con:value>
+    </con:property>
+    <con:property>
+      <con:name>vatRegistrationNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>website</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>returnPolicy</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>contactName</con:name>
+      <con:value>Katja</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmail</con:name>
+      <con:value>katja@kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmailSignatureUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailContentText</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailSubjectText</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>returnReceiptEmailSubjectText</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>countryCode</con:name>
+      <con:value>SE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode2</con:name>
+      <con:value>BE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>currencyCode</con:name>
+      <con:value>SEK</con:value>
+    </con:property>
+    <con:property>
+      <con:name>phoneNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>logoUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>documentLogoDataURI</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>dateCreated</con:name>
+      <con:value>2019-12-11T10:42:18.040Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2UserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>seller2PasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentPasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentUserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_newItems</con:name>
+      <con:value>[{ 				"product": { 					"isService": false, 					"measurementUnitCode": "piece", 					"sku": "333333333333", 					"name": "Kale Caesar ", 					"id": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"externalReference": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"imageURL": "https:\/\/mittkok.expressen.se\/wp-content\/uploads\/2014\/03\/fotolia_157570276_subscription_monthly_m-700x700.jpg", 					"measurementPrecisionDecimalCount": 0, 					"description": "croutons, lemon, garlic, parmesan " 				}, 				"price": { 					"tax": { 						"groupDisplayName": "VAT 25 %", 						"totalAmount": 2400, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 9600, 					"currency": "SEK" 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalAmount": 2400, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 9600 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"quantity": 1 			}, { 				"product": { 					"measurementPrecisionDecimalCount": 3, 					"measurementUnitCode": "kg", 					"sku": "8888888888", 					"description": "", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"isService": false, 					"name": "Buttered Spätzle" 				}, 				"price": { 					"tax": { 						"totalAmount": 500, 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"currency": "SEK", 					"amountExcludingTax": 2000 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"totalAmount": 1000, 						"groupID": "VAT25", 						"detailAmount": {}, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 4000 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 500 			}, { 				"product": { 					"name": "Elderflower Yogurt", 					"description": "Served with  fruit compote, almond streusel", 					"measurementPrecisionDecimalCount": 0, 					"measurementUnitCode": "piece", 					"sku": "101010101010", 					"isService": false, 					"externalReference": "1ca51150-4243-490f-aed7-126670290cfa", 					"id": "1ca51150-4243-490f-aed7-126670290cfa" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"unitPrice": { 					"amountExcludingTax": 8491, 					"currency": "SEK", 					"flexiblePrice": { 						"minAmountExcludingTax": 0, 						"maxAmountExcludingTax": 11321 					}, 					"tax": { 						"totalPercentage": 600000, 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupDisplayName": "VAT 6 %", 						"groupID": "VAT6", 						"totalAmount": 509 					} 				}, 				"price": { 					"amountExcludingTax": 8491, 					"tax": { 						"groupDisplayName": "VAT 6 %", 						"totalAmount": 509, 						"groupID": "VAT6", 						"detailAmount": {}, 						"totalPercentage": 600000, 						"detailPercentage": {} 					}, 					"currency": "SEK" 				}, 				"quantity": 1 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_amountToCharge</con:name>
+      <con:value>23500</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_newItems</con:name>
+      <con:value>[{ 				"unitPrice": { 					"flexiblePrice": { 						"minAmountExcludingTax": 4530, 						"maxAmountExcludingTax": 9000 					}, 					"amountExcludingTax": 5050, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailPercentage": {}, 						"detailAmount": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				}, 				"quantity": 1, 				"product": { 					"name": "Apfel strudel", 					"isService": false, 					"sku": "121212121212", 					"measurementPrecisionDecimalCount": 0, 					"id": "94975a71-e07c-4198-8b62-7371ec779d29", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"price": { 					"amountExcludingTax": 4530, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				} 			}, { 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 1000, 				"product": { 					"name": "Buttered Spätzle", 					"isService": false, 					"sku": "8888888888", 					"measurementPrecisionDecimalCount": 3, 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"description": "", 					"measurementUnitCode": "kg", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650" 				}, 				"unitPrice": { 					"tax": { 						"groupID": "VAT25", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"groupDisplayName": "VAT 25 %" 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				}, 				"price": { 					"tax": { 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				} 			}, { 				"unitPrice": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupDisplayName": "VAT 0 %", 						"detailAmount": {}, 						"groupID": "VAT0", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				}, 				"quantity": 1, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"product": { 					"name": "Water", 					"isService": false, 					"sku": "15151515151", 					"measurementPrecisionDecimalCount": 0, 					"id": "230b90c6-771c-4f59-b304-4b071cdd809e", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "230b90c6-771c-4f59-b304-4b071cdd809e" 				}, 				"price": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"groupDisplayName": "VAT 0 %", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				} 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToCharge</con:name>
+      <con:value>9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToRefund</con:name>
+      <con:value>-9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_returningItems</con:name>
+      <con:value>[{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"REPLACE_THIS_WITH_ITEM_ID_1","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_2","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_3","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}]</con:value>
+    </con:property>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:environment id="36448cc6-8d95-475e-b8fb-678302c2cb95" name="Sandbox">
+    <con:service type="REST" name="${#Project#baseURL}">
+      <con:endpoint authProfile="No Authorization" username="" password="" domain="" incomingWss="" outgoingWss="" wssTimeToLive="" wssType="" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="">${#Project#baseURL}</con:endpoint>
+    </con:service>
+    <con:property>
+      <con:name>baseURL</con:name>
+      <con:value>https://api.kachingretail.com/api</con:value>
+    </con:property>
+    <con:property>
+      <con:name>deviceId</con:name>
+      <con:value>10c0a774-8878-4307-a500-8a0068dfc6ba</con:value>
+    </con:property>
+    <con:property>
+      <con:name>userName</con:name>
+      <con:value>Test2019-10-07T14:43:38.930</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminUserAuth</con:name>
+      <con:value>sandbox.merchant.admin.automation</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminPasswordAuth</con:name>
+      <con:value>Qwer1234</con:value>
+    </con:property>
+    <con:property>
+      <con:name>today</con:name>
+      <con:value>2019-12-20</con:value>
+    </con:property>
+    <con:property>
+      <con:name>date</con:name>
+      <con:value>2019-03-01</con:value>
+    </con:property>
+    <con:property>
+      <con:name>languageCode</con:name>
+      <con:value>sv</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerUserAuth</con:name>
+      <con:value>sandbox.store.manager@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientId</con:name>
+      <con:value>nvQ3QS63GP7HTbqW8RKvq5UIUTEa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientSecret</con:name>
+      <con:value>8T76Iy37ET1zXfHyAQgsvFsfIvIa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseURLAuth</con:name>
+      <con:value>https://api.kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>token</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>superAdminUserAuth</con:name>
+      <con:value>prd-super-admin</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminPasswordAuth</con:name>
+      <con:value>Qwerty$#@!</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerUserAuth</con:name>
+      <con:value>sandbox.seller@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationId</con:name>
+      <con:value>3f5216fe-e3c2-4fe8-b415-bf4fb6f7c4cc</con:value>
+    </con:property>
+    <con:property>
+      <con:name>usesFCU</con:name>
+      <con:value>false</con:value>
+    </con:property>
+    <con:property>
+      <con:name>name</con:name>
+      <con:value>Farm fresh food store</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationNumber</con:name>
+      <con:value>1234567890</con:value>
+    </con:property>
+    <con:property>
+      <con:name>vatRegistrationNumber</con:name>
+      <con:value>1234567890</con:value>
+    </con:property>
+    <con:property>
+      <con:name>website</con:name>
+      <con:value>http://www.familyfoodsstores.com/</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnPolicy</con:name>
+      <con:value>30 days</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactName</con:name>
+      <con:value>Katja</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmail</con:name>
+      <con:value>katja@kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmailSignatureUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailContentText</con:name>
+      <con:value>This is TEST</con:value>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailSubjectText</con:name>
+      <con:value>TEST email</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnReceiptEmailSubjectText</con:name>
+      <con:value>TEST return email</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode</con:name>
+      <con:value>SE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode2</con:name>
+      <con:value>BE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>currencyCode</con:name>
+      <con:value>SEK</con:value>
+    </con:property>
+    <con:property>
+      <con:name>phoneNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>logoUrl</con:name>
+      <con:value>https://tse1.mm.bing.net/th?id=OIP.eHMX-h8vVJX0PdhYi9YTGAHaD4&amp;pid=Api&amp;P=0&amp;w=363&amp;h=191</con:value>
+    </con:property>
+    <con:property>
+      <con:name>documentLogoDataURI</con:name>
+      <con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    </con:property>
+    <con:property>
+      <con:name>dateCreated</con:name>
+      <con:value>2020-02-10T11:10:45.931Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2UserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>seller2PasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentPasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentUserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_newItems</con:name>
+      <con:value>[{ 				"product": { 					"isService": false, 					"measurementUnitCode": "piece", 					"sku": "333333333333", 					"name": "Kale Caesar ", 					"id": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"externalReference": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"imageURL": "https:\/\/mittkok.expressen.se\/wp-content\/uploads\/2014\/03\/fotolia_157570276_subscription_monthly_m-700x700.jpg", 					"measurementPrecisionDecimalCount": 0, 					"description": "croutons, lemon, garlic, parmesan " 				}, 				"price": { 					"tax": { 						"groupDisplayName": "VAT 25 %", 						"totalAmount": 2400, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 9600, 					"currency": "SEK" 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalAmount": 2400, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 9600 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"quantity": 1 			}, { 				"product": { 					"measurementPrecisionDecimalCount": 3, 					"measurementUnitCode": "kg", 					"sku": "8888888888", 					"description": "", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"isService": false, 					"name": "Buttered Spätzle" 				}, 				"price": { 					"tax": { 						"totalAmount": 500, 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"currency": "SEK", 					"amountExcludingTax": 2000 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"totalAmount": 1000, 						"groupID": "VAT25", 						"detailAmount": {}, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 4000 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 500 			}, { 				"product": { 					"name": "Elderflower Yogurt", 					"description": "Served with  fruit compote, almond streusel", 					"measurementPrecisionDecimalCount": 0, 					"measurementUnitCode": "piece", 					"sku": "101010101010", 					"isService": false, 					"externalReference": "1ca51150-4243-490f-aed7-126670290cfa", 					"id": "1ca51150-4243-490f-aed7-126670290cfa" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"unitPrice": { 					"amountExcludingTax": 8491, 					"currency": "SEK", 					"flexiblePrice": { 						"minAmountExcludingTax": 0, 						"maxAmountExcludingTax": 11321 					}, 					"tax": { 						"totalPercentage": 600000, 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupDisplayName": "VAT 6 %", 						"groupID": "VAT6", 						"totalAmount": 509 					} 				}, 				"price": { 					"amountExcludingTax": 8491, 					"tax": { 						"groupDisplayName": "VAT 6 %", 						"totalAmount": 509, 						"groupID": "VAT6", 						"detailAmount": {}, 						"totalPercentage": 600000, 						"detailPercentage": {} 					}, 					"currency": "SEK" 				}, 				"quantity": 1 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_amountToCharge</con:name>
+      <con:value>23500</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_newItems</con:name>
+      <con:value>[{ 				"unitPrice": { 					"flexiblePrice": { 						"minAmountExcludingTax": 4530, 						"maxAmountExcludingTax": 9000 					}, 					"amountExcludingTax": 5050, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailPercentage": {}, 						"detailAmount": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				}, 				"quantity": 1, 				"product": { 					"name": "Apfel strudel", 					"isService": false, 					"sku": "121212121212", 					"measurementPrecisionDecimalCount": 0, 					"id": "94975a71-e07c-4198-8b62-7371ec779d29", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"price": { 					"amountExcludingTax": 4530, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				} 			}, { 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 1000, 				"product": { 					"name": "Buttered Spätzle", 					"isService": false, 					"sku": "8888888888", 					"measurementPrecisionDecimalCount": 3, 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"description": "", 					"measurementUnitCode": "kg", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650" 				}, 				"unitPrice": { 					"tax": { 						"groupID": "VAT25", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"groupDisplayName": "VAT 25 %" 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				}, 				"price": { 					"tax": { 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				} 			}, { 				"unitPrice": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupDisplayName": "VAT 0 %", 						"detailAmount": {}, 						"groupID": "VAT0", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				}, 				"quantity": 1, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"product": { 					"name": "Water", 					"isService": false, 					"sku": "15151515151", 					"measurementPrecisionDecimalCount": 0, 					"id": "230b90c6-771c-4f59-b304-4b071cdd809e", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "230b90c6-771c-4f59-b304-4b071cdd809e" 				}, 				"price": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"groupDisplayName": "VAT 0 %", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				} 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToCharge</con:name>
+      <con:value>9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToRefund</con:name>
+      <con:value>-9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_returningItems</con:name>
+      <con:value>[{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"REPLACE_THIS_WITH_ITEM_ID_1","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_2","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_3","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}]</con:value>
+    </con:property>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:environment id="aa6ca34e-6a45-42ae-985b-fe4793cc70f0" name="RC">
+    <con:service type="REST" name="${#Project#baseURL}">
+      <con:endpoint authProfile="No Authorization" username="" password="" domain="" incomingWss="" outgoingWss="" wssTimeToLive="" wssType="" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="">${#Project#baseURL}</con:endpoint>
+    </con:service>
+    <con:property>
+      <con:name>baseURL</con:name>
+      <con:value>https://api-dev.kachingretail.com/api</con:value>
+    </con:property>
+    <con:property>
+      <con:name>deviceId</con:name>
+      <con:value>10c0a774-8878-4307-a500-8a0068dfc6ba</con:value>
+    </con:property>
+    <con:property>
+      <con:name>userName</con:name>
+      <con:value>Test2019-10-07T14:43:38.930</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminUserAuth</con:name>
+      <con:value>rc.merchant.admin.automation</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminPasswordAuth</con:name>
+      <con:value>Qwer1234</con:value>
+    </con:property>
+    <con:property>
+      <con:name>today</con:name>
+      <con:value>2019-12-20</con:value>
+    </con:property>
+    <con:property>
+      <con:name>date</con:name>
+      <con:value>2019-03-01</con:value>
+    </con:property>
+    <con:property>
+      <con:name>languageCode</con:name>
+      <con:value>sv</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerUserAuth</con:name>
+      <con:value>rc.store.manager@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientId</con:name>
+      <con:value>yX1qneu4TYuKcTrfF6LIqxflgy0a</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientSecret</con:name>
+      <con:value>pH7nzpz3SFAKPjr3GJvkDmnyRg8a</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseURLAuth</con:name>
+      <con:value>https://api-dev.kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>token</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>superAdminUserAuth</con:name>
+      <con:value>kaching-admin</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminPasswordAuth</con:name>
+      <con:value>Qwerty!@#</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerUserAuth</con:name>
+      <con:value>rc.seller@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationId</con:name>
+      <con:value>8239a6c7-a01f-45e8-b85e-300ea82e5620</con:value>
+    </con:property>
+    <con:property>
+      <con:name>usesFCU</con:name>
+      <con:value>false</con:value>
+    </con:property>
+    <con:property>
+      <con:name>name</con:name>
+      <con:value>Family store</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationNumber</con:name>
+      <con:value>12345678900987654321</con:value>
+    </con:property>
+    <con:property>
+      <con:name>vatRegistrationNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>website</con:name>
+      <con:value>https://www.familystore.com.my/</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnPolicy</con:name>
+      <con:value>not allowed</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactName</con:name>
+      <con:value>Katja</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmail</con:name>
+      <con:value>katja@kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmailSignatureUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailContentText</con:name>
+      <con:value>From Family store, please call us if needed</con:value>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailSubjectText</con:name>
+      <con:value>From Family store</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnReceiptEmailSubjectText</con:name>
+      <con:value>Your return</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode</con:name>
+      <con:value>SE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode2</con:name>
+      <con:value>BE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>currencyCode</con:name>
+      <con:value>SEK</con:value>
+    </con:property>
+    <con:property>
+      <con:name>phoneNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>logoUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>documentLogoDataURI</con:name>
+      <con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    </con:property>
+    <con:property>
+      <con:name>dateCreated</con:name>
+      <con:value>2020-02-14T12:28:39.816Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2UserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>seller2PasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentPasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentUserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_newItems</con:name>
+      <con:value>[{ 				"product": { 					"isService": false, 					"measurementUnitCode": "piece", 					"sku": "333333333333", 					"name": "Kale Caesar ", 					"id": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"externalReference": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"imageURL": "https:\/\/mittkok.expressen.se\/wp-content\/uploads\/2014\/03\/fotolia_157570276_subscription_monthly_m-700x700.jpg", 					"measurementPrecisionDecimalCount": 0, 					"description": "croutons, lemon, garlic, parmesan " 				}, 				"price": { 					"tax": { 						"groupDisplayName": "VAT 25 %", 						"totalAmount": 2400, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 9600, 					"currency": "SEK" 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalAmount": 2400, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 9600 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"quantity": 1 			}, { 				"product": { 					"measurementPrecisionDecimalCount": 3, 					"measurementUnitCode": "kg", 					"sku": "8888888888", 					"description": "", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"isService": false, 					"name": "Buttered Spätzle" 				}, 				"price": { 					"tax": { 						"totalAmount": 500, 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"currency": "SEK", 					"amountExcludingTax": 2000 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"totalAmount": 1000, 						"groupID": "VAT25", 						"detailAmount": {}, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 4000 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 500 			}, { 				"product": { 					"name": "Elderflower Yogurt", 					"description": "Served with  fruit compote, almond streusel", 					"measurementPrecisionDecimalCount": 0, 					"measurementUnitCode": "piece", 					"sku": "101010101010", 					"isService": false, 					"externalReference": "1ca51150-4243-490f-aed7-126670290cfa", 					"id": "1ca51150-4243-490f-aed7-126670290cfa" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"unitPrice": { 					"amountExcludingTax": 8491, 					"currency": "SEK", 					"flexiblePrice": { 						"minAmountExcludingTax": 0, 						"maxAmountExcludingTax": 11321 					}, 					"tax": { 						"totalPercentage": 600000, 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupDisplayName": "VAT 6 %", 						"groupID": "VAT6", 						"totalAmount": 509 					} 				}, 				"price": { 					"amountExcludingTax": 8491, 					"tax": { 						"groupDisplayName": "VAT 6 %", 						"totalAmount": 509, 						"groupID": "VAT6", 						"detailAmount": {}, 						"totalPercentage": 600000, 						"detailPercentage": {} 					}, 					"currency": "SEK" 				}, 				"quantity": 1 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_amountToCharge</con:name>
+      <con:value>23500</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_newItems</con:name>
+      <con:value>[{ 				"unitPrice": { 					"flexiblePrice": { 						"minAmountExcludingTax": 4530, 						"maxAmountExcludingTax": 9000 					}, 					"amountExcludingTax": 5050, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailPercentage": {}, 						"detailAmount": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				}, 				"quantity": 1, 				"product": { 					"name": "Apfel strudel", 					"isService": false, 					"sku": "121212121212", 					"measurementPrecisionDecimalCount": 0, 					"id": "94975a71-e07c-4198-8b62-7371ec779d29", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"price": { 					"amountExcludingTax": 4530, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				} 			}, { 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 1000, 				"product": { 					"name": "Buttered Spätzle", 					"isService": false, 					"sku": "8888888888", 					"measurementPrecisionDecimalCount": 3, 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"description": "", 					"measurementUnitCode": "kg", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650" 				}, 				"unitPrice": { 					"tax": { 						"groupID": "VAT25", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"groupDisplayName": "VAT 25 %" 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				}, 				"price": { 					"tax": { 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				} 			}, { 				"unitPrice": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupDisplayName": "VAT 0 %", 						"detailAmount": {}, 						"groupID": "VAT0", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				}, 				"quantity": 1, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"product": { 					"name": "Water", 					"isService": false, 					"sku": "15151515151", 					"measurementPrecisionDecimalCount": 0, 					"id": "230b90c6-771c-4f59-b304-4b071cdd809e", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "230b90c6-771c-4f59-b304-4b071cdd809e" 				}, 				"price": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"groupDisplayName": "VAT 0 %", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				} 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToCharge</con:name>
+      <con:value>9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToRefund</con:name>
+      <con:value>-9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_returningItems</con:name>
+      <con:value>[{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"REPLACE_THIS_WITH_ITEM_ID_1","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_2","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_3","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}]</con:value>
+    </con:property>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:environment id="08fc71af-2286-45e7-bcc6-3d7935822b9b" name="Production">
+    <con:service type="REST" name="${#Project#baseURL}">
+      <con:endpoint authProfile="No Authorization" username="" password="" domain="" incomingWss="" outgoingWss="" wssTimeToLive="" wssType="" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="">${#Project#baseURL}</con:endpoint>
+    </con:service>
+    <con:property>
+      <con:name>baseURL</con:name>
+      <con:value>https://api.kachingretail.com/api</con:value>
+    </con:property>
+    <con:property>
+      <con:name>deviceId</con:name>
+      <con:value>10c0a774-8878-4307-a500-8a0068dfc6ba</con:value>
+    </con:property>
+    <con:property>
+      <con:name>userName</con:name>
+      <con:value>Test2019-10-07T14:43:38.930</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminUserAuth</con:name>
+      <con:value>production.merchant.admin.automation</con:value>
+    </con:property>
+    <con:property>
+      <con:name>adminPasswordAuth</con:name>
+      <con:value>Qwer1234</con:value>
+    </con:property>
+    <con:property>
+      <con:name>today</con:name>
+      <con:value>2019-12-20</con:value>
+    </con:property>
+    <con:property>
+      <con:name>date</con:name>
+      <con:value>2019-03-01</con:value>
+    </con:property>
+    <con:property>
+      <con:name>languageCode</con:name>
+      <con:value>sv</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerUserAuth</con:name>
+      <con:value>production.store.manager@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientId</con:name>
+      <con:value>dGKK6D1QxoOJobY5sns5E6g_rH4a</con:value>
+    </con:property>
+    <con:property>
+      <con:name>clientSecret</con:name>
+      <con:value>9gHAZ1GF76yWUFktTXQVnUOGqcwa</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseURLAuth</con:name>
+      <con:value>https://api.kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>token</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>superAdminUserAuth</con:name>
+      <con:value>prd-super-admin</con:value>
+    </con:property>
+    <con:property>
+      <con:name>superAdminPasswordAuth</con:name>
+      <con:value>Qwerty$#@!</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerUserAuth</con:name>
+      <con:value>production.seller@automation.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>sellerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>storeManagerPasswordAuth</con:name>
+      <con:value>998877</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationId</con:name>
+      <con:value>4882f87e-48d2-4600-9c70-4107b83e8621</con:value>
+    </con:property>
+    <con:property>
+      <con:name>usesFCU</con:name>
+      <con:value>false</con:value>
+    </con:property>
+    <con:property>
+      <con:name>name</con:name>
+      <con:value>Automation Test Organization</con:value>
+    </con:property>
+    <con:property>
+      <con:name>organizationNumber</con:name>
+      <con:value>0987654321</con:value>
+    </con:property>
+    <con:property>
+      <con:name>vatRegistrationNumber</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>website</con:name>
+      <con:value>https://support.smartbear.com/</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnPolicy</con:name>
+      <con:value>1 year</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactName</con:name>
+      <con:value>Katja</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmail</con:name>
+      <con:value>katja@kachingretail.com</con:value>
+    </con:property>
+    <con:property>
+      <con:name>contactEmailSignatureUrl</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailContentText</con:name>
+      <con:value>Test email body</con:value>
+    </con:property>
+    <con:property>
+      <con:name>receiptEmailSubjectText</con:name>
+      <con:value>Test email Subject</con:value>
+    </con:property>
+    <con:property>
+      <con:name>returnReceiptEmailSubjectText</con:name>
+      <con:value>Test Return email subject</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode</con:name>
+      <con:value>SE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>countryCode2</con:name>
+      <con:value>BE</con:value>
+    </con:property>
+    <con:property>
+      <con:name>currencyCode</con:name>
+      <con:value>SEK</con:value>
+    </con:property>
+    <con:property>
+      <con:name>phoneNumber</con:name>
+      <con:value>+46761678515</con:value>
+    </con:property>
+    <con:property>
+      <con:name>logoUrl</con:name>
+      <con:value>https://tse1.mm.bing.net/th?id=OIP.xxB5_SukUW0677R8d9EYyQHaDS&amp;pid=Api&amp;P=0&amp;w=363&amp;h=162</con:value>
+    </con:property>
+    <con:property>
+      <con:name>dateCreated</con:name>
+      <con:value>2020-02-26T13:56:37.786Z</con:value>
+    </con:property>
+    <con:property>
+      <con:name>seller2UserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>seller2PasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentPasswordAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>sellerCurrentUserAuth</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_newItems</con:name>
+      <con:value>[{ 				"product": { 					"isService": false, 					"measurementUnitCode": "piece", 					"sku": "333333333333", 					"name": "Kale Caesar ", 					"id": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"externalReference": "88d70ce6-d92c-4686-bc7c-c729c566a651", 					"imageURL": "https:\/\/mittkok.expressen.se\/wp-content\/uploads\/2014\/03\/fotolia_157570276_subscription_monthly_m-700x700.jpg", 					"measurementPrecisionDecimalCount": 0, 					"description": "croutons, lemon, garlic, parmesan " 				}, 				"price": { 					"tax": { 						"groupDisplayName": "VAT 25 %", 						"totalAmount": 2400, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 9600, 					"currency": "SEK" 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupID": "VAT25", 						"totalAmount": 2400, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 9600 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"quantity": 1 			}, { 				"product": { 					"measurementPrecisionDecimalCount": 3, 					"measurementUnitCode": "kg", 					"sku": "8888888888", 					"description": "", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"isService": false, 					"name": "Buttered Spätzle" 				}, 				"price": { 					"tax": { 						"totalAmount": 500, 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"detailPercentage": {} 					}, 					"currency": "SEK", 					"amountExcludingTax": 2000 				}, 				"unitPrice": { 					"tax": { 						"detailPercentage": {}, 						"totalAmount": 1000, 						"groupID": "VAT25", 						"detailAmount": {}, 						"totalPercentage": 2500000, 						"groupDisplayName": "VAT 25 %" 					}, 					"currency": "SEK", 					"amountExcludingTax": 4000 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 500 			}, { 				"product": { 					"name": "Elderflower Yogurt", 					"description": "Served with  fruit compote, almond streusel", 					"measurementPrecisionDecimalCount": 0, 					"measurementUnitCode": "piece", 					"sku": "101010101010", 					"isService": false, 					"externalReference": "1ca51150-4243-490f-aed7-126670290cfa", 					"id": "1ca51150-4243-490f-aed7-126670290cfa" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"unitPrice": { 					"amountExcludingTax": 8491, 					"currency": "SEK", 					"flexiblePrice": { 						"minAmountExcludingTax": 0, 						"maxAmountExcludingTax": 11321 					}, 					"tax": { 						"totalPercentage": 600000, 						"detailPercentage": {}, 						"detailAmount": {}, 						"groupDisplayName": "VAT 6 %", 						"groupID": "VAT6", 						"totalAmount": 509 					} 				}, 				"price": { 					"amountExcludingTax": 8491, 					"tax": { 						"groupDisplayName": "VAT 6 %", 						"totalAmount": 509, 						"groupID": "VAT6", 						"detailAmount": {}, 						"totalPercentage": 600000, 						"detailPercentage": {} 					}, 					"currency": "SEK" 				}, 				"quantity": 1 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>1_amountToCharge</con:name>
+      <con:value>23500</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_newItems</con:name>
+      <con:value>[{ 				"unitPrice": { 					"flexiblePrice": { 						"minAmountExcludingTax": 4530, 						"maxAmountExcludingTax": 9000 					}, 					"amountExcludingTax": 5050, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailPercentage": {}, 						"detailAmount": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				}, 				"quantity": 1, 				"product": { 					"name": "Apfel strudel", 					"isService": false, 					"sku": "121212121212", 					"measurementPrecisionDecimalCount": 0, 					"id": "94975a71-e07c-4198-8b62-7371ec779d29", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29" 				}, 				"id": "REPLACE_THIS_WITH_ITEM_ID_1", 				"price": { 					"amountExcludingTax": 4530, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 0, 						"totalAmount": 0, 						"groupDisplayName": "VAT 0 %" 					} 				} 			}, { 				"id": "REPLACE_THIS_WITH_ITEM_ID_2", 				"quantity": 1000, 				"product": { 					"name": "Buttered Spätzle", 					"isService": false, 					"sku": "8888888888", 					"measurementPrecisionDecimalCount": 3, 					"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 					"description": "", 					"measurementUnitCode": "kg", 					"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650" 				}, 				"unitPrice": { 					"tax": { 						"groupID": "VAT25", 						"detailAmount": {}, 						"detailPercentage": {}, 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"groupDisplayName": "VAT 25 %" 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				}, 				"price": { 					"tax": { 						"detailAmount": {}, 						"groupID": "VAT25", 						"groupDisplayName": "VAT 25 %", 						"totalPercentage": 2500000, 						"totalAmount": 1000, 						"detailPercentage": {} 					}, 					"amountExcludingTax": 4000, 					"currency": "SEK" 				} 			}, { 				"unitPrice": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupDisplayName": "VAT 0 %", 						"detailAmount": {}, 						"groupID": "VAT0", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				}, 				"quantity": 1, 				"id": "REPLACE_THIS_WITH_ITEM_ID_3", 				"product": { 					"name": "Water", 					"isService": false, 					"sku": "15151515151", 					"measurementPrecisionDecimalCount": 0, 					"id": "230b90c6-771c-4f59-b304-4b071cdd809e", 					"description": "", 					"measurementUnitCode": "piece", 					"externalReference": "230b90c6-771c-4f59-b304-4b071cdd809e" 				}, 				"price": { 					"amountExcludingTax": 0, 					"currency": "SEK", 					"tax": { 						"groupID": "VAT0", 						"detailAmount": {}, 						"groupDisplayName": "VAT 0 %", 						"totalPercentage": 0, 						"totalAmount": 0, 						"detailPercentage": {} 					} 				} 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_payment_deliveringItemsFromWarehouses</con:name>
+      <con:value>[{ 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_1" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_2" 			}, { 				"warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB", 				"itemID": "REPLACE_THIS_WITH_ITEM_ID_3" 			}]</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToCharge</con:name>
+      <con:value>9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_amountToRefund</con:name>
+      <con:value>-9530</con:value>
+    </con:property>
+    <con:property>
+      <con:name>2_returningItems</con:name>
+      <con:value>[{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"REPLACE_THIS_WITH_ITEM_ID_1","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_2","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}, {"itemID":"REPLACE_THIS_WITH_ITEM_ID_3","warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","uniqueIdentifiers":[]}]</con:value>
+    </con:property>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:authRepository>
+    <con:oAuth20AuthEntry>
+      <con:name>AdminUser</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>98dae5ec-071e-3701-a396-972aea8f7864</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315830</con:accessTokenIssuedTime>
+      <con:manualAccessTokenExpirationTimeUnit>SECONDS</con:manualAccessTokenExpirationTimeUnit>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#adminUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#adminPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>e141b73d-90c9-3471-94e8-67759cd1a040</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>817</con:accessTokenExpirationTime>
+      <con:javaScripts>
+        <con:entry>// This function asks for permission to use OAuth. The user must be logged in to use it. Logging in is performed in the script below.
+function consent() {
+    if (document.getElementById('submit_approve_access')){
+        document.getElementById('submit_approve_access').click();
+    }
+}
+
+// This function fills user password in when the user name is already known. It uses the project-level "pass" property.
+function fillpwd() {
+    document.getElementById('Passwd').value = '${#Project#adminPasswordAuth}';
+    document.getElementById('gaia_loginform').submit();
+    window.setInterval(consent, 100);
+}
+
+// This script checks what page is displayed and provides the appropriate data. It uses the project-level "user" and "pass" properties.
+if (document.getElementById('Email') &amp;&amp; document.getElementById('next')) {
+    document.getElementById('Email').value = '${#Project#adminUserAuth}';
+    document.getElementById('next').click();
+    window.setTimeout(fillpwd, 100);
+} else if (document.getElementById('Passwd')) {
+    fillpwd();
+} else if(document.getElementById('submit_approve_access')){
+    window.setInterval(consent, 100);
+}</con:entry>
+        <con:entry/>
+      </con:javaScripts>
+      <con:idToken>eyJ4NXQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVEiLCJraWQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVFfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiclE4ZnhkbDNod2ZsbmNnaFZodjJuQSIsImF1ZCI6WyJudlEzUVM2M0dQN0hUYnFXOFJLdnE1VUlVVEVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6InNhbmRib3gubWVyY2hhbnQuYWRtaW4uYXV0b21hdGlvbiIsIm5iZiI6MTU4MjcyNzU3NywiYXpwIjoibnZRM1FTNjNHUDdIVGJxVzhSS3ZxNVVJVVRFYSIsImFtciI6WyJyZWZyZXNoX3Rva2VuIl0sImlzcyI6Imh0dHBzOlwvXC9pbnRlZ3JhdGlvbi1hcGkua2FjaGluZ2hxLmNvbVwvdG9rZW4iLCJleHAiOjE1ODI3MzExNzcsImlhdCI6MTU4MjcyNzU3N30.VfetA1o5sibWTJMNptDgm2WZ75J8XODIu5wzGyQocTzMqzFU3BQ8hYKHTd0QDEl68oA8VXvLsnuLLIfdMQQa9r6WbVPOw5GhZhS3jgCZ3SJiP941FTMBRZqfizQ8n85aK36ZoXW_IUmCk3S1PWeFG7MeXcwWc3ultrrRspcOGTlVkkXPLUwC7L7Nj9ujn6c1Wcsa-YrU7zZMe5HOthrLqdqNg7J4MhhOtpoJwo6AczBbGjGmky0vrdB9HnG8c0azotPyCRe-9NSZ-iBjkdBKxEOE2Is1Hr1BKeODvk9w_nq2IYL9FhCm98E5PbR0NC5C4WSfWypT1zSwcN0ZjfGNmA</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:useNonce>false</con:useNonce>
+      <con:useAuthHeader>true</con:useAuthHeader>
+      <con:applyJwtAssertion>true</con:applyJwtAssertion>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+    <con:oAuth20AuthEntry>
+      <con:name>SuperAdmin</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>8b3622bf-ab0b-3a88-9172-c59542e4a02f</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315832</con:accessTokenIssuedTime>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#superAdminUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#superAdminPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>b41f8eb5-8cb8-3189-a001-3b8e1c573644</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>815</con:accessTokenExpirationTime>
+      <con:javaScripts>
+        <con:entry>// This function asks for permission to use OAuth. The user must be logged in to use it. Logging in is performed in the script below.
+function consent() {
+    if (document.getElementById('submit_approve_access')){
+        document.getElementById('submit_approve_access').click();
+    }
+}
+
+// This function fills user password in when the user name is already known. It uses the project-level "pass" property.
+function fillpwd() {
+    document.getElementById('Passwd').value = '${#Project#superAdminPasswordAuth}';
+    document.getElementById('gaia_loginform').submit();
+    window.setInterval(consent, 100);
+}
+
+// This script checks what page is displayed and provides the appropriate data. It uses the project-level "user" and "pass" properties.
+if (document.getElementById('Email') &amp;&amp; document.getElementById('next')) {
+    document.getElementById('Email').value = '${#Project#superAdminUserAuth}';
+    document.getElementById('next').click();
+    window.setTimeout(fillpwd, 100);
+} else if (document.getElementById('Passwd')) {
+    fillpwd();
+} else if(document.getElementById('submit_approve_access')){
+    window.setInterval(consent, 100);
+}</con:entry>
+        <con:entry/>
+      </con:javaScripts>
+      <con:idToken>eyJ4NXQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVEiLCJraWQiOiJOVEF4Wm1NeE5ETXlaRGczTVRVMVpHTTBNekV6T0RKaFpXSTRORE5sWkRVMU9HRmtOakZpTVFfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiUnBQTHVIdnpzLTJ3LVRKVkVHNEQyUSIsImF1ZCI6WyJudlEzUVM2M0dQN0hUYnFXOFJLdnE1VUlVVEVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6InByZC1zdXBlci1hZG1pbiIsIm5iZiI6MTU4MTY4OTE1NiwiYXpwIjoibnZRM1FTNjNHUDdIVGJxVzhSS3ZxNVVJVVRFYSIsImFtciI6WyJyZWZyZXNoX3Rva2VuIl0sImlzcyI6Imh0dHBzOlwvXC9pbnRlZ3JhdGlvbi1hcGkua2FjaGluZ2hxLmNvbVwvdG9rZW4iLCJleHAiOjE1ODE2OTI3NTYsImlhdCI6MTU4MTY4OTE1Nn0.ScR6adFkI2yUXt8ciiu5s5h3Ky-7l3WOiWdsLTkiBrSb7k06VZgqgnDZz83x01834F8roWMp5vEIrD2dq-K1sggFxUJOx8y4v5XEetw44HUwLLVrA90KqUtMMADLuoyyGDWgt1jaTrYG5TPX_BtW1tWSr3rb07HGiniu5gKSjpOf7Q84glo5-ATdB0Ikkar2epSkkgis5iY2skV5cGnmNQ7wBoyc9yUC_X5erJ9yF76YZakARMVEtlkpl8r3fvpvgXD477McdqdYrAMcq7tFVHOjReGA1apn6EcX_mF7NTH4SGaUW6Rstp-Io8jVzSGLpEjCiTPjyXZ_e0uqW7Tujw</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:useAuthHeader>true</con:useAuthHeader>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+    <con:oAuth20AuthEntry>
+      <con:name>SellerUser</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>52f6f6e6-7fca-3192-89d4-cfab0db423c7</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315829</con:accessTokenIssuedTime>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#sellerUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#sellerPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>35a688bc-ebe9-31f8-afcb-695a24b9eba0</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>818</con:accessTokenExpirationTime>
+      <con:javaScripts>
+        <con:entry>// This function asks for permission to use OAuth. The user must be logged in to use it. Logging in is performed in the script below.
+function consent() {
+    if (document.getElementById('submit_approve_access')){
+        document.getElementById('submit_approve_access').click();
+    }
+}
+
+// This function fills user password in when the user name is already known. It uses the project-level "pass" property.
+function fillpwd() {
+    document.getElementById('Passwd').value = '${#Project#sellerPasswordAuth}';
+    document.getElementById('gaia_loginform').submit();
+    window.setInterval(consent, 100);
+}
+
+// This script checks what page is displayed and provides the appropriate data. It uses the project-level "user" and "pass" properties.
+if (document.getElementById('Email') &amp;&amp; document.getElementById('next')) {
+    document.getElementById('Email').value = '${#Project#sellerUserAuth}';
+    document.getElementById('next').click();
+    window.setTimeout(fillpwd, 100);
+} else if (document.getElementById('Passwd')) {
+    fillpwd();
+} else if(document.getElementById('submit_approve_access')){
+    window.setInterval(consent, 100);
+}</con:entry>
+        <con:entry/>
+      </con:javaScripts>
+      <con:idToken>eyJ4NXQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXciLCJraWQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXdfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiV0pfNURrU3J4MDVZeEZEY0NiYmhGdyIsInN1YiI6InNlbGxlckBhdXRvbWF0aW9uLmNvbSIsImFtciI6WyJyZWZyZXNoX3Rva2VuIl0sInVzZXItaWQiOiIzYzIyMmE3Yy01ZjNlLTQzMTgtOWQ4OS1kOGQwNzRkNTFkYjkiLCJpc3MiOiJcdGh0dHBzOlwvXC9pZHAtc3RhZ2luZy5rYWNoaW5naHEuY29tOjQ0M1wvb2F1dGgyXC90b2tlbiIsImdyb3VwcyI6WyJJbnRlcm5hbFwvZXZlcnlvbmUiLCJJbnRlcm5hbFwvc2VsZnNpZ251cCIsIkludGVybmFsXC9rYWNoaW5nX3NlbGxlciJdLCJnaXZlbl9uYW1lIjoiQXV0b21hdGlvbiIsInNhbmRib3gtb3JnYW5pemF0aW9uIjoiNzU1ZmYzOWUtYzg3Mi00MWE4LWFhOWYtMmIyYTQ2MWI4NDkxIiwiYXVkIjpbImJDeUJITFVJdGk5bEF5RlFDTnFIWmtlUTF5SWEiLCJodHRwOlwvXC9vcmcud3NvMi5hcGltZ3RcL2dhdGV3YXkiXSwibmJmIjoxNTgzMjQ3NDY0LCJwYXJ0bmVyLW5hbWUiOiJrYWNoaW5nLWludGVybmFsIiwiYXpwIjoiYkN5QkhMVUl0aTlsQXlGUUNOcUhaa2VRMXlJYSIsIm9yZ2FuaXphdGlvbiI6Ijc1NWZmMzllLWM4NzItNDFhOC1hYTlmLTJiMmE0NjFiODQ5MSIsImV4cCI6MTU4MzI1MTA2NCwiaWF0IjoxNTgzMjQ3NDY0LCJmYW1pbHlfbmFtZSI6IlNlbGxlciJ9.IFN50oqSJtbxolAGGVXrfxfuqQDtNujhCBC9m4INlLMZjeINljsFqqd5XCJ7ie9_mEE9l9lIlA3rx--kmsS-wtVOuWcFOocJZGsLapDkpYKsuwEmv2vRe6dcHQXd5s8np1CDJ5nNSGg_ihVU7giNEP__3GO03yJe8Z0bwpj40wW0VZoGSFWUvM7Hq0RX2ow5NUSLN7CagXgG1v3QLtzU-zsfV_q6-L2p-FNnHHo-5uiqnmUGFv_KxQCNkNOn5jXzBq7WzUBJBrFT0hE5MjX4mtw1liIK_zupjLS5A_m8ZOqeZo3MSw6jAsAqZsR4W14Ff9KOiXXg0XQRK6hqpnd61w</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:useNonce>true</con:useNonce>
+      <con:useAuthHeader>true</con:useAuthHeader>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+    <con:oAuth20AuthEntry>
+      <con:name>StoreManager</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>${#Project#baseURLAuth}/token</con:accessTokenURI>
+      <con:accessToken>47b13af4-ea1c-3a5d-acb1-f74548f33045</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1583315833</con:accessTokenIssuedTime>
+      <con:clientID>${#Project#clientId}</con:clientID>
+      <con:resourceOwnerName>${#Project#storeManagerUserAuth}</con:resourceOwnerName>
+      <con:resourceOwnerPassword>${#Project#storeManagerPasswordAuth}</con:resourceOwnerPassword>
+      <con:clientSecret>${#Project#clientSecret}</con:clientSecret>
+      <con:oAuth2Flow>RESOURCE_OWNER_PASSWORD_CREDENTIALS</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:refreshToken>cd16f9af-f1ec-390d-9bde-92878e0efc7a</con:refreshToken>
+      <con:scope>openid kaching_super_admin user_api_super_admin user_api_merchant_admin payment_api_super_user user_api_partner_admin</con:scope>
+      <con:accessTokenExpirationTime>815</con:accessTokenExpirationTime>
+      <con:idToken>eyJ4NXQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXciLCJraWQiOiJaR1UwTURNNFptTmpNVFV6TkdZMFpEZGtORE15TVRsaE16ZGhabU0xTTJSaU5UTXpORE16TXdfUlMyNTYiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoibEJjUFg1X3cwZjFGNWp2U0JGYnZLdyIsInN1YiI6InN0b3JlLm1hbmFnZXJAYXV0b21hdGlvbi5jb20iLCJhbXIiOlsicmVmcmVzaF90b2tlbiJdLCJ1c2VyLWlkIjoiNTkyZTNiNDMtN2Y5NS00ZGYwLTkwZWUtZTM1NDc0NGQ5Yjg3IiwiaXNzIjoiXHRodHRwczpcL1wvaWRwLXN0YWdpbmcua2FjaGluZ2hxLmNvbTo0NDNcL29hdXRoMlwvdG9rZW4iLCJncm91cHMiOlsiSW50ZXJuYWxcL2thY2hpbmdfc3RvcmVfbWFuYWdlciIsIkludGVybmFsXC9ldmVyeW9uZSIsIkludGVybmFsXC9zZWxmc2lnbnVwIl0sImdpdmVuX25hbWUiOiJBdXRvbWF0aW9uIiwic2FuZGJveC1vcmdhbml6YXRpb24iOiI3NTVmZjM5ZS1jODcyLTQxYTgtYWE5Zi0yYjJhNDYxYjg0OTEiLCJhdWQiOlsiYkN5QkhMVUl0aTlsQXlGUUNOcUhaa2VRMXlJYSIsImh0dHA6XC9cL29yZy53c28yLmFwaW1ndFwvZ2F0ZXdheSJdLCJuYmYiOjE1ODMyNDc0NDYsInBhcnRuZXItbmFtZSI6ImthY2hpbmctaW50ZXJuYWwiLCJhenAiOiJiQ3lCSExVSXRpOWxBeUZRQ05xSFprZVExeUlhIiwib3JnYW5pemF0aW9uIjoiNzU1ZmYzOWUtYzg3Mi00MWE4LWFhOWYtMmIyYTQ2MWI4NDkxIiwiZXhwIjoxNTgzMjUxMDQ2LCJpYXQiOjE1ODMyNDc0NDYsImZhbWlseV9uYW1lIjoiU3RvcmVNYW5hZ2VyIn0.Y76xDudRz7NaWue_5nAX9jY-1CNgsfPhHMgAHEx4uKDOI0mgsc_BRpsLG8UJTttzKNkFoM2-udtUHiEhdMx9aFA0pZ1yTKm8ETwlQS0faT9t9ENqyKM4B40rGeZbdaP_k-c3CAVd4CmrJItx0sHeauKQKpI66bL2F7MPlTz6sDQxs1MB4TsP6M4xYJENb8UY933xMR8_i5K1PYalapYkPOFn4ZhG8CXBgTzZ-m--x1L6F1KgObAcQsLzBOqOXce27Q3e0VtL0iOsAzAfFcQdOAEVnl4b7cT0uq_Erfjzu1prWdcEK6Z-pjzxJ53Q9TdZPlltSx8nY9eD2dFByLHCcg</con:idToken>
+      <con:idTokenStatus>RETRIEVED_FROM_SERVER</con:idTokenStatus>
+      <con:idTokenStartingStatus>RETRIEVED_FROM_SERVER</con:idTokenStartingStatus>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+  </con:authRepository>
+  <con:environmentSpec>
+    <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="24f84e45-af96-450e-9eea-b399013d43a1">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="50090d36-6dc4-45fa-9e69-7787c9c1042f">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="da8afcfb-5aed-4f19-907b-ab0f832d77f9">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+    <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+  <con:tags/>
+  <xml-fragment>
+    <con:xmlTemplates xsi:nil="true" id="3447f146-8f7c-4ede-81c8-61b54b93d378" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+    <con:testCase id="fcbbb619-b454-4c15-a8ee-9ab1f7c79b27" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Reports" searchProperties="true" timeout="0" maxResults="0">
+      <con:settings>
+        <con:setting id="fcbbb619-b454-4c15-a8ee-9ab1f7c79b27fileName">Reports</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Store - Save first storeId and first deviceId" id="c127cff2-8c88-4772-b3db-4c682e19586f">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/store" methodName="Store" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Store - Save first storeId and first deviceId" id="16dfa530-9e52-49cb-89ab-ed49fa3f6a43" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/store</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b9023a0a-edaf-4bda-983a-89d94100356b" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="X-report - Generate x-report" id="ad37a5f5-84e1-4118-9390-4318a13fd473">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/report/x-report" methodName="X-report" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="X-report - Generate x-report" id="1187a9bd-6623-4c3c-8c70-806d92b0e299" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"email": "cristina@kachingreatil.com"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/report/x-report</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="536bc511-f7a1-49c3-9a8f-733c400367ac" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+              <con:entry key="storeid" value="${#Project#storeId}"/>
+              <con:entry key="deviceid" value="${#Project#deviceId}"/>
+              <con:entry key="Content-Type" value="application/json"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+              <con:entry>deviceid</con:entry>
+              <con:entry>storeid</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="X-report 2 - Generate 2nd x-report" id="66d9cc3c-5dd3-452f-858b-fe4f27197025">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/report/x-report" methodName="X-report 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="X-report 2 - Generate 2nd x-report" id="42a66bde-8005-47f9-adea-e699085f2245" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"email": "test@kachingreatil.com"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/report/x-report</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="03e89024-88e9-4b99-8303-0a4367f268ab" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+              <con:entry key="storeid" value="${#Project#storeId}"/>
+              <con:entry key="deviceid" value="${#Project#deviceId}"/>
+              <con:entry key="Content-Type" value="application/json"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+              <con:entry>deviceid</con:entry>
+              <con:entry>storeid</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Z-report - Generate z-report" id="d131c120-39e6-40bf-83f1-7486c9c28755">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/report/z-report" methodName="Z-report" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Z-report - Generate z-report" id="090af417-5be0-49dd-805a-1ca9e70d2c95" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"email": "test@kachingreatil.com"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/report/z-report</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5d19e0ef-359a-49b3-949f-22cad3f85164" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+              <con:entry key="storeid" value="${#Project#storeId}"/>
+              <con:entry key="deviceid" value="${#Project#deviceId}"/>
+              <con:entry key="Content-Type" value="application/json"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+              <con:entry>deviceid</con:entry>
+              <con:entry>storeid</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Z-report 2 - Generate 2nd z-report" id="e74c69b1-2a0e-4958-947e-3dae9df97b1f">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/report/z-report" methodName="Z-report 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Z-report 2 - Generate 2nd z-report" id="fec66f11-326c-4d61-9271-061f57cebfba" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"email": "test@kachingreatil.com"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/report/z-report</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d0542359-1ce3-4ade-b7d2-c240ceba4647" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>429</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+              <con:entry key="storeid" value="${#Project#storeId}"/>
+              <con:entry key="deviceid" value="${#Project#deviceId}"/>
+              <con:entry key="Content-Type" value="application/json"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+              <con:entry>deviceid</con:entry>
+              <con:entry>storeid</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Journal - Generate journal" id="c2596b5a-e34d-4c8a-8ac6-dba053be55ae">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/report/journal" methodName="Journal" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Journal - Generate journal" id="b559b8b7-49b8-4118-b0f9-a68034730c63" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"email": "test@kachingreatil.com"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/report/journal</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="c21db2c1-6db8-4cba-8de1-2feec71a929b" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+              <con:entry key="storeid" value="${#Project#storeId}"/>
+              <con:entry key="deviceid" value="${#Project#deviceId}"/>
+              <con:entry key="Content-Type" value="application/json"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+              <con:entry>deviceid</con:entry>
+              <con:entry>storeid</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Journal 2 - Generate 2nd journal" id="c8812e85-53bf-462c-ad43-18e73a0edb20">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/report/journal" methodName="Journal 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Journal 2 - Generate 2nd journal" id="47057c18-1937-4f94-bddb-d3d4161a405d" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+	"email": "test@kachingreatil.com"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/report/journal</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="baf72b80-6706-40f4-bfe0-867e561eec63" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="Authorization" value="Bearer ${#Project#token}"/>
+              <con:entry key="storeid" value="${#Project#storeId}"/>
+              <con:entry key="deviceid" value="${#Project#deviceId}"/>
+              <con:entry key="Content-Type" value="application/json"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>Authorization</con:entry>
+              <con:entry>deviceid</con:entry>
+              <con:entry>storeid</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:testCase>
+  </xml-fragment>
+  <xml-fragment>
+    <con:xmlTemplates xsi:nil="true" id="596b01e5-3c43-44fb-bb26-4d37cb804f38" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </xml-fragment>
+  <xml-fragment>
+    <con:xmlTemplates xsi:nil="true" id="7acdb053-4c77-46b5-81e9-a40e5cb3d1a8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </xml-fragment>
+  <xml-fragment>
+    <con:xmlTemplates xsi:nil="true" id="93a32dea-18be-491e-9954-09d889866c85" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </xml-fragment>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</con:soapui-project>

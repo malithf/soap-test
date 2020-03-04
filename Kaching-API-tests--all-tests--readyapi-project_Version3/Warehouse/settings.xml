@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="cc6694f1-24e7-4f54-9885-8214ca0c124a" name="Warehouse" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="cc6694f1-24e7-4f54-9885-8214ca0c124afileName">Warehouse</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties/>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+    
+  </con:testSuite>

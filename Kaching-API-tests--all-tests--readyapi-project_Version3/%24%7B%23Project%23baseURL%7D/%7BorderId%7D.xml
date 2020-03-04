@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="{orderId}" path="/orders/order/{orderId}" id="d5814f46-8513-4111-9f53-31af497fcf36" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="d5814f46-8513-4111-9f53-31af497fcf36fileName">%7BorderId%7D</con:setting>
+      </con:settings>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>orderId</con:name>
+          <con:value>orderId</con:value>
+          <con:style>TEMPLATE</con:style>
+          <con:default>orderId</con:default>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="Method 1" id="15dd81fc-618e-4d92-9ee9-867835100f6d" method="GET">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="FAULT">
+          <con:mediaType>application/xml; charset=UTF-8</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element xmlns:apim="http://wso2.org/apimanager">apim:fault</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element xmlns:de3="https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37">de3:Fault</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element xmlns:de3="https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37">de3:Response</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json; charset=UTF-8</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element xmlns:de3="https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37">de3:Fault</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="4a7e631c-4483-4f9b-95b5-046f160d3d26" mediaType="application/json">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseURL}</con:endpoint>
+          <con:request/>
+          <con:originalUri>https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37</con:originalUri>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters><con:entry key="orderId" value="DE3F8EDF-A76D-4F10-888C-F69761C69C37"/></con:parameters>
+          <con:environmentSpec>
+            <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+            <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+              <con:authProfile>AdminUser</con:authProfile>
+            </con:entry>
+          </con:environmentSpec>
+        </con:request>
+      </con:method>
+    </con:resource>

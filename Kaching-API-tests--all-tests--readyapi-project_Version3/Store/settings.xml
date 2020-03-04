@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="5b2db65b-65dd-49d0-bfad-3f35b25dd408" name="Store" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="77cd1fc8-e9e3-452b-97a6-facb3833fea4fileName">Store</con:setting>
+      <con:setting id="5b2db65b-65dd-49d0-bfad-3f35b25dd408fileName">Store</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>storeName</con:name>
+        <con:value>Kaching automation test</con:value>
+      </con:property>
+      <con:property>
+        <con:name>defaultWarehouseId</con:name>
+        <con:value>523a479a-23c9-4a12-91fe-7b1b07e535fb</con:value>
+      </con:property>
+      <con:property>
+        <con:name>defaultReturnWarehouseId</con:name>
+        <con:value>523a479a-23c9-4a12-91fe-7b1b07e535fb</con:value>
+      </con:property>
+      <con:property>
+        <con:name>address</con:name>
+        <con:value>Targovistei no 3</con:value>
+      </con:property>
+      <con:property>
+        <con:name>lat</con:name>
+        <con:value>45.300584</con:value>
+      </con:property>
+      <con:property>
+        <con:name>lon</con:name>
+        <con:value>27.964797</con:value>
+      </con:property>
+      <con:property>
+        <con:name>phoneNumber</con:name>
+        <con:value>+40123456789</con:value>
+      </con:property>
+      <con:property>
+        <con:name>openingHours</con:name>
+        <con:value>Non Stop</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+    
+    
+  </con:testSuite>

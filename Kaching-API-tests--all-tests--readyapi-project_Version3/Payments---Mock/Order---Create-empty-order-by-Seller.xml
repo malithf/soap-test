@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="8f5ddbbf-8a6d-4df8-b837-a4433b37948f" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Order - Create empty order by Seller" searchProperties="true" timeout="0" disabled="true" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="8f5ddbbf-8a6d-4df8-b837-a4433b37948ffileName">Order---Create-empty-order-by-Seller</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Store - Get all my Stores" id="1d50f5da-4952-478d-a480-7173d7b9f27d">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/store" methodName="Store" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Store - Get all my Stores" id="0009bab0-e83c-406b-a978-a5fc427778dd" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/store</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="f2e34b52-1b7f-4a4c-a43c-8db1831b5e50" name="Valid HTTP Status Codes - 200">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+            <con:parameterOrder/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aea1dabb-28a3-46a3-bec9-dd6a8a297204">
+                <con:authProfile>wso2-dev</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Randomize Store" id="2e346fb8-93c2-4887-b2ec-509c6edd0de2">
+        <con:settings/>
+        <con:config>
+          <script>def response = context.expand('${Store - Get all my Stores#Response]}')
+
+def storeIds = context.expand('${Store - Get all my Stores#Response#$[\'response\'][*][\'storeId\']}')
+def storeNames = context.expand('${Store - Get all my Stores#Response#$[\'response\'][*][\'name\']}')
+
+
+def storeIdsList = storeIds.tokenize(',[]') as LinkedList
+def storeNamesList = storeNames.tokenize(',[]') as LinkedList
+def size = storeIdsList.size()
+
+def automationCreatedStore = true
+def automationCreatedStoreName = testRunner.testCase.testSuite.project.getTestSuiteByName("Store").getPropertyValue("storeName").toString()
+log.info automationCreatedStoreName
+
+while (automationCreatedStore){
+	def randomStore = (Math.abs(new Random().nextInt() % size) + 1) - 1 as int
+	def randomStoreName = storeNamesList[randomStore].toString()
+	if (randomStoreName.matches("(.*)$automationCreatedStoreName(.*)")){
+		automationCreatedStore = true
+	} else {
+		def randomStoreId = storeIdsList[randomStore]
+		automationCreatedStore = false
+		testRunner.testCase.setPropertyValue("storeId", randomStoreId)
+		log.info randomStoreId
+		log.info randomStoreName
+	}
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Get userId" id="2b3f92c5-024d-4794-bd3c-ae24eef2bd62">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/{username}" methodName="UserId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Get userId" id="f0fe8b14-bf15-47fa-a58e-0bdfe37af7fb" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/user/99246672-10fb-40eb-a569-4bb8392309e7</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e0d6bc21-6a79-4bf8-aa62-6ea5f5925103" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="9d1bab25-6e34-4d3c-b92a-96a0c9ab09de" name="JSONPath Count-Specific User count">
+              <con:configuration>
+                <path>$['userId']</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="5844b1c2-9aaa-4585-ae56-7b1626cae17c" name="JSONPath Match-Validate userName ">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#Project#sellerUserAuth}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/><con:entry key="username" value="${#Project#sellerUserAuth}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>username</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Create empty order reference" id="9dd45d32-0f4f-41fa-99f9-92b2994fd31e">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/action" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Create empty order reference" id="3d64cddf-c1dc-4544-9e75-103b24c15ac0" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+	"isCreatingNewOrder": true,
+	"currency": "SEK",
+	"isEndingSession": false
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/orders/order/create-reference</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="6b40f67c-6b2a-4b3f-8b00-f4c7a7428b1f" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="344c10d2-29ed-4452-adbf-d21fe34a5af8" name="Contains">
+              <con:configuration>
+                <token>${#Project#organizationId}</token>
+                <ignoreCase>true</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+            <con:parameterOrder/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - sellerId, orderId, orderNumber" id="e1c9a787-80ff-45c5-9b7d-c796d0271f4f">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>sellerId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>User - Get userId</con:sourceStep>
+            <con:sourcePath>$['userId']</con:sourcePath>
+            <con:targetType>sellerId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>orderId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Order - Create empty order reference</con:sourceStep>
+            <con:sourcePath>$['response']['identifier']['id']</con:sourcePath>
+            <con:targetType>orderId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>orderNumber</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Order - Create empty order reference</con:sourceStep>
+            <con:sourcePath>$['response']['identifier']['number']</con:sourcePath>
+            <con:targetType>orderNumber</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Get order by orderId" id="6479c98b-f0b4-43da-8f80-447e7319c6dc">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/{orderId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Get order by orderId" id="4a7e631c-4483-4f9b-95b5-046f160d3d26" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b4031e91-c9dd-4925-bc8d-bef0c3da6bd7" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4424bd33-a8a7-44b6-8ec2-8f5612880379" name="Match content of [payments]">
+              <con:configuration>
+                <path>$['response']['order']['payments']</path>
+                <content>[ ]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="orderId" value="${#TestCase#orderId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Search for order by orderNumber" id="8e07bd0a-3b87-4ce6-aeb0-1dc7f59e2121">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/search" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Search for order by orderNumber" id="5fd0c56c-6c2f-40f7-8a01-71fd7d730560" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/order/search</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="2b51320d-ee75-4f2d-a28a-a7196e99407c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ce2b405-8c52-40b3-9a6f-8ef9a0c50bea" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response'][0]['id']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="904a34a1-bc6f-4875-a466-3cabd51ef0d0" name="Match content of [number]">
+              <con:configuration>
+                <path>$['response'][0]['number']</path>
+                <content>${#TestCase#orderNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="d4441bed-1b13-464a-8f5c-2c821933eb64" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response'][*]</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="text" value="${#TestCase#orderNumber}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Search for order by orderId" id="35096e02-6882-4105-aa4d-c1ff15c1be91">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/search" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Search for order by orderId" id="5fd0c56c-6c2f-40f7-8a01-71fd7d730560" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/order/search</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="2b51320d-ee75-4f2d-a28a-a7196e99407c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ce2b405-8c52-40b3-9a6f-8ef9a0c50bea" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response'][0]['id']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="904a34a1-bc6f-4875-a466-3cabd51ef0d0" name="Match content of [number]">
+              <con:configuration>
+                <path>$['response'][0]['number']</path>
+                <content>${#TestCase#orderNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="d4441bed-1b13-464a-8f5c-2c821933eb64" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response'][*]</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="text" value="${#TestCase#orderId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>orderId</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>orderNumber</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>storeId</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>2e346fb8-93c2-4887-b2ec-509c6edd0de2</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

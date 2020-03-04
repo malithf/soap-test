@@ -1,0 +1,5 @@
+Customer--create%2Fget%2Fupdate%2Fdelete-by-admin-user.xml
+Customer--create%2Fget%2Fupdate%2Fdelete-by-seller-user.xml
+Customer--create%2Fget%2Fupdate%2Fdelete-by-store-manager-user.xml
+Customer---incorrect-payload-when-create-Private-customer.xml
+Customer---incorrect-payload-when-create-Business-customer.xml

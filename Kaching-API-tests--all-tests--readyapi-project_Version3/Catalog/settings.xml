@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="e58c5d62-5598-4288-91b5-824f26cfcdde" name="Catalog" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="e58c5d62-5598-4288-91b5-824f26cfcddefileName">Catalog</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>taxGroupPercentage0</con:name>
+        <con:value>0</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupPercentage6</con:name>
+        <con:value>600000</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupPercentage12</con:name>
+        <con:value>1200000</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupPercentage25</con:name>
+        <con:value>2500000</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupId0</con:name>
+        <con:value>VAT0</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupId6</con:name>
+        <con:value>VAT6</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupId12</con:name>
+        <con:value>VAT12</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupId25</con:name>
+        <con:value>VAT25</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupDisplayName0</con:name>
+        <con:value>0 %</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupDisplayName6</con:name>
+        <con:value>6 %</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupDisplayName12</con:name>
+        <con:value>12 %</con:value>
+      </con:property>
+      <con:property>
+        <con:name>taxGroupDisplayName25</con:name>
+        <con:value>25 %</con:value>
+      </con:property>
+      <con:property>
+        <con:name>unitOfMeasurePiece</con:name>
+        <con:value>piece</con:value>
+      </con:property>
+      <con:property>
+        <con:name>untiOfMeasureKg</con:name>
+        <con:value>kg</con:value>
+      </con:property>
+      <con:property>
+        <con:name>quantityPrecisionKg</con:name>
+        <con:value>3</con:value>
+      </con:property>
+      <con:property>
+        <con:name>quantityPrecisionPiece</con:name>
+        <con:value>0</con:value>
+      </con:property>
+      <con:property>
+        <con:name>defaultUnitOfMeasure</con:name>
+        <con:value>piece</con:value>
+      </con:property>
+      <con:property>
+        <con:name>defaultQuantityPrecision</con:name>
+        <con:value>0</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+    
+    
+    
+    
+    
+    
+    
+  </con:testSuite>

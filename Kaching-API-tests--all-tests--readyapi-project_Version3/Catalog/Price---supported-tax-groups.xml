@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="24c4a4c1-8c98-4539-99ec-ff2ed2fd3bb9" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Price - supported tax groups" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="24c4a4c1-8c98-4539-99ec-ff2ed2fd3bb9fileName">Price---supported-tax-groups</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Price - get supported tax groups" id="aa44aaed-d24f-4020-b062-09acda1e7aa3">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price/supported-tax-groups" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - get supported tax groups" id="b2b9ed61-7fad-4586-9ed3-1c885223d4f3" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="fab83d31-b6ad-4b1d-8918-2da4e31e95f2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="MessageContentAssertion" id="a26c8252-50b3-424f-82ff-8b84a7b555f1" name="Message Content Assertion">
+              <con:configuration xsi:type="con:MessageContentAssertion">
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[1]/ns1:taxGroupId[1]</con:xpath>
+                  <con:element>taxGroupId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>VAT25</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[1]/ns1:taxGroupPercentage[1]</con:xpath>
+                  <con:element>taxGroupPercentage</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>2500000</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[1]/ns1:taxGroupDisplayName[1]</con:xpath>
+                  <con:element>taxGroupDisplayName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>25 %</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[2]/ns1:taxGroupId[1]</con:xpath>
+                  <con:element>taxGroupId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>VAT12</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[2]/ns1:taxGroupPercentage[1]</con:xpath>
+                  <con:element>taxGroupPercentage</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>1200000</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[2]/ns1:taxGroupDisplayName[1]</con:xpath>
+                  <con:element>taxGroupDisplayName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>12 %</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[3]/ns1:taxGroupId[1]</con:xpath>
+                  <con:element>taxGroupId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>VAT6</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[3]/ns1:taxGroupPercentage[1]</con:xpath>
+                  <con:element>taxGroupPercentage</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>600000</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[3]/ns1:taxGroupDisplayName[1]</con:xpath>
+                  <con:element>taxGroupDisplayName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>6 %</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[4]/ns1:taxGroupId[1]</con:xpath>
+                  <con:element>taxGroupId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>VAT0</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[4]/ns1:taxGroupPercentage[1]</con:xpath>
+                  <con:element>taxGroupPercentage</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>0</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:response[1]/ns1:e[4]/ns1:taxGroupDisplayName[1]</con:xpath>
+                  <con:element>taxGroupDisplayName</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>0 %</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups';
+//ns1:Response[1]/ns1:traceId[1]</con:xpath>
+                  <con:element>traceId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>f3800583-562d-4f7a-8d67-7210a0e81a43</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:originalMessage><![CDATA[<Response xmlns="https://api-dev.kachingretail.com/api/catalog/price/supported-tax-groups">
+   <response>
+      <e>
+         <taxGroupId>VAT25</taxGroupId>
+         <taxGroupPercentage>2500000</taxGroupPercentage>
+         <taxGroupDisplayName>VAT 25 %</taxGroupDisplayName>
+      </e>
+      <e>
+         <taxGroupId>VAT12</taxGroupId>
+         <taxGroupPercentage>1200000</taxGroupPercentage>
+         <taxGroupDisplayName>VAT 12 %</taxGroupDisplayName>
+      </e>
+      <e>
+         <taxGroupId>VAT6</taxGroupId>
+         <taxGroupPercentage>600000</taxGroupPercentage>
+         <taxGroupDisplayName>VAT 6 %</taxGroupDisplayName>
+      </e>
+      <e>
+         <taxGroupId>VAT0</taxGroupId>
+         <taxGroupPercentage>0</taxGroupPercentage>
+         <taxGroupDisplayName>VAT 0 %</taxGroupDisplayName>
+      </e>
+   </response>
+   <traceId>f3800583-562d-4f7a-8d67-7210a0e81a43</traceId>
+</Response>]]></con:originalMessage>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="6386d5a1-217b-4bde-9c9a-d630d7a86d1d" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response'][*]</path>
+                <content>4</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="dd56e12f-d025-4a9e-b4f5-d374ba3602f1" name="Match content of [taxGroupId]">
+              <con:configuration>
+                <path>$['response'][0]['taxGroupId']</path>
+                <content>VAT25</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2d5e068f-4d75-4e16-aeb0-394a2881d561" name="Match content of [taxGroupId]">
+              <con:configuration>
+                <path>$['response'][1]['taxGroupId']</path>
+                <content>VAT12</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2e14f6f5-5fb3-4357-9e5e-d9bcbeb03482" name="Match content of [taxGroupId]">
+              <con:configuration>
+                <path>$['response'][2]['taxGroupId']</path>
+                <content>VAT6</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b88f84e3-d3a9-4e7a-9d49-b55f877bde2d" name="Match content of [taxGroupId]">
+              <con:configuration>
+                <path>$['response'][3]['taxGroupId']</path>
+                <content>VAT0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f312c366-8a4f-4e5b-a37b-c4cb377d953c" name="Match content of [taxGroupPercentage]">
+              <con:configuration>
+                <path>$['response'][1]['taxGroupPercentage']</path>
+                <content>1200000</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a982b28d-20e2-4a47-8813-7a0cfc456c7c" name="Match content of [taxGroupDisplayName]">
+              <con:configuration>
+                <path>$['response'][1]['taxGroupDisplayName']</path>
+                <content>12 %</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4b030153-fa61-40d3-b047-c1a348564dc1" name="Match content of [taxGroupPercentage]">
+              <con:configuration>
+                <path>$['response'][2]['taxGroupPercentage']</path>
+                <content>600000</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="709307f8-04ff-4bb1-b3c7-3fadca17abd4" name="Match content of [taxGroupDisplayName]">
+              <con:configuration>
+                <path>$['response'][2]['taxGroupDisplayName']</path>
+                <content>6 %</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="fa3c3b26-858b-4ea7-ab29-f1d7f23236bd" name="Match content of [taxGroupPercentage]">
+              <con:configuration>
+                <path>$['response'][3]['taxGroupPercentage']</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="55b5e2e7-1e0c-41f4-9fdb-2093b39463b8" name="Match content of [taxGroupDisplayName]">
+              <con:configuration>
+                <path>$['response'][3]['taxGroupDisplayName']</path>
+                <content>0 %</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0997ab3c-6909-48c0-99ac-8958227f11d8" name="Match content of [taxGroupPercentage]">
+              <con:configuration>
+                <path>$['response'][0]['taxGroupPercentage']</path>
+                <content>2500000</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b9301b10-fb66-4b8d-a281-a52dc750cf6a" name="Match content of [taxGroupDisplayName]">
+              <con:configuration>
+                <path>$['response'][0]['taxGroupDisplayName']</path>
+                <content>25 %</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - taxGroupPercentage" id="1836baf0-2b3a-4497-92f1-fb196fa6fa9f">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>taxGroupPercentage0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][3]['taxGroupPercentage']</con:sourcePath>
+            <con:targetType>taxGroupPercentage0</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>taxGroupPercentage6</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][2]['taxGroupPercentage']</con:sourcePath>
+            <con:targetType>taxGroupPercentage6</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>taxGroupPercentage12</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][1]['taxGroupPercentage']</con:sourcePath>
+            <con:targetType>taxGroupPercentage12</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>taxGroupPercentage25</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][0]['taxGroupPercentage']</con:sourcePath>
+            <con:targetType>taxGroupPercentage25</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>taxGroupDisplayName0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][3]['taxGroupDisplayName']</con:sourcePath>
+            <con:targetType>taxGroupDisplayName0</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>taxGroupDisplayName6</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][2]['taxGroupDisplayName']</con:sourcePath>
+            <con:targetType>taxGroupDisplayName6</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>taxGroupDisplayName12</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][1]['taxGroupDisplayName']</con:sourcePath>
+            <con:targetType>taxGroupDisplayName12</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>taxGroupDisplayName25</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][0]['taxGroupDisplayName']</con:sourcePath>
+            <con:targetType>taxGroupDisplayName25</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>taxGroupId0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][3]['taxGroupId']</con:sourcePath>
+            <con:targetType>taxGroupId0</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>taxGroupId6</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][2]['taxGroupId']</con:sourcePath>
+            <con:targetType>taxGroupId6</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>taxGroupId12</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][1]['taxGroupId']</con:sourcePath>
+            <con:targetType>taxGroupId12</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>taxGroupId25</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Price - get supported tax groups</con:sourceStep>
+            <con:sourcePath>$['response'][0]['taxGroupId']</con:sourcePath>
+            <con:targetType>taxGroupId25</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>1836baf0-2b3a-4497-92f1-fb196fa6fa9f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

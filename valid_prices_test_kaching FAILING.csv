@@ -1,0 +1,5 @@
+countryCode,currencyCode,centAmountExcludingVAT,taxPercentage,flexible,minCentAmountExcludingVAT,maxCentAmountExcludingVAT
+SE,SEK,0,0,true,0,0
+SE,SEK,0,600000,true,0,0
+SE,SEK,0,1200000,true,0,0
+SE,SEK,0,2500000,true,0,0

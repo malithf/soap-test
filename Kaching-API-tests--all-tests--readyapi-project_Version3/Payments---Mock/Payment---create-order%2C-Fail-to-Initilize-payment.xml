@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="e1c32a88-e917-4c92-8033-dfc8786fa990" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Payment - create order, Fail to Initilize payment" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="e1c32a88-e917-4c92-8033-dfc8786fa990fileName">Payment---create-order%2C-Fail-to-Initilize-payment</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize with empty orderId" id="742764a6-f697-4e76-a8f6-f407d7ca78c6">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize with empty orderId" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "${#TestSuite#method}",
+  "orderId": ""
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>should match format \"uuid\"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="38f78aab-9c9c-4cf5-ae5a-dac03063fef6" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>should match format \"uuid\"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize without orderId" id="deacbde4-0a32-4b13-8ec2-14c8ece4f734">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize without orderId" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "${#TestSuite#method}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7c772475-6704-4b71-916e-79b11ff87c8e" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>should have required property 'orderId'</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize with not existing orderId" id="3cba210d-2664-4dc9-89bc-4f0ba2244d01">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize with not existing orderId" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "${#TestSuite#method}",
+  "orderId": "123!!!!"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>should match format \"uuid\"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize with empty paymentMethod" id="13e4e518-5b69-4078-aa25-85401cd16a5a">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize with empty paymentMethod" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "",
+  "orderId": "${#TestCase#orderId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Payment method:  not supported</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize without paymentMethod" id="27c3bd11-934a-4a5d-aa8b-6abbb0f7c4df">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize without paymentMethod" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "orderId": "${#TestCase#orderId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>should have required property 'paymentMethod'</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize with empty storeId" id="90f161fa-62e2-4ecc-848e-ffd3f97b6276">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize with empty storeId" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "${#TestSuite#method}",
+  "orderId": "${#TestCase#orderId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Missing required header: storeid</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize with not existing storeId (200/400 depending on Mock cofig)" id="3f978ac7-1480-4d61-a794-d15dee01dafe">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize with not existing storeId (200/400 depending on Mock cofig)" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "${#TestSuite#method}",
+  "orderId": "${#TestCase#orderId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400,200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e" disabled="true">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Payment method: mock not configured for the store: 456!!!!, or on the organization level</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="456!!!!"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Fail to Initialize with empty deviceId" id="af269e94-1edb-4046-b34b-ab2dffa826ab">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Fail to Initialize with empty deviceId" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentMethod": "${#TestSuite#method}",
+  "orderId": "${#TestCase#orderId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [en]" id="2d31c362-2389-44fa-afcf-dfbfb019ea9e">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Missing required header: deviceid</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:setupScript>def TC = testRunner.testCase.testSuite.project.getTestSuiteByName("Payments - Mock").getTestCaseByName("Order - Create empty order by Seller")
+
+def properties = new com.eviware.soapui.support.types.StringToObjectMap ()
+def async = false
+TC.run (properties, async)
+
+def orderId = TC.getPropertyValue("orderId")
+
+if (!orderId) { 
+    context.testRunner.fail("OrderId is empty. Stop test case execution")
+} else {
+	testRunner.testCase.setPropertyValue("orderId", orderId) 
+	
+	def orderNumber = TC.getPropertyValue("orderNumber")
+	testRunner.testCase.setPropertyValue("orderNumber", orderNumber)
+
+	def storeId = TC.getPropertyValue("storeId")
+	testRunner.testCase.setPropertyValue("storeId", storeId)
+	
+	testRunner.testCase.testSuite.project.getTestSuiteByName("Payments - Mock").getTestCaseByName("Order - Create empty order by Seller").setPropertyValue("orderId","" ) 
+	testRunner.testCase.testSuite.project.getTestSuiteByName("Payments - Mock").getTestCaseByName("Order - Create empty order by Seller").setPropertyValue("orderNumber","" )
+	testRunner.testCase.testSuite.project.getTestSuiteByName("Payments - Mock").getTestCaseByName("Order - Create empty order by Seller").setPropertyValue("storeId","" )
+}</con:setupScript>
+      <con:tearDownScript/>
+      <con:properties>
+        <con:property>
+          <con:name>orderId</con:name>
+          <con:value>6F1CB550-391E-4DF7-B982-82F864BC663E</con:value>
+        </con:property>
+        <con:property>
+          <con:name>orderNumber</con:name>
+          <con:value>200304-64BC663E</con:value>
+        </con:property>
+        <con:property>
+          <con:name>paymentId</con:name>
+          <con:value>E1A3D9DC-2600-43E2-9D6C-0C7BC30B7625</con:value>
+        </con:property>
+        <con:property>
+          <con:name>storeId</con:name>
+          <con:value>1aef7c6f-f525-412f-9589-144da3489c1b</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>f1211d35-a0a7-45e9-a5dc-c0c4fa47252b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>1054f417-6594-4b25-a0fb-ffbbcc768f88</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>52f5c8ee-2210-43de-ab87-1368e38fe4eb</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>d1f09a34-cb2f-4792-b074-5634670f164c</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>7e47dd83-d0dc-40aa-918b-a7368da99d94</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>cf3ee029-cc7c-4ecf-9a3d-9978d8787afa</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>328a6836-ebca-4f0e-80e3-294f558cb5fe</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>4a0e2972-5276-47f9-bf28-c48687a9e1fc</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>c93d3f72-6cc2-4b0e-ac8c-f9b2a09ee4bf</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>6ce92a2d-dbc0-4eaf-80ff-6cf73f64c0d5</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>c5d46e90-6db2-4306-8c26-e37af6c6e582</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>47a21874-fa99-471e-afcc-b24fcc3ec55b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>0dad4fb1-f7a3-4df0-ad4e-a1d7800b389b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>5506db43-acd0-4862-bb8a-0fc097ca4beb</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>120595bf-3488-4330-9b9d-75a214b0c2d3</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

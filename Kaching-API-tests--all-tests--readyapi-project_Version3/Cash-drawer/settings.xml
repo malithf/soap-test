@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="78679120-164f-44de-994c-e0e13ace1b9a" name="Cash-drawer" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="78679120-164f-44de-994c-e0e13ace1b9afileName">Cash-drawer</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>cashdrawerID</con:name>
+        <con:value>F2BF45B3-8F65-49F1-B96E-7FE9CB358292</con:value>
+      </con:property>
+      <con:property>
+        <con:name>name</con:name>
+        <con:value>test</con:value>
+      </con:property>
+      <con:property>
+        <con:name>serialNumber</con:name>
+        <con:value>11111</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+  </con:testSuite>

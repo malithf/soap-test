@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="7aa6f613-cef0-4fc2-986b-addbd461b08e" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Products - supported unitOfMeasure" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="7aa6f613-cef0-4fc2-986b-addbd461b08efileName">Products---supported-unitOfMeasure</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Product - Get list of supported units of measure" id="04909c3f-59b2-48cd-a35c-a748e5669c29">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product/units-of-measure" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - Get list of supported units of measure" id="72bbf179-7baf-4b5b-9d1a-72b6d1cd29bf" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product/units-of-measure</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d3469da3-a5b2-4698-9b54-4447d3f4493d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="95b8f4fe-1d6c-4173-899e-5945da0043f5" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response']['supportedUnitsOfMeasure'][*]</path>
+                <content>2</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="379ade85-f2d1-4ba8-9e73-ef6a55b2c7af" name="Match content of [0]">
+              <con:configuration>
+                <path>$['response']['supportedUnitsOfMeasure'][0]</path>
+                <content>piece</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="fda3f143-80b1-4394-9c61-a10703c83212" name="Match content of [1]">
+              <con:configuration>
+                <path>$['response']['supportedUnitsOfMeasure'][1]</path>
+                <content>kg</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a90cb368-9daf-4043-a4f0-af80b92ebe86" name="Match content of [defaultUnitOfMeasure]">
+              <con:configuration>
+                <path>$['response']['defaultUnitOfMeasure']</path>
+                <content>piece</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - unitOfMeasure" id="dfb3b696-ce7b-4232-91f7-b3e1286ff7d9">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>unitOfMeasurePiece</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Product - Get list of supported units of measure</con:sourceStep>
+            <con:sourcePath>$['response']['supportedUnitsOfMeasure'][0]</con:sourcePath>
+            <con:targetType>unitOfMeasurePiece</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>unitOfMeasureKg</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Product - Get list of supported units of measure</con:sourceStep>
+            <con:sourcePath>$['response']['supportedUnitsOfMeasure'][1]</con:sourcePath>
+            <con:targetType>untiOfMeasureKg</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>defaultUnitOfMeasure</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Product - Get list of supported units of measure</con:sourceStep>
+            <con:sourcePath>$['response']['defaultUnitOfMeasure']</con:sourcePath>
+            <con:targetType>defaultUnitOfMeasure</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Set up supported unitOfMeasure" id="d2153c6b-89d1-419e-8d03-2d242811d6dc">
+        <con:settings/>
+        <con:config>
+          <script>def defaultUnitOfMeasure = testRunner.testCase.testSuite.getPropertyValue("defaultUnitOfMeasure")
+if (defaultUnitOfMeasure == "piece"){
+	testRunner.testCase.testSuite.setPropertyValue( "defaultQuantityPrecision" , "0" )
+} else if (defaultUnitOfMeasure == "kg"){
+	testRunner.testCase.testSuite.setPropertyValue( "defaultQuantityPrecision" , "3" )
+} else {
+	context.testRunner.fail("New unitOfMeasure is added $defaultUnitOfMeasure as default")
+}
+
+def unitOfMeasurePiece = testRunner.testCase.testSuite.getPropertyValue("unitOfMeasurePiece")
+if (unitOfMeasurePiece == "piece"){
+	testRunner.testCase.testSuite.setPropertyValue( "quantityPrecisionPiece" , "0" )
+} else {
+	context.testRunner.fail("New unitOfMeasure is added $unitOfMeasurePiece")
+}
+
+def untiOfMeasureKg = testRunner.testCase.testSuite.getPropertyValue("untiOfMeasureKg")
+if (untiOfMeasureKg == "kg"){
+	testRunner.testCase.testSuite.setPropertyValue( "quantityPrecisionKg" , "3" )
+} else {
+	context.testRunner.fail("New unitOfMeasure is added $unitOfMeasureKg")
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>dfb3b696-ce7b-4232-91f7-b3e1286ff7d9</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

@@ -1,0 +1,7 @@
+User---Seller-user---create%2Fget%2Fupdate%2Fdelete-by-admin-user.xml
+User---StoreManager-user---create%2Fget%2Fupdate%2Fdelete-by-admin-user.xml
+User---MerchantAdmin-user---create%2Fget%2Fupdate%2Fdelete-by-admin-user.xml
+User---incorrect-payload-when-create-user.xml
+User---Seller-user---create%2Fget%2Fupdate%2Fdelete-by-super-admin-user.xml
+User---StoreManager-user---create%2Fget%2Fupdate%2Fdelete-by-super-admin-user.xml
+User---MerchantAdmin-user---create%2Fget%2Fupdate%2Fdelete-by-super-admin-user.xml

@@ -1,0 +1,3 @@
+name,sku,unitOfMeasure,isService,requiresUniqueId,sellable,visible,isStocked
+TestProduct31,testsku31,piece,false, false, false, false, false
+TestProduct63,testsku63,kg,false, false, false, false, false

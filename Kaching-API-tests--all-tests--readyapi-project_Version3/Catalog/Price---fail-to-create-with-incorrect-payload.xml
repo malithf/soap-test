@@ -1,0 +1,2475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="181edac7-c7f8-4b04-be10-af0c7d4caea3" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Price - fail to create with incorrect payload" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="181edac7-c7f8-4b04-be10-af0c7d4caea3fileName">Price---fail-to-create-with-incorrect-payload</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Product - Create Product for adding price" id="21a4f3fb-d912-43ef-aee3-3eee3515fac3">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - Create Product for adding price" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isStocked": ${#TestCase#isStocked},
+  "visible": ${#TestCase#visible},
+  "name": "${#TestCase#name}",
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "isService": ${#TestCase#isService} 
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="ba80a959-2652-4310-86b5-5396934fda95" name="Check for existence of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c9a89153-16a5-47f7-90f7-6fedfb0a3612" name="Match content of [sellable]">
+              <con:configuration>
+                <path>$['response']['sellable']</path>
+                <content>${#TestCase#sellable}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ee59b29c-2d43-4a49-a068-d3d252319c4b" name="Match content of [visible]">
+              <con:configuration>
+                <path>$['response']['visible']</path>
+                <content>${#TestCase#visible}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3e5ffb69-2156-4c18-8374-bdc544e4683a" name="Match content of [isStocked]">
+              <con:configuration>
+                <path>$['response']['isStocked']</path>
+                <content>${#TestCase#isStocked}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="91c42f95-af26-4dbe-bc86-b0530f56165f" name="Match content of [isService]">
+              <con:configuration>
+                <path>$['response']['isService']</path>
+                <content>${#TestCase#isService}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a25308d2-2f8c-4bf4-91ec-a75626f47a7b" name="Match content of [requiresUniqueId]">
+              <con:configuration>
+                <path>$['response']['requiresUniqueId']</path>
+                <content>${#TestCase#requiresUniqueId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7d5e888b-8e68-42ba-9807-73f2a79d5906" name="Match content of [name]">
+              <con:configuration>
+                <path>$['response']['name']</path>
+                <content>${#TestCase#name}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2704dadb-5974-4bfd-90a4-831477770deb" name="Match content of [sku]">
+              <con:configuration>
+                <path>$['response']['sku']</path>
+                <content>${#TestCase#sku}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4baeb97d-2294-4519-92ca-e2a6b33e3f1f" name="Match content of [unitOfMeasure]">
+              <con:configuration>
+                <path>$['response']['unitOfMeasure']</path>
+                <content>${#TestCase#unitOfMeasure}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c227667b-1acd-4fe2-8f8f-1bfb8188fd7f" name="Match content of [quantityPrecision]">
+              <con:configuration>
+                <path>$['response']['quantityPrecision']</path>
+                <content>${#TestCase#quantityPrecision}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - productId" id="86828eab-4fb0-4bce-b90e-e86fc69fdebe">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>productId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Product - Create Product for adding price</con:sourceStep>
+            <con:sourcePath>$['response']['productId']</con:sourcePath>
+            <con:targetType>productId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with empty productId" id="1e77e694-b75b-4db6-9cac-8be4803d5c67">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with empty productId" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="cbb83ee6-6823-46ae-ac54-4d2cfd146aa9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"productId\" fails because [\"productId\" is not allowed to be empty]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price without productId" id="b84bfa96-db2a-4344-a0a4-20871bce790a">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price without productId" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="cbb83ee6-6823-46ae-ac54-4d2cfd146aa9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"productId\" fails because [\"productId\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with invalid format of productId" id="d7916111-ada9-46f0-a554-8e27a3ed64e8">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with invalid format of productId" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "1234",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="cbb83ee6-6823-46ae-ac54-4d2cfd146aa9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"productId\" fails because [\"productId\" must be a valid GUID]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with empty countryCode" id="e071afe0-13b7-4e18-a04f-014431387056">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with empty countryCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"countryCode\" fails because [\"countryCode\" is not allowed to be empty]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price without countryCode" id="fbeb6cb3-c650-427e-80a2-2f5290664e40">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price without countryCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"countryCode\" fails because [\"countryCode\" is required]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with invalid countryCode" id="00a9c719-5b48-4330-a6f2-b1d8ca7b9345">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with invalid countryCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "1234",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Missing tax group for country: 1234</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with unsupported countryCode" id="7e6bf3c3-35ad-4a81-a2ae-ae8416868ba5">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with unsupported countryCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "RU",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Missing tax group for country: RU</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with empty currencyCode" id="c700498c-dfb4-470f-bf39-be7db55f1595">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with empty currencyCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"currencyCode\" fails because [\"currencyCode\" is not allowed to be empty]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price without currencyCode" id="051abf5e-9ad8-4826-8094-354b4d6fd4b3">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price without currencyCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"currencyCode\" fails because [\"currencyCode\" is required]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with invalid currencyCode" id="844f2afa-2bef-4a85-a4c1-d858d44ef98f" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with invalid currencyCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": "${#TestCase#centAmountExcludingVAT}",
+        "currencyCode": "123",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": "${#TestSuite#taxGroupPercentage25}"
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"currencyCode\" fails because [\"currencyCode\" is not allowed to be empty]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with unsupported currencyCode" id="510eedff-b95d-4808-8006-3897c3b92b6f" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with unsupported currencyCode" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": "${#TestCase#centAmountExcludingVAT}",
+        "currencyCode": "RUB",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": "${#TestSuite#taxGroupPercentage25}"
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"currencyCode\" fails because [\"currencyCode\" is not allowed to be empty]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price without taxPercentage" id="53853897-3252-4651-8cac-8a2321a0d4a1">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price without taxPercentage" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}"
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"taxPercentage\" fails because [\"taxPercentage\" is required]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with invalid taxPercentage" id="bfa58d5e-12e7-453f-903b-c7148ab369a8">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with invalid taxPercentage" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": "test"
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"taxPercentage\" fails because [\"taxPercentage\" must be a number]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with unsupported taxPercentage" id="c5480729-ec32-4d77-9b18-6e4fb690b23f">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with unsupported taxPercentage" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": "${#TestCase#centAmountExcludingVAT}",
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": 1234
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Unrecognized tax group percentage 1234 for country: SE</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price without centAmountExcludingVAT" id="a1c75062-4689-4ee0-bb56-5d8a2dc37111">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price without centAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"centAmountExcludingVAT\" fails because [\"centAmountExcludingVAT\" is required]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price with invalid centAmountExcludingVAT" id="628d122b-73e9-4b5c-a79f-f9fed2747d26">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price with invalid centAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": "test",
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"centAmountExcludingVAT\" fails because [\"centAmountExcludingVAT\" must be a number]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price without minCentAmountExcludingVAT" id="ba312ff9-8150-4f95-92fa-6dfea1c8b772">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price without minCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"flexible\" fails because [child \"minCentAmountExcludingVAT\" fails because [\"minCentAmountExcludingVAT\" is required]]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price without maxCentAmountExcludingVAT" id="b2e09306-8ef7-44b3-af97-ef33dda976cb">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price without maxCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"minCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"flexible\" fails because [child \"maxCentAmountExcludingVAT\" fails because [\"maxCentAmountExcludingVAT\" is required]]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with invalid minCentAmountExcludingVAT" id="9e07d3a4-dc09-4d86-8464-daf039b2080a">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with invalid minCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"minCentAmountExcludingVAT": "test",
+        	"maxCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"flexible\" fails because [child \"minCentAmountExcludingVAT\" fails because [\"minCentAmountExcludingVAT\" must be a number]]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with invalid maxCentAmountExcludingVAT" id="d2aec558-62c4-4a59-933f-aad5fc22f3fa">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with invalid maxCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": "test",
+        	"minCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"flexible\" fails because [child \"maxCentAmountExcludingVAT\" fails because [\"maxCentAmountExcludingVAT\" must be a number]]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with negative minCentAmountExcludingVAT" id="18aeded3-e3be-4775-b48e-b07f045f639c">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with negative minCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"minCentAmountExcludingVAT": "-1",
+        	"maxCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"flexible\" fails because [child \"minCentAmountExcludingVAT\" fails because [\"minCentAmountExcludingVAT\" must be a positive number]]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with negative maxCentAmountExcludingVAT" id="b3c526fa-6a1c-4f52-9713-38f7c9d58f36">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with negative maxCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": -1,
+        	"minCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"flexible\" fails because [child \"maxCentAmountExcludingVAT\" fails because [\"maxCentAmountExcludingVAT\" must be a positive number]]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with maxCentAmountExcludingVAT >  maxCentAmountExcludingVAT" id="33e11f9c-a43b-48f1-b352-7697deecfc99" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with maxCentAmountExcludingVAT >  maxCentAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT},
+        	"minCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>500</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"centAmountExcludingVAT\" fails because [\"centAmountExcludingVAT\" must be a number]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with maxCentAmountExcludingVAT &lt;  centAmountExcludingVAT" id="235295f4-bf2a-47b1-b7e2-d2748ae9b07e" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with maxCentAmountExcludingVAT &lt;  centAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        	"minCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"centAmountExcludingVAT\" fails because [\"centAmountExcludingVAT\" must be a number]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create flexible price with minCentAmountExcludingVAT >  centAmountExcludingVAT" id="26ab4cdb-f824-4573-bdee-132e0bf4748d" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create flexible price with minCentAmountExcludingVAT >  centAmountExcludingVAT" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT},
+        	"minCentAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"centAmountExcludingVAT\" fails because [\"centAmountExcludingVAT\" must be a number]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - Delete product" id="cb4aa3b7-fd81-49f2-a97d-5c988cbf0f8e">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product/{productId}" methodName="ProductId 4" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - Delete product" id="a14b2953-e2d6-4ca7-a990-310add8cdf30" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="8c6c9e06-8625-4fa0-81a8-add67e0259e1" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c55a2198-ad3a-412f-8e72-689c902ba23e" name="Validate deleted productid">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestCase#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="productId" value="${#TestCase#productId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>productId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - fail to create price for already deleted product" id="77dc7c4d-0ff5-430e-b7d6-f0bb467b5c39" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - fail to create price for already deleted product" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#Project#currencyCode}",
+        "countryCode": "${#Project#countryCode}",
+        "taxPercentage": ${#TestSuite#taxGroupPercentage25},
+        "flexible": {
+        	"maxCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT},
+        	"minCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT}
+        	}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9592f45-3d0e-4b35-91b6-dfd314bcf3dc" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"prices\" fails because [\"prices\" at position 0 fails because [child \"centAmountExcludingVAT\" fails because [\"centAmountExcludingVAT\" must be a number]]]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>centAmountExcludingVAT</con:name>
+          <con:value>10000</con:value>
+        </con:property>
+        <con:property>
+          <con:name>productId</con:name>
+          <con:value>b1a12daa-4cf0-4b3b-b186-9934c9cb221c</con:value>
+        </con:property>
+        <con:property>
+          <con:name>isStocked</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>visible</con:name>
+          <con:value>true</con:value>
+        </con:property>
+        <con:property>
+          <con:name>name</con:name>
+          <con:value>Test product for incorrect payload when create price</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sellable</con:name>
+          <con:value>true</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sku</con:name>
+          <con:value>TestIncorrectPayloadPrices</con:value>
+        </con:property>
+        <con:property>
+          <con:name>requiresUniqueId</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>unitOfMeasure</con:name>
+          <con:value>piece</con:value>
+        </con:property>
+        <con:property>
+          <con:name>isService</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>quantityPrecision</con:name>
+          <con:value>0</con:value>
+        </con:property>
+        <con:property>
+          <con:name>maxCentAmountExcludingVAT</con:name>
+          <con:value>20000</con:value>
+        </con:property>
+        <con:property>
+          <con:name>minCentAmountExcludingVAT</con:name>
+          <con:value>1000</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>86828eab-4fb0-4bce-b90e-e86fc69fdebe</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>00a9c719-5b48-4330-a6f2-b1d8ca7b9345</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>7e6bf3c3-35ad-4a81-a2ae-ae8416868ba5</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>844f2afa-2bef-4a85-a4c1-d858d44ef98f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>510eedff-b95d-4808-8006-3897c3b92b6f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>d7916111-ada9-46f0-a554-8e27a3ed64e8</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>21a4f3fb-d912-43ef-aee3-3eee3515fac3</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ba312ff9-8150-4f95-92fa-6dfea1c8b772</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>b2e09306-8ef7-44b3-af97-ef33dda976cb</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9e07d3a4-dc09-4d86-8464-daf039b2080a</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>d2aec558-62c4-4a59-933f-aad5fc22f3fa</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>b3c526fa-6a1c-4f52-9713-38f7c9d58f36</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>18aeded3-e3be-4775-b48e-b07f045f639c</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>33e11f9c-a43b-48f1-b352-7697deecfc99</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>235295f4-bf2a-47b1-b7e2-d2748ae9b07e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>26ab4cdb-f824-4573-bdee-132e0bf4748d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

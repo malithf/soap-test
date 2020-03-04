@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:loadUiTest name="Bambora - Seller - Create, pay, make return LoadTest" id="3aea126c-5c12-4a44-a939-7fa6b5553c6b" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="soapUIObjectSourceId">3da1008c-44f0-484a-9337-d21b9812f1e4</con:setting>
+      <con:setting id="soapUIObjectSourceType">soapUIObjectSourceType_RestRequest</con:setting>
+      <con:setting id="3aea126c-5c12-4a44-a939-7fa6b5553c6bfileName">Bambora---Seller---Create%2C-pay%2C-make-return-LoadTest</con:setting>
+    </con:settings>
+    <con1:loadui-project id="bb7daa75-7257-4ecd-b807-7a2dfca69b81" label="Bambora - Seller - Create, pay, make return LoadTest" xmlns:con1="http://eviware.com/loadui/config">
+      <con1:properties>
+        <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+        <con1:property propagates="true" key="CanvasItem.abortOnFinish" type="java.lang.Boolean">false</con1:property>
+        <con1:property propagates="true" key="ModelItem.saveReport" type="java.lang.Boolean">false</con1:property>
+        <con1:property propagates="true" key="ModelItem.reportFolder" type="java.lang.String"/>
+        <con1:property propagates="true" key="ModelItem.reportFormat" type="java.lang.String"/>
+        <con1:property propagates="true" key="Temporary project" type="java.lang.String"/>
+        <con1:property propagates="true" key="ModelItem.rate" type="java.lang.Long">100</con1:property>
+        <con1:property propagates="true" key="ModelItem.loadDistributionType" type="com.smartbear.load.facade.LoadDistributionType">Relative</con1:property>
+        <con1:property propagates="true" key="ModelItem.remoteMode" type="java.lang.String"/>
+        <con1:property propagates="true" key="ModelItem.id" type="java.lang.String">3aea126c-5c12-4a44-a939-7fa6b5553c6b</con1:property>
+      </con1:properties>
+      <con1:attributes>
+        <con1:property key="limits">Time=120;</con1:property>
+      </con1:attributes>
+      <con1:addons>
+        <con1:addon type="com.eviware.loadui.pro.api.monitoring.ServerAddon" id="1346d805-b431-4f47-be9b-c097527e63fe">
+          <con1:properties>
+            <con1:property propagates="false" key="ServerItem.host" type="java.lang.String">rckaching.csyjmug67zdm.eu-west-3.rds.amazonaws.com</con1:property>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="label">RC master server</con1:property>
+          </con1:attributes>
+          <con1:addons>
+            <con1:addon type="monitor" id="db74d135-f1df-468f-9625-91310e51411e">
+              <con1:properties>
+                <con1:property propagates="true" key="_storedProperties[base]" type="java.lang.String">237:11:Connections211:11:Connections14:java.lang.Long19:Slow_launch_threads14:java.lang.Long15:Aborted_clients14:java.lang.Long17:Threads_connected14:java.lang.Long15:Threads_running14:java.lang.Long14:Threads_cached14:java.lang.Long6:4:main109:2:IO94:14:Bytes_received14:java.lang.Long10:Open_files14:java.lang.Long10:Bytes_sent14:java.lang.Long6:4:main24:11:Query cache0:6:4:main316:13:Command count288:26:Handler_savepoint_rollback14:java.lang.Long13:Handler_write14:java.lang.Long16:Handler_rollback14:java.lang.Long14:Handler_delete14:java.lang.Long14:Flush_commands14:java.lang.Long17:Handler_savepoint14:java.lang.Long14:Handler_update14:java.lang.Long14:Handler_commit14:java.lang.Long6:4:main190:11:Query count164:7:Queries14:java.lang.Long12:Select_range14:java.lang.Long16:Select_full_join14:java.lang.Long18:Select_range_check14:java.lang.Long12:Slow_queries14:java.lang.Long6:4:main270:9:Key rates247:17:Key_read_requests14:java.lang.Long15:Key_blocks_used14:java.lang.Long17:Key_blocks_unused14:java.lang.Long18:Key_write_requests14:java.lang.Long9:Key_reads14:java.lang.Long22:Key_blocks_not_flushed14:java.lang.Long10:Key_writes14:java.lang.Long6:4:main319:6:InnoDB299:20:Innodb_pages_written14:java.lang.Long24:Innodb_row_lock_time_avg14:java.lang.Long17:Innodb_pages_read14:java.lang.Long28:Innodb_buffer_pool_wait_free14:java.lang.Long20:Innodb_pages_created14:java.lang.Long29:Innodb_row_lock_current_waits14:java.lang.Long21:Innodb_row_lock_waits14:java.lang.Long6:4:main206:6:Tables186:18:Table_locks_waited14:java.lang.Long11:Open_tables14:java.lang.Long13:Opened_tables14:java.lang.Long23:Created_tmp_disk_tables14:java.lang.Long21:Table_locks_immediate14:java.lang.Long6:4:main148:10:Sort count123:9:Sort_rows14:java.lang.Long17:Sort_merge_passes14:java.lang.Long9:Sort_scan14:java.lang.Long10:Sort_range14:java.lang.Long6:4:main250:10:Read rates225:16:Handler_read_key14:java.lang.Long18:Handler_read_first14:java.lang.Long17:Handler_read_prev14:java.lang.Long21:Handler_read_rnd_next14:java.lang.Long17:Handler_read_next14:java.lang.Long16:Handler_read_rnd14:java.lang.Long6:4:main</con1:property>
+                <con1:property propagates="true" key="monitorName" type="java.lang.String">RC master monitor</con1:property>
+                <con1:property propagates="true" key="port" type="java.lang.Integer">3306</con1:property>
+                <con1:property propagates="true" key="username" type="java.lang.String">kaching</con1:property>
+                <con1:property propagates="true" key="_password" type="java.lang.String">LvHv8DngbRsLz20U</con1:property>
+              </con1:properties>
+              <con1:attributes>
+                <con1:property key="_type">MySQL</con1:property>
+              </con1:attributes>
+              <con1:addons/>
+            </con1:addon>
+          </con1:addons>
+        </con1:addon>
+        <con1:addon type="com.eviware.loadui.pro.api.monitoring.ServerAddon" id="50660057-daa7-41e6-9c4c-ffc84bab3df9">
+          <con1:properties>
+            <con1:property propagates="false" key="ServerItem.host" type="java.lang.String">sandboxkaching.c812vl3tjapx.eu-central-1.rds.amazonaws.com</con1:property>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="label">Sandbox master server</con1:property>
+          </con1:attributes>
+          <con1:addons>
+            <con1:addon type="monitor" id="67d9fad5-ce4f-40a1-a63e-162b79392c7d">
+              <con1:properties>
+                <con1:property propagates="true" key="_storedProperties[base]" type="java.lang.String">237:11:Connections211:11:Connections14:java.lang.Long19:Slow_launch_threads14:java.lang.Long15:Aborted_clients14:java.lang.Long17:Threads_connected14:java.lang.Long15:Threads_running14:java.lang.Long14:Threads_cached14:java.lang.Long6:4:main109:2:IO94:14:Bytes_received14:java.lang.Long10:Open_files14:java.lang.Long10:Bytes_sent14:java.lang.Long6:4:main24:11:Query cache0:6:4:main316:13:Command count288:26:Handler_savepoint_rollback14:java.lang.Long13:Handler_write14:java.lang.Long16:Handler_rollback14:java.lang.Long14:Handler_delete14:java.lang.Long14:Flush_commands14:java.lang.Long17:Handler_savepoint14:java.lang.Long14:Handler_update14:java.lang.Long14:Handler_commit14:java.lang.Long6:4:main190:11:Query count164:7:Queries14:java.lang.Long12:Select_range14:java.lang.Long16:Select_full_join14:java.lang.Long18:Select_range_check14:java.lang.Long12:Slow_queries14:java.lang.Long6:4:main270:9:Key rates247:17:Key_read_requests14:java.lang.Long15:Key_blocks_used14:java.lang.Long17:Key_blocks_unused14:java.lang.Long18:Key_write_requests14:java.lang.Long9:Key_reads14:java.lang.Long22:Key_blocks_not_flushed14:java.lang.Long10:Key_writes14:java.lang.Long6:4:main319:6:InnoDB299:20:Innodb_pages_written14:java.lang.Long24:Innodb_row_lock_time_avg14:java.lang.Long17:Innodb_pages_read14:java.lang.Long28:Innodb_buffer_pool_wait_free14:java.lang.Long20:Innodb_pages_created14:java.lang.Long29:Innodb_row_lock_current_waits14:java.lang.Long21:Innodb_row_lock_waits14:java.lang.Long6:4:main206:6:Tables186:18:Table_locks_waited14:java.lang.Long11:Open_tables14:java.lang.Long13:Opened_tables14:java.lang.Long23:Created_tmp_disk_tables14:java.lang.Long21:Table_locks_immediate14:java.lang.Long6:4:main148:10:Sort count123:9:Sort_rows14:java.lang.Long17:Sort_merge_passes14:java.lang.Long9:Sort_scan14:java.lang.Long10:Sort_range14:java.lang.Long6:4:main250:10:Read rates225:16:Handler_read_key14:java.lang.Long18:Handler_read_first14:java.lang.Long17:Handler_read_prev14:java.lang.Long21:Handler_read_rnd_next14:java.lang.Long17:Handler_read_next14:java.lang.Long16:Handler_read_rnd14:java.lang.Long6:4:main</con1:property>
+                <con1:property propagates="true" key="monitorName" type="java.lang.String">Sandbox master monitor</con1:property>
+                <con1:property propagates="true" key="port" type="java.lang.Integer">3306</con1:property>
+                <con1:property propagates="true" key="username" type="java.lang.String">kaching</con1:property>
+                <con1:property propagates="true" key="_password" type="java.lang.String">gAx0oqnNySfzHw6Y</con1:property>
+              </con1:properties>
+              <con1:attributes>
+                <con1:property key="_type">MySQL</con1:property>
+              </con1:attributes>
+              <con1:addons/>
+            </con1:addon>
+          </con1:addons>
+        </con1:addon>
+        <con1:addon type="com.eviware.loadui.pro.api.monitoring.ServerAddon" id="33d99e84-ef34-4e79-a7e9-28865764b0a7">
+          <con1:properties>
+            <con1:property propagates="false" key="ServerItem.host" type="java.lang.String">sandboxkaching-replica.c812vl3tjapx.eu-central-1.rds.amazonaws.com</con1:property>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="label">Sanbox replica server</con1:property>
+          </con1:attributes>
+          <con1:addons>
+            <con1:addon type="monitor" id="9a967d0b-8583-420a-94dd-1a96cf0db4f6">
+              <con1:properties>
+                <con1:property propagates="true" key="_storedProperties[base]" type="java.lang.String">237:11:Connections211:11:Connections14:java.lang.Long19:Slow_launch_threads14:java.lang.Long15:Aborted_clients14:java.lang.Long17:Threads_connected14:java.lang.Long15:Threads_running14:java.lang.Long14:Threads_cached14:java.lang.Long6:4:main109:2:IO94:14:Bytes_received14:java.lang.Long10:Open_files14:java.lang.Long10:Bytes_sent14:java.lang.Long6:4:main24:11:Query cache0:6:4:main316:13:Command count288:26:Handler_savepoint_rollback14:java.lang.Long13:Handler_write14:java.lang.Long16:Handler_rollback14:java.lang.Long14:Handler_delete14:java.lang.Long14:Flush_commands14:java.lang.Long17:Handler_savepoint14:java.lang.Long14:Handler_update14:java.lang.Long14:Handler_commit14:java.lang.Long6:4:main190:11:Query count164:7:Queries14:java.lang.Long12:Select_range14:java.lang.Long16:Select_full_join14:java.lang.Long18:Select_range_check14:java.lang.Long12:Slow_queries14:java.lang.Long6:4:main270:9:Key rates247:17:Key_read_requests14:java.lang.Long15:Key_blocks_used14:java.lang.Long17:Key_blocks_unused14:java.lang.Long18:Key_write_requests14:java.lang.Long9:Key_reads14:java.lang.Long22:Key_blocks_not_flushed14:java.lang.Long10:Key_writes14:java.lang.Long6:4:main319:6:InnoDB299:20:Innodb_pages_written14:java.lang.Long24:Innodb_row_lock_time_avg14:java.lang.Long17:Innodb_pages_read14:java.lang.Long28:Innodb_buffer_pool_wait_free14:java.lang.Long20:Innodb_pages_created14:java.lang.Long29:Innodb_row_lock_current_waits14:java.lang.Long21:Innodb_row_lock_waits14:java.lang.Long6:4:main206:6:Tables186:18:Table_locks_waited14:java.lang.Long11:Open_tables14:java.lang.Long13:Opened_tables14:java.lang.Long23:Created_tmp_disk_tables14:java.lang.Long21:Table_locks_immediate14:java.lang.Long6:4:main148:10:Sort count123:9:Sort_rows14:java.lang.Long17:Sort_merge_passes14:java.lang.Long9:Sort_scan14:java.lang.Long10:Sort_range14:java.lang.Long6:4:main250:10:Read rates225:16:Handler_read_key14:java.lang.Long18:Handler_read_first14:java.lang.Long17:Handler_read_prev14:java.lang.Long21:Handler_read_rnd_next14:java.lang.Long17:Handler_read_next14:java.lang.Long16:Handler_read_rnd14:java.lang.Long6:4:main</con1:property>
+                <con1:property propagates="true" key="monitorName" type="java.lang.String">Sanbox replica monitor</con1:property>
+                <con1:property propagates="true" key="port" type="java.lang.Integer">3306</con1:property>
+                <con1:property propagates="true" key="username" type="java.lang.String">kaching</con1:property>
+                <con1:property propagates="true" key="_password" type="java.lang.String">gAx0oqnNySfzHw6Y</con1:property>
+              </con1:properties>
+              <con1:attributes>
+                <con1:property key="_type">MySQL</con1:property>
+              </con1:attributes>
+              <con1:addons/>
+            </con1:addon>
+          </con1:addons>
+        </con1:addon>
+        <con1:addon type="com.eviware.loadui.pro.api.monitoring.ServerAddon" id="15197c26-480c-4491-b88f-2690975dc007">
+          <con1:properties>
+            <con1:property propagates="false" key="ServerItem.host" type="java.lang.String">devkaching.csyjmug67zdm.eu-west-3.rds.amazonaws.com</con1:property>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="label">Dev master server</con1:property>
+          </con1:attributes>
+          <con1:addons>
+            <con1:addon type="monitor" id="6af05e2d-165e-402c-b5b2-a1554d7f07f3">
+              <con1:properties>
+                <con1:property propagates="true" key="_storedProperties[base]" type="java.lang.String">237:11:Connections211:11:Connections14:java.lang.Long19:Slow_launch_threads14:java.lang.Long15:Aborted_clients14:java.lang.Long17:Threads_connected14:java.lang.Long15:Threads_running14:java.lang.Long14:Threads_cached14:java.lang.Long6:4:main109:2:IO94:14:Bytes_received14:java.lang.Long10:Open_files14:java.lang.Long10:Bytes_sent14:java.lang.Long6:4:main24:11:Query cache0:6:4:main316:13:Command count288:26:Handler_savepoint_rollback14:java.lang.Long13:Handler_write14:java.lang.Long16:Handler_rollback14:java.lang.Long14:Handler_delete14:java.lang.Long14:Flush_commands14:java.lang.Long17:Handler_savepoint14:java.lang.Long14:Handler_update14:java.lang.Long14:Handler_commit14:java.lang.Long6:4:main190:11:Query count164:7:Queries14:java.lang.Long12:Select_range14:java.lang.Long16:Select_full_join14:java.lang.Long18:Select_range_check14:java.lang.Long12:Slow_queries14:java.lang.Long6:4:main270:9:Key rates247:17:Key_read_requests14:java.lang.Long15:Key_blocks_used14:java.lang.Long17:Key_blocks_unused14:java.lang.Long18:Key_write_requests14:java.lang.Long9:Key_reads14:java.lang.Long22:Key_blocks_not_flushed14:java.lang.Long10:Key_writes14:java.lang.Long6:4:main319:6:InnoDB299:20:Innodb_pages_written14:java.lang.Long24:Innodb_row_lock_time_avg14:java.lang.Long17:Innodb_pages_read14:java.lang.Long28:Innodb_buffer_pool_wait_free14:java.lang.Long20:Innodb_pages_created14:java.lang.Long29:Innodb_row_lock_current_waits14:java.lang.Long21:Innodb_row_lock_waits14:java.lang.Long6:4:main206:6:Tables186:18:Table_locks_waited14:java.lang.Long11:Open_tables14:java.lang.Long13:Opened_tables14:java.lang.Long23:Created_tmp_disk_tables14:java.lang.Long21:Table_locks_immediate14:java.lang.Long6:4:main148:10:Sort count123:9:Sort_rows14:java.lang.Long17:Sort_merge_passes14:java.lang.Long9:Sort_scan14:java.lang.Long10:Sort_range14:java.lang.Long6:4:main250:10:Read rates225:16:Handler_read_key14:java.lang.Long18:Handler_read_first14:java.lang.Long17:Handler_read_prev14:java.lang.Long21:Handler_read_rnd_next14:java.lang.Long17:Handler_read_next14:java.lang.Long16:Handler_read_rnd14:java.lang.Long6:4:main</con1:property>
+                <con1:property propagates="true" key="monitorName" type="java.lang.String">Dev master monitor</con1:property>
+                <con1:property propagates="true" key="port" type="java.lang.Integer">3306</con1:property>
+                <con1:property propagates="true" key="username" type="java.lang.String">kaching</con1:property>
+                <con1:property propagates="true" key="_password" type="java.lang.String">a5s5JnUIxznq2Z5i</con1:property>
+              </con1:properties>
+              <con1:attributes>
+                <con1:property key="_type">MySQL</con1:property>
+              </con1:attributes>
+              <con1:addons/>
+            </con1:addon>
+          </con1:addons>
+        </con1:addon>
+        <con1:addon type="com.eviware.loadui.pro.api.monitoring.ServerAddon" id="7af96b35-68b8-49ac-9c54-f905292d1ed5">
+          <con1:properties>
+            <con1:property propagates="false" key="ServerItem.host" type="java.lang.String">devkaching-replica.csyjmug67zdm.eu-west-3.rds.amazonaws.com</con1:property>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="label">Dev replica server</con1:property>
+          </con1:attributes>
+          <con1:addons>
+            <con1:addon type="monitor" id="71adb973-5bf5-4163-b886-2316f993db47">
+              <con1:properties>
+                <con1:property propagates="true" key="_storedProperties[base]" type="java.lang.String">237:11:Connections211:11:Connections14:java.lang.Long19:Slow_launch_threads14:java.lang.Long15:Aborted_clients14:java.lang.Long17:Threads_connected14:java.lang.Long15:Threads_running14:java.lang.Long14:Threads_cached14:java.lang.Long6:4:main109:2:IO94:14:Bytes_received14:java.lang.Long10:Open_files14:java.lang.Long10:Bytes_sent14:java.lang.Long6:4:main24:11:Query cache0:6:4:main316:13:Command count288:26:Handler_savepoint_rollback14:java.lang.Long13:Handler_write14:java.lang.Long16:Handler_rollback14:java.lang.Long14:Handler_delete14:java.lang.Long14:Flush_commands14:java.lang.Long17:Handler_savepoint14:java.lang.Long14:Handler_update14:java.lang.Long14:Handler_commit14:java.lang.Long6:4:main190:11:Query count164:7:Queries14:java.lang.Long12:Select_range14:java.lang.Long16:Select_full_join14:java.lang.Long18:Select_range_check14:java.lang.Long12:Slow_queries14:java.lang.Long6:4:main270:9:Key rates247:17:Key_read_requests14:java.lang.Long15:Key_blocks_used14:java.lang.Long17:Key_blocks_unused14:java.lang.Long18:Key_write_requests14:java.lang.Long9:Key_reads14:java.lang.Long22:Key_blocks_not_flushed14:java.lang.Long10:Key_writes14:java.lang.Long6:4:main319:6:InnoDB299:20:Innodb_pages_written14:java.lang.Long24:Innodb_row_lock_time_avg14:java.lang.Long17:Innodb_pages_read14:java.lang.Long28:Innodb_buffer_pool_wait_free14:java.lang.Long20:Innodb_pages_created14:java.lang.Long29:Innodb_row_lock_current_waits14:java.lang.Long21:Innodb_row_lock_waits14:java.lang.Long6:4:main206:6:Tables186:18:Table_locks_waited14:java.lang.Long11:Open_tables14:java.lang.Long13:Opened_tables14:java.lang.Long23:Created_tmp_disk_tables14:java.lang.Long21:Table_locks_immediate14:java.lang.Long6:4:main148:10:Sort count123:9:Sort_rows14:java.lang.Long17:Sort_merge_passes14:java.lang.Long9:Sort_scan14:java.lang.Long10:Sort_range14:java.lang.Long6:4:main250:10:Read rates225:16:Handler_read_key14:java.lang.Long18:Handler_read_first14:java.lang.Long17:Handler_read_prev14:java.lang.Long21:Handler_read_rnd_next14:java.lang.Long17:Handler_read_next14:java.lang.Long16:Handler_read_rnd14:java.lang.Long6:4:main</con1:property>
+                <con1:property propagates="true" key="monitorName" type="java.lang.String">Dev replica monitor</con1:property>
+                <con1:property propagates="true" key="port" type="java.lang.Integer">3306</con1:property>
+                <con1:property propagates="true" key="username" type="java.lang.String">kaching</con1:property>
+                <con1:property propagates="true" key="_password" type="java.lang.String">a5s5JnUIxznq2Z5i</con1:property>
+              </con1:properties>
+              <con1:attributes>
+                <con1:property key="_type">MySQL</con1:property>
+              </con1:attributes>
+              <con1:addons/>
+            </con1:addon>
+          </con1:addons>
+        </con1:addon>
+        <con1:addon type="com.eviware.loadui.pro.api.monitoring.ServerAddon" id="1575e7f0-9f31-4a6a-a174-9c946f7f561d">
+          <con1:properties>
+            <con1:property propagates="false" key="ServerItem.host" type="java.lang.String">rckaching-replica.csyjmug67zdm.eu-west-3.rds.amazonaws.com</con1:property>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="label">RC replica server</con1:property>
+          </con1:attributes>
+          <con1:addons>
+            <con1:addon type="monitor" id="b6415d3c-d589-497d-ba70-089ac3defbc8">
+              <con1:properties>
+                <con1:property propagates="true" key="_storedProperties[base]" type="java.lang.String">237:11:Connections211:11:Connections14:java.lang.Long19:Slow_launch_threads14:java.lang.Long15:Aborted_clients14:java.lang.Long17:Threads_connected14:java.lang.Long15:Threads_running14:java.lang.Long14:Threads_cached14:java.lang.Long6:4:main109:2:IO94:14:Bytes_received14:java.lang.Long10:Open_files14:java.lang.Long10:Bytes_sent14:java.lang.Long6:4:main24:11:Query cache0:6:4:main316:13:Command count288:26:Handler_savepoint_rollback14:java.lang.Long13:Handler_write14:java.lang.Long16:Handler_rollback14:java.lang.Long14:Handler_delete14:java.lang.Long14:Flush_commands14:java.lang.Long17:Handler_savepoint14:java.lang.Long14:Handler_update14:java.lang.Long14:Handler_commit14:java.lang.Long6:4:main190:11:Query count164:7:Queries14:java.lang.Long12:Select_range14:java.lang.Long16:Select_full_join14:java.lang.Long18:Select_range_check14:java.lang.Long12:Slow_queries14:java.lang.Long6:4:main270:9:Key rates247:17:Key_read_requests14:java.lang.Long15:Key_blocks_used14:java.lang.Long17:Key_blocks_unused14:java.lang.Long18:Key_write_requests14:java.lang.Long9:Key_reads14:java.lang.Long22:Key_blocks_not_flushed14:java.lang.Long10:Key_writes14:java.lang.Long6:4:main319:6:InnoDB299:20:Innodb_pages_written14:java.lang.Long24:Innodb_row_lock_time_avg14:java.lang.Long17:Innodb_pages_read14:java.lang.Long28:Innodb_buffer_pool_wait_free14:java.lang.Long20:Innodb_pages_created14:java.lang.Long29:Innodb_row_lock_current_waits14:java.lang.Long21:Innodb_row_lock_waits14:java.lang.Long6:4:main206:6:Tables186:18:Table_locks_waited14:java.lang.Long11:Open_tables14:java.lang.Long13:Opened_tables14:java.lang.Long23:Created_tmp_disk_tables14:java.lang.Long21:Table_locks_immediate14:java.lang.Long6:4:main148:10:Sort count123:9:Sort_rows14:java.lang.Long17:Sort_merge_passes14:java.lang.Long9:Sort_scan14:java.lang.Long10:Sort_range14:java.lang.Long6:4:main250:10:Read rates225:16:Handler_read_key14:java.lang.Long18:Handler_read_first14:java.lang.Long17:Handler_read_prev14:java.lang.Long21:Handler_read_rnd_next14:java.lang.Long17:Handler_read_next14:java.lang.Long16:Handler_read_rnd14:java.lang.Long6:4:main</con1:property>
+                <con1:property propagates="true" key="monitorName" type="java.lang.String">RC replica monitor</con1:property>
+                <con1:property propagates="true" key="port" type="java.lang.Integer">3306</con1:property>
+                <con1:property propagates="true" key="username" type="java.lang.String">kaching</con1:property>
+                <con1:property propagates="true" key="_password" type="java.lang.String">LvHv8DngbRsLz20U</con1:property>
+              </con1:properties>
+              <con1:attributes>
+                <con1:property key="_type">MySQL</con1:property>
+              </con1:attributes>
+              <con1:addons/>
+            </con1:addon>
+          </con1:addons>
+        </con1:addon>
+      </con1:addons>
+      <con1:scene label="New Scenario" id="6558adf3-00c5-489f-9374-d1a0e0cb7594">
+        <con1:properties>
+          <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+          <con1:property propagates="true" key="CanvasItem.abortOnFinish" type="java.lang.Boolean">false</con1:property>
+          <con1:property propagates="true" key="SceneItem.followProject" type="java.lang.Boolean">true</con1:property>
+          <con1:property propagates="true" key="SceneItem.scenarioRatePercentage" type="java.lang.Long">100</con1:property>
+          <con1:property propagates="true" key="SceneItem.scenarioRateSpecific" type="java.lang.Long">10</con1:property>
+          <con1:property propagates="true" key="ModelItem.samplerOutputLevel" type="com.eviware.loadui.api.component.SoapUISamplerOutputLevel">TestCaseAndAllTestSteps</con1:property>
+        </con1:properties>
+        <con1:attributes>
+          <con1:property key="limits">Time=120;</con1:property>
+        </con1:attributes>
+        <con1:addons/>
+        <con1:component type="com.eviware.loadui.impl.component.IntervalComponent" label="Interval 1" id="60e4fc98-9e9e-4414-968c-56d1d0e6b0f4" category="Scheduler">
+          <con1:properties>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+            <con1:property propagates="true" key="stateProperty" type="java.lang.Boolean">true</con1:property>
+            <con1:property propagates="true" key="startAt" type="java.lang.Long">0</con1:property>
+            <con1:property propagates="true" key="duration" type="java.lang.Long">5</con1:property>
+            <con1:property propagates="true" key="unit" type="java.lang.String">Sec</con1:property>
+            <con1:property propagates="true" key="mode" type="java.lang.String">Single</con1:property>
+            <con1:property propagates="true" key="defaultMode" type="java.lang.Boolean">true</con1:property>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="com.eviware.loadui.api.model.ComponentItem@type">Interval</con1:property>
+          </con1:attributes>
+          <con1:addons/>
+        </con1:component>
+        <con1:component type="com.eviware.loadui.components.soapui.SoapUISamplerComponent" label="Payments - Bambora payments scenarious:Bambora - Seller - Create, pay, make return" id="954405ad-7476-43dd-87b7-c16e217d26bc" category="Runners">
+          <con1:properties>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+            <con1:property propagates="true" key="concurrentSamples" type="java.lang.Long">1000</con1:property>
+            <con1:property propagates="true" key="property_name_is_not_relevant_for_private_property" type="java.lang.Long">9223372036854775807</con1:property>
+            <con1:property propagates="true" key="maxQueueSize" type="java.lang.Long">1000</con1:property>
+            <con1:property propagates="true" key="countDiscarded" type="java.lang.Boolean">false</con1:property>
+            <con1:property propagates="true" key="disabledTestSteps" type="java.lang.String"/>
+            <con1:property propagates="true" key="_thinkTime" type="java.lang.Long">0</con1:property>
+            <con1:property propagates="true" key="ReadyApiTestCase" type="com.eviware.soapui.impl.wsdl.testcase.WsdlTestCase">3da1008c-44f0-484a-9337-d21b9812f1e4</con1:property>
+            <con1:property propagates="true" key="raiseError" type="java.lang.Boolean">true</con1:property>
+            <con1:property propagates="true" key="outputTestCaseProperties" type="java.lang.Boolean">true</con1:property>
+            <con1:property propagates="true" key="OutputLevel" type="java.lang.String">TestCase only</con1:property>
+            <con1:property propagates="true" key="closeConnectionsAfterRequest" type="java.lang.Boolean">false</con1:property>
+            <con1:property propagates="true" key="disableSoapuiAssertions" type="java.lang.Boolean">false</con1:property>
+            <con1:property propagates="true" key="forceShareDatasources" type="java.lang.Boolean">true</con1:property>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="com.eviware.loadui.api.model.ComponentItem@type">Ready API TestCase Runner</con1:property>
+          </con1:attributes>
+          <con1:addons/>
+        </con1:component>
+        <con1:component type="com.eviware.loadui.impl.component.generators.FixedVU" label="Fixed Load 2" id="45b4d612-ad9f-4862-8144-2e53ae1083e3" category="Generators">
+          <con1:properties>
+            <con1:property propagates="true" key="ModelItem.description" type="java.lang.String"/>
+            <con1:property propagates="true" key="stateProperty" type="java.lang.Boolean">true</con1:property>
+            <con1:property propagates="true" key="limitVU" type="java.lang.Long">100</con1:property>
+            <con1:property propagates="true" key="load" type="java.lang.Long">100</con1:property>
+            <con1:property propagates="true" key="interval" type="java.lang.Long">1000</con1:property>
+          </con1:properties>
+          <con1:attributes>
+            <con1:property key="com.eviware.loadui.api.model.ComponentItem@type">Fixed Load</con1:property>
+          </con1:attributes>
+          <con1:addons/>
+        </con1:component>
+        <con1:connection outputTerminalId="60e4fc98-9e9e-4414-968c-56d1d0e6b0f4/outgoingTerminal" inputTerminalId="45b4d612-ad9f-4862-8144-2e53ae1083e3/stateTerminal"/>
+        <con1:connection outputTerminalId="45b4d612-ad9f-4862-8144-2e53ae1083e3/triggerTerminal" inputTerminalId="954405ad-7476-43dd-87b7-c16e217d26bc/triggerTerminal"/>
+        <con1:connection outputTerminalId="954405ad-7476-43dd-87b7-c16e217d26bc/runningTerminal" inputTerminalId="45b4d612-ad9f-4862-8144-2e53ae1083e3/Sample Count"/>
+      </con1:scene>
+      <con1:statistics>
+        <con1:page title="DefaultLoadUIStatisticPage">
+          <con1:chartGroup type="com.eviware.loadui.api.statistics.model.chart.line.LineChartView" title="" groupType="Monitors">
+            <con1:chart statisticHolder="b6415d3c-d589-497d-ba70-089ac3defbc8">
+              <con1:attributes>
+                <con1:property key="_CHART_segments">68:36:b6415d3c-d589-497d-ba70-089ac3defbc811:Query count7:Queries4:main74:36:b6415d3c-d589-497d-ba70-089ac3defbc811:Query count12:Slow_queries4:main</con1:property>
+              </con1:attributes>
+            </con1:chart>
+            <con1:chart statisticHolder="6af05e2d-165e-402c-b5b2-a1554d7f07f3">
+              <con1:attributes>
+                <con1:property key="_CHART_segments">68:36:6af05e2d-165e-402c-b5b2-a1554d7f07f311:Query count7:Queries4:main74:36:6af05e2d-165e-402c-b5b2-a1554d7f07f311:Query count12:Slow_queries4:main</con1:property>
+              </con1:attributes>
+            </con1:chart>
+            <con1:chart statisticHolder="9a967d0b-8583-420a-94dd-1a96cf0db4f6">
+              <con1:attributes>
+                <con1:property key="_CHART_segments">74:36:9a967d0b-8583-420a-94dd-1a96cf0db4f611:Query count12:Slow_queries4:main68:36:9a967d0b-8583-420a-94dd-1a96cf0db4f611:Query count7:Queries4:main</con1:property>
+              </con1:attributes>
+            </con1:chart>
+            <con1:chart statisticHolder="67d9fad5-ce4f-40a1-a63e-162b79392c7d">
+              <con1:attributes>
+                <con1:property key="_CHART_segments">68:36:67d9fad5-ce4f-40a1-a63e-162b79392c7d11:Query count7:Queries4:main74:36:67d9fad5-ce4f-40a1-a63e-162b79392c7d11:Query count12:Slow_queries4:main</con1:property>
+              </con1:attributes>
+            </con1:chart>
+            <con1:chart statisticHolder="71adb973-5bf5-4163-b886-2316f993db47">
+              <con1:attributes>
+                <con1:property key="_CHART_segments">74:36:71adb973-5bf5-4163-b886-2316f993db4711:Query count12:Slow_queries4:main68:36:71adb973-5bf5-4163-b886-2316f993db4711:Query count7:Queries4:main</con1:property>
+              </con1:attributes>
+            </con1:chart>
+            <con1:attributes>
+              <con1:property key="GroupId">d7304c63-6580-4d48-9e82-9a5ba64a4683</con1:property>
+            </con1:attributes>
+          </con1:chartGroup>
+        </con1:page>
+      </con1:statistics>
+      <con1:heatUpTime>15</con1:heatUpTime>
+    </con1:loadui-project>
+    <con:loadUITestScenario projectId="bb7daa75-7257-4ecd-b807-7a2dfca69b81" scenarioId="6558adf3-00c5-489f-9374-d1a0e0cb7594" name="New Scenario" id="edf34696-96dc-4dca-b3c1-56a8d992e388">
+      <con:settings/>
+    </con:loadUITestScenario>
+    <con:loadUIPanelData id="a95bb0f3-b8f6-4568-813e-2420ce62c2a6">
+      <con:panel>Log</con:panel>
+    </con:loadUIPanelData>
+    <con:reportParameters/>
+  </con:loadUiTest>

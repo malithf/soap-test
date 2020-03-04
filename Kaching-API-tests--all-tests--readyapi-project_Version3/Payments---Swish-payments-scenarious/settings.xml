@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="15087ae6-5a38-45c8-9163-d9110a88fd75" name="Payments - Swish payments scenarious" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="d8b300bf-9200-417a-a982-2bb6d7062656fileName">Payments---Mock-payments-scenarious</con:setting>
+      <con:setting id="58fb618d-098d-45da-b05a-d70f1dd78492fileName">Payments---Bambora-payments-scenarious</con:setting>
+      <con:setting id="15087ae6-5a38-45c8-9163-d9110a88fd75fileName">Payments---Swish-payments-scenarious</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>sellerId</con:name>
+        <con:value>3c222a7c-5f3e-4318-9d89-d8d074d51db9</con:value>
+      </con:property>
+      <con:property>
+        <con:name>method</con:name>
+        <con:value>swish</con:value>
+      </con:property>
+      <con:property>
+        <con:name>phoneNumber</con:name>
+        <con:value>46761111111</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    
+    
+    
+  </con:testSuite>

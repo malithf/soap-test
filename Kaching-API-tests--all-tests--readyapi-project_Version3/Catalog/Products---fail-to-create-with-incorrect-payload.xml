@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="51b1ec6a-ba2b-49dc-a8ab-776eddc954a7" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Products - fail to create with incorrect payload" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="51b1ec6a-ba2b-49dc-a8ab-776eddc954a7fileName">Products---fail-to-create-with-incorrect-payload</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Product - fail to create with empty name" id="0652c51a-d71d-4b49-8d8a-db7a203c487d">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create with empty name" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "visible": ${#TestCase#visible},
+  "productGroupIds": [],
+  "name": "",
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ddb2e9c8-6b9b-4735-a618-6d065fa7fee9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"name\" fails because [\"name\" is not allowed to be empty]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create without name" id="ed424a05-d458-47a0-897f-0329dcb97f78">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create without name" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "visible": ${#TestCase#visible},
+  "productGroupIds": [],
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ddb2e9c8-6b9b-4735-a618-6d065fa7fee9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"name\" fails because [\"name\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create with empty sku" id="e3da6936-4393-4ac1-be7e-fc207d8304da">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create with empty sku" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "visible": ${#TestCase#visible},
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "sku": "",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ddb2e9c8-6b9b-4735-a618-6d065fa7fee9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"sku\" fails because [\"sku\" is not allowed to be empty]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create without sku" id="30fc01c3-fb21-4420-9fe4-93769376065b">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create without sku" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "visible": ${#TestCase#visible},
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ddb2e9c8-6b9b-4735-a618-6d065fa7fee9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"sku\" fails because [\"sku\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create with not boolean visible" id="bd8e434b-6344-4c96-b80c-8a6e6b0bcc83">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create with not boolean visible" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  },
+  "visible": "123"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="92c41e27-7429-47e3-afec-b27e186baad1" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"visible\" fails because [\"visible\" must be a boolean]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create without visible" id="a3f0108e-9fa7-4892-bfd6-ae6c6ec47c9b">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create without visible" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ddb2e9c8-6b9b-4735-a618-6d065fa7fee9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"visible\" fails because [\"visible\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create with not boolean sellable" id="0d924ce9-ac31-420f-b9a0-f1a1a4684d44">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create with not boolean sellable" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "visible": ${#TestCase#visible},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  },
+  "sellable": "123"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="92c41e27-7429-47e3-afec-b27e186baad1" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"sellable\" fails because [\"sellable\" must be a boolean]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create without sellable" id="48b16a3a-6e71-4805-a7aa-8ce6cf4e8bb0">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create without sellable" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "visible": ${#TestCase#visible},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="92c41e27-7429-47e3-afec-b27e186baad1" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"sellable\" fails because [\"sellable\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create with not boolean requiresUniqueId" id="6012f8dc-e4fc-4be8-a669-a044511858a6">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create with not boolean requiresUniqueId" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "visible": ${#TestCase#visible},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": "123",
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  },
+  "sellable": ${#TestCase#sellable}
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="92c41e27-7429-47e3-afec-b27e186baad1" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"requiresUniqueId\" fails because [\"requiresUniqueId\" must be a boolean]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create without requiresUniqueId" id="6c5f5211-5631-476d-bd47-18b087be95b6">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create without requiresUniqueId" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "visible": ${#TestCase#visible},
+  "sku": "${#TestCase#sku}",
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  },
+  "sellable": ${#TestCase#sellable}
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="92c41e27-7429-47e3-afec-b27e186baad1" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"requiresUniqueId\" fails because [\"requiresUniqueId\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - fail to create with invalid unitOfMeasure" id="e18c4c23-eecb-492d-92d1-644f1c521304">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - fail to create with invalid unitOfMeasure" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "unitOfMeasure": "123",
+  "articleNumbers": {
+    "eans": [
+      "${#TestCase#eans}"
+    ]
+  },
+  "isStocked":  ${#TestCase#isStocked},
+  "images": {
+    "small": "${#TestCase#image}",
+    "default": "${#TestCase#image}",
+    "large": "${#TestCase#image}"
+  },
+  "visible": ${#TestCase#visible},
+  "productGroupIds": [],
+  "name": "${#TestCase#name}",
+  "externalIds": ${#TestCase#extarnalIds},
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "descriptions": {
+    "default": "${#TestCase#description}",
+    "short": "${#TestCase#description}",
+    "long": "${#TestCase#description}"
+  }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ddb2e9c8-6b9b-4735-a618-6d065fa7fee9" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Not supported unit of measure: 123. Supported units are: piece,kg</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>today</con:name>
+          <con:value>2020-01-21</con:value>
+        </con:property>
+        <con:property>
+          <con:name>visible</con:name>
+          <con:value>true</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sellable</con:name>
+          <con:value>true</con:value>
+        </con:property>
+        <con:property>
+          <con:name>requiresUniqueId</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sku</con:name>
+          <con:value>SKUIncorrectPayloadTest</con:value>
+        </con:property>
+        <con:property>
+          <con:name>name</con:name>
+          <con:value>Test product with incorrect payload</con:value>
+        </con:property>
+        <con:property>
+          <con:name>productId</con:name>
+          <con:value>e7db99ae-a2b5-48fc-85ea-322be813ceae</con:value>
+        </con:property>
+        <con:property>
+          <con:name>image</con:name>
+          <con:value>https://tse4.mm.bing.net/th?id=OIP.lMxa5PR0dhYNCC4p4lIhGgHaHa&amp;pid=Api&amp;P=0&amp;w=300&amp;h=300</con:value>
+        </con:property>
+        <con:property>
+          <con:name>description</con:name>
+          <con:value>This is description of test product without price 755081607. Best product ever!</con:value>
+        </con:property>
+        <con:property>
+          <con:name>isStocked</con:name>
+          <con:value>true</con:value>
+        </con:property>
+        <con:property>
+          <con:name>unitOfMeasure</con:name>
+          <con:value>piece</con:value>
+        </con:property>
+        <con:property>
+          <con:name>eans</con:name>
+          <con:value>12345</con:value>
+        </con:property>
+        <con:property>
+          <con:name>extarnalIds</con:name>
+          <con:value>{ "id": "someid" }</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>48b16a3a-6e71-4805-a7aa-8ce6cf4e8bb0</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>bd8e434b-6344-4c96-b80c-8a6e6b0bcc83</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>0d924ce9-ac31-420f-b9a0-f1a1a4684d44</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

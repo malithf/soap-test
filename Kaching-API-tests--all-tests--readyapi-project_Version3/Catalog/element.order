@@ -1,0 +1,8 @@
+Products---create%2Fget%2Fupdate%2Fdelete-by-admin-user.xml
+Products---fail-to-create-with-incorrect-payload.xml
+Catalog---get-info-different-cases.xml
+Price---fail-to-create-with-incorrect-payload.xml
+Price---supported-tax-groups.xml
+Products---supported-unitOfMeasure.xml
+Products---create-products-with-different-prices-from-csv-file.xml
+Product-Group---get%2Fadd-products.xml

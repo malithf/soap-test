@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="286491ce-841a-4e71-9ebc-7a694443c665" name="Stock" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="286491ce-841a-4e71-9ebc-7a694443c665fileName">Stock</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>quantity</con:name>
+        <con:value>100</con:value>
+      </con:property>
+      <con:property>
+        <con:name>productId</con:name>
+        <con:value>daeee366-9a35-4ada-81db-eb6c79398b1</con:value>
+      </con:property>
+      <con:property>
+        <con:name>centAmountExcludingVAT</con:name>
+        <con:value>4000</con:value>
+      </con:property>
+      <con:property>
+        <con:name>centVATAmount</con:name>
+        <con:value>1000</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currencyCode</con:name>
+        <con:value>SEK</con:value>
+      </con:property>
+      <con:property>
+        <con:name>countryCode</con:name>
+        <con:value>SE</con:value>
+      </con:property>
+      <con:property>
+        <con:name>sockId</con:name>
+        <con:value/>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+  </con:testSuite>

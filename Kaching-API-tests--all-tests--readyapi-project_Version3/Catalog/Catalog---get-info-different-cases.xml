@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="082158c8-86d6-47bd-8de1-c129cd92e2c4" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Catalog - get info different cases" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="082158c8-86d6-47bd-8de1-c129cd92e2c4fileName">Catalog---get-info-different-cases</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Catalog - fail to get info since empty date" id="eddc393f-c2b2-47dd-b6f9-305c60693abf">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - fail to get info since empty date" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="JsonPath Match" id="ca524ba8-31cb-4aeb-b358-03011c496ec3" name="Match content of [code]">
+              <con:configuration>
+                <path>$['fault']['code']</path>
+                <content>404</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c7ab5e07-cac3-4077-8c14-6e5156aec6cb" name="Match content of [description]">
+              <con:configuration>
+                <path>$['fault']['description']</path>
+                <content>No matching resource found for given API Request</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="date" value=""/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - fail to get info since non date format" id="21b4c059-8b6f-4e54-9ed7-d7411eb32ea2">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - fail to get info since non date format" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="JsonPath Match" id="a476f4dc-820e-4367-ad99-83bfa0a0f34f" name="Match content of [errorCode]">
+              <con:configuration>
+                <path>$['errors'][0]['errorCode']</path>
+                <content>500</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9a01af20-8bde-4fd5-baa9-ee9a37e289a0" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Cast to date failed for value \"NaN\" at path \"dateModified\" for model \"price\"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - zero products are returned since future date" id="9be352da-0b73-43f9-879a-37517e309eb1">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - zero products are returned since future date" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="JsonPath Match" id="fe60c137-3e8a-4e60-a3eb-a678a70a6461" name="Match content of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3af060f4-626f-4b51-8f2a-79b56fdca99d" name="Match content of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="27ed181f-d8bd-4dc2-aed3-6ef0efee2da6" name="Match content of [productGroupCount]">
+              <con:configuration>
+                <path>$['response']['productGroupCount']</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ca10a98f-e9e3-47b1-b51a-b61a7760974c" name="Match content of [openPriceItemCount]">
+              <con:configuration>
+                <path>$['response']['openPriceItemCount']</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="date" value="2220-01-01"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - get info for productGroups, products, itemPrices, openPriceItems" id="758d2db6-6533-4161-920f-0f2c600f5aae">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info" methodName="Info" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - get info for productGroups, products, itemPrices, openPriceItems" id="9481838f-a23d-47fc-8e97-d867235c2dbb" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="2bdbf608-95d5-4dd5-8b70-cdc341067f53" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+            <con:parameterOrder/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="24f84e45-af96-450e-9eea-b399013d43a1">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50090d36-6dc4-45fa-9e69-7787c9c1042f">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="da8afcfb-5aed-4f19-907b-ab0f832d77f9">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - get info since yyyy-mm-dd" id="84042e9b-1b3b-465e-8c6b-1ff3587e4409">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - get info since yyyy-mm-dd" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="71f60127-9ca3-4a75-955b-3b2da0afddba" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="324108bd-b7b1-47df-ae0d-27b1c6d40994" name="Check for existence of [maxResults]">
+              <con:configuration>
+                <path>$['response']['maxResults']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f340b635-cd6f-47aa-b49a-87f50795fc71" name="Check for existence of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="91616ccb-e680-48e1-bb52-3f41f1cd8268" name="Check for existence of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="001bd034-0833-4016-b244-ae212c94036f" name="Match content of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f45c9871-308b-4f3e-9b8f-a711b214be42" name="Match content of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:priceCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6985813b-ad3e-4d90-8e03-2a421ad62da6" name="Match content of [productGroupCount]">
+              <con:configuration>
+                <path>$['response']['productGroupCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productGroupCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="86e0e273-5b80-435a-a18b-3761387719b5" name="Match content of [openPriceItemCount]">
+              <con:configuration>
+                <path>$['response']['openPriceItemCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:openPriceItemCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="date" value="${#TestCase#sinceDate}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - get info since dd-mm-yyyy" id="d5e1d513-f1bd-446d-bf58-f6a4246f77c0">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - get info since dd-mm-yyyy" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="71f60127-9ca3-4a75-955b-3b2da0afddba" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="324108bd-b7b1-47df-ae0d-27b1c6d40994" name="Check for existence of [maxResults]">
+              <con:configuration>
+                <path>$['response']['maxResults']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f340b635-cd6f-47aa-b49a-87f50795fc71" name="Check for existence of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="91616ccb-e680-48e1-bb52-3f41f1cd8268" name="Check for existence of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="001bd034-0833-4016-b244-ae212c94036f" name="Match content of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f45c9871-308b-4f3e-9b8f-a711b214be42" name="Match content of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:priceCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6985813b-ad3e-4d90-8e03-2a421ad62da6" name="Match content of [productGroupCount]">
+              <con:configuration>
+                <path>$['response']['productGroupCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productGroupCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="86e0e273-5b80-435a-a18b-3761387719b5" name="Match content of [openPriceItemCount]">
+              <con:configuration>
+                <path>$['response']['openPriceItemCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:openPriceItemCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="date" value="${#TestCase#sinceDate2}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - get info since yyyy.dd.mm" id="4ba7cb63-c2d2-4cb1-b9f7-2671c1e33a6a">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - get info since yyyy.dd.mm" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="71f60127-9ca3-4a75-955b-3b2da0afddba" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="324108bd-b7b1-47df-ae0d-27b1c6d40994" name="Check for existence of [maxResults]">
+              <con:configuration>
+                <path>$['response']['maxResults']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f340b635-cd6f-47aa-b49a-87f50795fc71" name="Check for existence of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="91616ccb-e680-48e1-bb52-3f41f1cd8268" name="Check for existence of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="001bd034-0833-4016-b244-ae212c94036f" name="Match content of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f45c9871-308b-4f3e-9b8f-a711b214be42" name="Match content of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:priceCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6985813b-ad3e-4d90-8e03-2a421ad62da6" name="Match content of [productGroupCount]">
+              <con:configuration>
+                <path>$['response']['productGroupCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productGroupCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="86e0e273-5b80-435a-a18b-3761387719b5" name="Match content of [openPriceItemCount]">
+              <con:configuration>
+                <path>$['response']['openPriceItemCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:openPriceItemCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="date" value="${#TestCase#sinceDate3}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Catalog - get info since dd.mm.yyyy" id="15671d91-3b70-486b-9da2-ad291b65c726">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/info/since/{date}" methodName="2019-03-01" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Catalog - get info since dd.mm.yyyy" id="e8686c3e-00ca-445f-95db-4ea0ce53f5b7" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/info/since/2019-03-01</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="71f60127-9ca3-4a75-955b-3b2da0afddba" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="324108bd-b7b1-47df-ae0d-27b1c6d40994" name="Check for existence of [maxResults]">
+              <con:configuration>
+                <path>$['response']['maxResults']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f340b635-cd6f-47aa-b49a-87f50795fc71" name="Check for existence of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="91616ccb-e680-48e1-bb52-3f41f1cd8268" name="Check for existence of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="001bd034-0833-4016-b244-ae212c94036f" name="Match content of [productCount]">
+              <con:configuration>
+                <path>$['response']['productCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f45c9871-308b-4f3e-9b8f-a711b214be42" name="Match content of [priceCount]">
+              <con:configuration>
+                <path>$['response']['priceCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:priceCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6985813b-ad3e-4d90-8e03-2a421ad62da6" name="Match content of [productGroupCount]">
+              <con:configuration>
+                <path>$['response']['productGroupCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:productGroupCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="86e0e273-5b80-435a-a18b-3761387719b5" name="Match content of [openPriceItemCount]">
+              <con:configuration>
+                <path>$['response']['openPriceItemCount']</path>
+                <content>${Catalog - get info for productGroups, products, itemPrices, openPriceItems#ResponseAsXml#declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/info'; //ns1:Response[1]/ns1:response[1]/ns1:openPriceItemCount[1]}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="date" value="${#TestCase#sinceDate4}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>date</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>sinceDate</con:name>
+          <con:value>2019-01-25</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sinceDate2</con:name>
+          <con:value>25-01-2019</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sinceDate3</con:name>
+          <con:value>2019.25.01</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sinceDate4</con:name>
+          <con:value>25.01.2019</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>758d2db6-6533-4161-920f-0f2c600f5aae</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

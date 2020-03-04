@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="62616d13-2b9b-4cb1-a43e-6e7c261b58dd" name="Payments - Mock" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="62616d13-2b9b-4cb1-a43e-6e7c261b58ddfileName">Payments---Mock</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>storeId</con:name>
+        <con:value>235e8bff-eb7a-4a95-a729-ef18535d6487</con:value>
+      </con:property>
+      <con:property>
+        <con:name>sellerId</con:name>
+        <con:value>3c222a7c-5f3e-4318-9d89-d8d074d51db9</con:value>
+      </con:property>
+      <con:property>
+        <con:name>method</con:name>
+        <con:value>mock</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    
+    
+    
+    
+    
+  </con:testSuite>

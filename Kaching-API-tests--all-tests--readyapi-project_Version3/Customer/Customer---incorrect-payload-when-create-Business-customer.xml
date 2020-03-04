@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="2979743f-ecde-4983-8b49-360727d0fc18" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Customer - incorrect payload when create Business customer" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="2979743f-ecde-4983-8b49-360727d0fc18fileName">Customer---incorrect-payload-when-create-Business-customer</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Customer - Fail to Create Business customer with empty name" id="3445be14-ba68-4381-ace8-0740ca20c1d1">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/customer/business" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Customer - Fail to Create Business customer with empty name" id="1ef286ba-24a9-4e77-a88d-f8fd8bbf82b7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isPrivate": false,
+  "note": "This is sample",
+  "registrationNumber": "5454545454545",
+  "vatNumber": "5454545454545",
+  "deliveryAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "billingAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "phoneNumber": "0703650042",
+  "email": "${#TestCase#emailBusiness}",
+  "name": ""
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/customer/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d66176fa-abbf-4074-abdd-750d8580b991" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ea18325-531a-4f5e-940d-4bf170d88466" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"name\" fails because [\"name\" is not allowed to be empty]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Customer - Fail to Create Business customer without name" id="526736a8-5ce4-4f9f-83ca-2e4824e8d7c6">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/customer/business" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Customer - Fail to Create Business customer without name" id="1ef286ba-24a9-4e77-a88d-f8fd8bbf82b7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isPrivate": false,
+  "note": "This is sample",
+  "registrationNumber": "5454545454545",
+  "vatNumber": "5454545454545",
+  "deliveryAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "billingAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "phoneNumber": "0703650042",
+  "email": "${#TestCase#emailBusiness}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/customer/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d66176fa-abbf-4074-abdd-750d8580b991" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ea18325-531a-4f5e-940d-4bf170d88466" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"name\" fails because [\"name\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Customer - Fail to Create Business customer with empty email and phoneNumber" id="93898080-63b2-46ee-8e0a-26a278593063">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/customer/business" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Customer - Fail to Create Business customer with empty email and phoneNumber" id="1ef286ba-24a9-4e77-a88d-f8fd8bbf82b7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isPrivate": false,
+  "note": "This is sample",
+  "registrationNumber": "5454545454545",
+  "vatNumber": "5454545454545",
+  "deliveryAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "billingAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "phoneNumber": "",
+  "email": "",
+  "name": "${#TestCase#nameBusiness}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/customer/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d66176fa-abbf-4074-abdd-750d8580b991" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ea18325-531a-4f5e-940d-4bf170d88466" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Properties \"email\" and \"phoneNumber\" can't both be empty.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Customer - Fail to Create Business customer without email and phoneNumber" id="8659b128-1867-4ded-9dd0-586e4324994c">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/customer/business" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Customer - Fail to Create Business customer without email and phoneNumber" id="1ef286ba-24a9-4e77-a88d-f8fd8bbf82b7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isPrivate": false,
+  "note": "This is sample",
+  "registrationNumber": "5454545454545",
+  "vatNumber": "5454545454545",
+  "deliveryAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "billingAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "name": "${#TestCase#nameBusiness}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/customer/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d66176fa-abbf-4074-abdd-750d8580b991" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ea18325-531a-4f5e-940d-4bf170d88466" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Properties \"email\" and \"phoneNumber\" can't both be empty.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Customer - Fail to Create Business customer without isPrivate" id="93eefcb1-9f5a-49aa-9c28-7636709b0366">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/customer/business" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Customer - Fail to Create Business customer without isPrivate" id="1ef286ba-24a9-4e77-a88d-f8fd8bbf82b7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "note": "This is sample",
+  "registrationNumber": "5454545454545",
+  "vatNumber": "5454545454545",
+  "deliveryAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "billingAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "phoneNumber": "0703650042",
+  "email": "${#TestCase#emailBusiness}",
+  "name": "${#TestCase#nameBusiness}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/customer/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d66176fa-abbf-4074-abdd-750d8580b991" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ea18325-531a-4f5e-940d-4bf170d88466" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Property \"isPrivate\" missing in payload.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Customer - Fail to Create Business customer with incorrect isPrivate" id="de39fca4-258e-46b1-bd4d-04fda06f6439">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/customer/business" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Customer - Fail to Create Business customer with incorrect isPrivate" id="1ef286ba-24a9-4e77-a88d-f8fd8bbf82b7" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isPrivate": true,
+  "note": "This is sample",
+  "registrationNumber": "5454545454545",
+  "vatNumber": "5454545454545",
+  "deliveryAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "billingAddresses": [
+    {
+      "country": "N/A",
+      "city": "Lidingö",
+      "postCode": "181 37",
+      "line2": "",
+      "line1": "Fregattvägen 15 3tr"
+    }
+  ],
+  "phoneNumber": "0703650042",
+  "email": "${#TestCase#emailBusiness}",
+  "name": "${#TestCase#nameBusiness}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/customer/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d66176fa-abbf-4074-abdd-750d8580b991" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9ea18325-531a-4f5e-940d-4bf170d88466" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>child \"firstName\" fails because [\"firstName\" is required]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>nationalId</con:name>
+          <con:value>5454545454545</con:value>
+        </con:property>
+        <con:property>
+          <con:name>birthDate</con:name>
+          <con:value>1991-12-12</con:value>
+        </con:property>
+        <con:property>
+          <con:name>gender</con:name>
+          <con:value>male</con:value>
+        </con:property>
+        <con:property>
+          <con:name>country</con:name>
+          <con:value>N/A</con:value>
+        </con:property>
+        <con:property>
+          <con:name>city</con:name>
+          <con:value>Lidingö</con:value>
+        </con:property>
+        <con:property>
+          <con:name>postCode</con:name>
+          <con:value>181 37</con:value>
+        </con:property>
+        <con:property>
+          <con:name>line1</con:name>
+          <con:value>Fregattvägen 15 3tr</con:value>
+        </con:property>
+        <con:property>
+          <con:name>phoneNumber</con:name>
+          <con:value>0703650042</con:value>
+        </con:property>
+        <con:property>
+          <con:name>email</con:name>
+          <con:value>customer.email@test.com</con:value>
+        </con:property>
+        <con:property>
+          <con:name>lastName</con:name>
+          <con:value>IncorrectPayloadTest</con:value>
+        </con:property>
+        <con:property>
+          <con:name>firstName</con:name>
+          <con:value>PrivateCustomerFirstName</con:value>
+        </con:property>
+        <con:property>
+          <con:name>customerId</con:name>
+          <con:value>545c4d75-34a5-4100-a565-dee2cf8fffea</con:value>
+        </con:property>
+        <con:property>
+          <con:name>line2</con:name>
+          <con:value>line2</con:value>
+        </con:property>
+        <con:property>
+          <con:name>nameBusiness</con:name>
+          <con:value>BusinessCustomerName</con:value>
+        </con:property>
+        <con:property>
+          <con:name>emailBusiness</con:name>
+          <con:value>business.customer.email@test.com</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+    </con:testCase>

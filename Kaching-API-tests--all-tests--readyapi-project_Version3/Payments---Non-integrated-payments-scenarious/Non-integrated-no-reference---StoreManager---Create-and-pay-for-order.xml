@@ -1,0 +1,1447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="e02465f9-9594-478d-bb25-2377c1ef63b4" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Non-integrated no reference - StoreManager - Create and pay for order" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="72708b93-fff5-4750-9761-198aa600204bfileName">Mock---StoreManager---Create-and-pay-for-order</con:setting>
+        <con:setting id="e02465f9-9594-478d-bb25-2377c1ef63b4fileName">Non-integrated-no-reference---StoreManager---Create-and-pay-for-order</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Payment - get transaction handshake" id="f3e5ae15-cbac-42b4-a718-18f9c6371b10">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/handshake" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - get transaction handshake" id="6f1b4de1-72ff-4a78-bdbc-34b019e95c42" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/handshake</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b8dd8074-00bd-46f3-b096-960fdfdae841" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Get payment config" id="ecd3e573-70bd-4c5a-ada8-816cf0bea0a1">
+        <con:settings/>
+        <con:config>
+          <script>testRunner.testCase.setPropertyValue("paymentConfigId", "")
+testRunner.testCase.setPropertyValue("nonIntegratedPaymentMethodName", "")
+
+def method = testRunner.testCase.testSuite.getPropertyValue("method").toString()
+def requiresReference = testRunner.testCase.getPropertyValue("requiresReference").toString()
+
+if (requiresReference == "true"){
+	def randomNo = (Math.abs(new Random().nextInt() % 10000000000) + 1).toString()
+	def details = "Test Automation $randomNo"
+	testRunner.testCase.setPropertyValue( "details" , details )
+}else {
+	def details = ""
+	testRunner.testCase.setPropertyValue( "details" , details )
+}
+
+def paymentMethods = context.expand('${Payment - get transaction handshake#Response#$[\'response\'][\'availablePaymentMethods\'][*][\'paymentMethod\']}')
+def paymentMethodsList = paymentMethods.tokenize(',[]') as LinkedList
+	
+for (int i = 0; i &lt; paymentMethodsList.size(); i++){
+	paymentMethodsList[i] = paymentMethodsList[i].trim()
+	if (paymentMethodsList[i] == method){
+		def path = "\${Payment - get transaction handshake#Response#\$[\'response\'][\'availablePaymentMethods\'][" + i.toString() + "][\'config\'][\'requiresReference\']}"
+		def requiresReferenceTemp = context.expand(path).toString()
+		if (requiresReferenceTemp == requiresReference){
+			def pathName = "\${Payment - get transaction handshake#Response#\$[\'response\'][\'availablePaymentMethods\'][" + i.toString() + "][\'config\'][\'name\']}"
+			def nonIntegratedPaymentMethodName = context.expand(pathName).toString()
+			testRunner.testCase.setPropertyValue("nonIntegratedPaymentMethodName", nonIntegratedPaymentMethodName)
+			log.info "nonIntegratedPaymentMethodName: "+nonIntegratedPaymentMethodName.toString()
+
+			def pathConfigId = "\${Payment - get transaction handshake#Response#\$[\'response\'][\'availablePaymentMethods\'][" + i.toString() + "][\'paymentConfigId\']}"
+			def paymentConfigId = context.expand(pathConfigId).toString()
+			testRunner.testCase.setPropertyValue("paymentConfigId", paymentConfigId)
+			log.info "paymentConfigId: "+paymentConfigId.toString()
+
+			break;
+		}
+	}
+}
+
+def paymentConfigId = testRunner.testCase.getPropertyValue("paymentConfigId").toString()
+def nonIntegratedPaymentMethodName = testRunner.testCase.getPropertyValue("nonIntegratedPaymentMethodName").toString()
+
+if (paymentConfigId == "" || nonIntegratedPaymentMethodName == "" ){
+	context.testRunner.fail("paymentConfigId or nonIntegratedPaymentMethodName is empty")    	
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Store - Get all my Stores" id="732cdbde-85a0-400c-a655-28f9487788be">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/store" methodName="Store" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Store - Get all my Stores" id="0009bab0-e83c-406b-a978-a5fc427778dd" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/store</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="f2e34b52-1b7f-4a4c-a43c-8db1831b5e50" name="Valid HTTP Status Codes - 200">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bef0972b-8976-4b0e-afcb-c644ebba516d" name="Match content of [organizationId]">
+              <con:configuration>
+                <path>$['response'][0]['organizationId']</path>
+                <content>${#Project#organizationId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+            <con:parameterOrder/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aea1dabb-28a3-46a3-bec9-dd6a8a297204">
+                <con:authProfile>wso2-dev</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Randomize Store" id="460ec9ec-8b1e-48d0-8dba-b587dd8d6aa4">
+        <con:settings/>
+        <con:config>
+          <script>def response = context.expand('${Store - Get all my Stores#Response]}')
+
+def storeIds = context.expand('${Store - Get all my Stores#Response#$[\'response\'][*][\'storeId\']}')
+def storeNames = context.expand('${Store - Get all my Stores#Response#$[\'response\'][*][\'name\']}')
+
+
+def storeIdsList = storeIds.tokenize(',[]') as LinkedList
+def storeNamesList = storeNames.tokenize(',[]') as LinkedList
+def size = storeIdsList.size()
+
+def automationCreatedStore = true
+def automationCreatedStoreName = testRunner.testCase.testSuite.project.getTestSuiteByName("Store").getPropertyValue("storeName").toString()
+log.info automationCreatedStoreName
+
+while (automationCreatedStore){
+	def randomStore = (Math.abs(new Random().nextInt() % size) + 1) - 1 as int
+	def randomStoreName = storeNamesList[randomStore].toString()
+	if (randomStoreName.matches("(.*)$automationCreatedStoreName(.*)")){
+		automationCreatedStore = true
+	} else {
+		def randomStoreId = storeIdsList[randomStore]
+		automationCreatedStore = false
+		testRunner.testCase.setPropertyValue("storeId", randomStoreId)
+		log.info randomStoreId
+		log.info randomStoreName
+	}
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="User - Get userId" id="05a95fd4-e2ab-409c-abd9-179333a3e7a8">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/users/user/{username}" methodName="UserId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="User - Get userId" id="f0fe8b14-bf15-47fa-a58e-0bdfe37af7fb" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/user/99246672-10fb-40eb-a569-4bb8392309e7</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e0d6bc21-6a79-4bf8-aa62-6ea5f5925103" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="9d1bab25-6e34-4d3c-b92a-96a0c9ab09de" name="JSONPath Count-Specific User count">
+              <con:configuration>
+                <path>$['userId']</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="5844b1c2-9aaa-4585-ae56-7b1626cae17c" name="JSONPath Match-Validate userName ">
+              <con:configuration>
+                <path>$['userName']</path>
+                <content>${#Project#sellerUserAuth}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/><con:entry key="username" value="${#Project#sellerUserAuth}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+              <con:entry>username</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - sellerId" id="4b241d5d-bd7b-47e1-b078-57446e226fb9">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>selledId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>User - Get userId</con:sourceStep>
+            <con:sourcePath>$['userId']</con:sourcePath>
+            <con:targetType>sellerId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Generate UUID for order, basket" id="afe51470-3e74-4286-9ad4-7104ad03e963">
+        <con:settings/>
+        <con:config>
+          <script>def basketId = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("basketId", basketId)
+
+def orderId = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("orderId", orderId)
+
+def lastPartOrderId = orderId[-8..-1]
+def date = new Date().format('yyMMdd')
+def orderNumber = date.toString() + "-" + lastPartOrderId
+testRunner.testCase.setPropertyValue("orderNumber", orderNumber)</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Generate UUID for itemIds and compose basket info" id="636d3b0e-f0bb-45e0-8f8a-1451eaf7e6ec">
+        <con:settings/>
+        <con:config>
+          <script>def itemId1 = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("itemId1", itemId1)
+
+def itemId2 = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("itemId2", itemId2)
+
+def itemId3 = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("itemId3", itemId3)
+
+def itemId4 = UUID.randomUUID().toString().toUpperCase()
+testRunner.testCase.setPropertyValue("itemId4", itemId4)
+
+def newItems = testRunner.testCase.testSuite.project.getPropertyValue("1_payment_newItems").toString()
+def deliveringItemsFromWarehouses = testRunner.testCase.testSuite.project.getPropertyValue("1_payment_deliveringItemsFromWarehouses").toString()
+def amountToCharge = testRunner.testCase.testSuite.project.getPropertyValue("1_amountToCharge").toString()
+
+newItems = newItems.replaceAll("REPLACE_THIS_WITH_ITEM_ID_1",itemId1)
+newItems = newItems.replaceAll("REPLACE_THIS_WITH_ITEM_ID_2",itemId2)
+newItems = newItems.replaceAll("REPLACE_THIS_WITH_ITEM_ID_3",itemId3)
+newItems = newItems.replaceAll("REPLACE_THIS_WITH_ITEM_ID_4",itemId4)
+
+deliveringItemsFromWarehouses = deliveringItemsFromWarehouses.replaceAll("REPLACE_THIS_WITH_ITEM_ID_1",itemId1)
+deliveringItemsFromWarehouses = deliveringItemsFromWarehouses.replaceAll("REPLACE_THIS_WITH_ITEM_ID_2",itemId2)
+deliveringItemsFromWarehouses = deliveringItemsFromWarehouses.replaceAll("REPLACE_THIS_WITH_ITEM_ID_3",itemId3)
+deliveringItemsFromWarehouses = deliveringItemsFromWarehouses.replaceAll("REPLACE_THIS_WITH_ITEM_ID_4",itemId4)
+
+testRunner.testCase.setPropertyValue("newItems", newItems)
+testRunner.testCase.setPropertyValue("deliveringItemsFromWarehouses", deliveringItemsFromWarehouses)
+testRunner.testCase.setPropertyValue("amountToCharge", amountToCharge)</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - create order reference" id="4e5fb5a5-bede-43fa-af35-bf716b428b8e">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/create-reference" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - create order reference" id="6e633825-6309-48dd-8699-5d1b6158a1a6" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+   "basket" : {
+      "id" : "${#TestCase#basketId}",
+      "priceModifierGroups" : [ ],
+      "orderID" : "${#TestCase#orderId}",
+      "cancellingIrregularItemIDs" : [ ],
+      "unreservingItemIDs" : [ ],
+      "newItems" : ${#TestCase#newItems},
+      "newIrregularItems" : [ ],
+      "deliveringItemsFromWarehouses" : ${#TestCase#deliveringItemsFromWarehouses},
+      "deliveringItemsUniqueIdentifiers" : [ ],
+      "returningItems" : [ ],
+      "reservingStockItems" : [ ],
+      "specifiedItemPayments" : [ ],
+      "removingItemIDs" : [ ],
+      "currency" : "SEK"
+   },
+   "order" : {
+      "priceModifierGroups" : [ ],
+      "deliveredItems" : [ ],
+      "returnedStockItems" : [ ],
+      "itemPayments" : [ ],
+      "payments" : [ ],
+      "reservedStockItems" : [ ],
+      "cancelledItems" : [ ],
+      "deliveredStockItems" : [ ],
+      "irregularItems" : [ ],
+      "identifier" : {
+         "number" : "${#TestCase#orderNumber}",
+         "organizationID" : "${#Project#organizationId}",
+         "deviceIDs" : [ ],
+         "id" : "${#TestCase#orderId}",
+         "userIDs" : [ ],
+         "storeIDs" : [ ],
+         "warehouseIDs" : [ ],
+         "sellerIDs" : [ ]
+      },
+      "notDeliveredItems" : [ ],
+      "sessions" : [ ],
+      "cancelledIrregularItems" : [ ],
+      "currency" : "SEK"
+   }
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/orders/order/create-reference</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="c39c6b1a-2511-4538-83ca-7a1c1bc20215" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="eafe4b14-c143-49db-be5d-00fd7b69d939" name="Match content of [number]">
+              <con:configuration>
+                <path>$['response']['identifier']['number']</path>
+                <content>${#TestCase#orderNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="eb46268c-0ffb-4cd8-8ae9-1123221df2ef" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response']['identifier']['id']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="26a8b5ac-8a91-490e-a9b3-a19f401b107c" name="Contains">
+              <con:configuration>
+                <token>${#Project#organizationId}</token>
+                <ignoreCase>true</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Get order by orderId" id="569ddd14-9791-464f-9b11-10ea0f74cf67">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/{orderId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Get order by orderId" id="4a7e631c-4483-4f9b-95b5-046f160d3d26" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b4031e91-c9dd-4925-bc8d-bef0c3da6bd7" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4424bd33-a8a7-44b6-8ec2-8f5612880379" name="Match content of [payments]">
+              <con:configuration>
+                <path>$['response']['order']['payments']</path>
+                <content>[ ]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="orderId" value="${#TestCase#orderId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Initialize" id="271af7c4-8d20-4fd8-a7b0-a4696c2d08fa">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/initialize" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Initialize" id="559f91c2-32fe-49e3-9907-eb553d2c4185" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+  "paymentConfigId": "${#TestCase#paymentConfigId}",
+  "paymentMethod": "${#TestSuite#method}",
+  "nonIntegratedPaymentMethodName": "${#TestCase#nonIntegratedPaymentMethodName}",
+  "orderId": "${#TestCase#orderId}"
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/initialize</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59ace3dd-534d-4cc6-be29-9d3abed36b4d" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a28e8ad6-0292-4126-8efe-b50f3c420061" name="Match content of [orderId]">
+              <con:configuration>
+                <path>$['response']['orderId']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="d8937395-1e00-46a7-878a-e0ab81205d23" name="Match content of [paymentStatus]">
+              <con:configuration>
+                <path>$['response']['paymentStatus']</path>
+                <content>INITIALIZED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8435e405-d5c3-4daa-9adb-a03e3e1f4f6e" name="Match content of [paymentSubStatus]">
+              <con:configuration>
+                <path>$['response']['paymentSubStatus']</path>
+                <content>INITIALIZED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - paymentId" id="620042ce-4e99-4c1a-ad30-eb7136036f85">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>paymentId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Payment - Initialize</con:sourceStep>
+            <con:sourcePath>$['response']['paymentId']</con:sourcePath>
+            <con:targetType>paymentId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Get payment by id after initialized" id="e2eeb841-3d6a-4747-bc97-d83335496d10">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/{paymentId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Get payment by id after initialized" id="9004475e-3190-4af6-86ac-0cfbd07bdb0f" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/1aef7c6f-f525-412f-9589-144da3489c1b</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5ae3920a-7e58-42a3-992f-dbcb3a49600c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a95ae8d6-47ba-47f9-912e-24f4fbd8280b" name="Match content of [orderId]">
+              <con:configuration>
+                <path>$['response']['orderId']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c5291167-7640-43dc-a1db-4e4054f1a1cf" name="Match content of [paymentId]">
+              <con:configuration>
+                <path>$['response']['paymentId']</path>
+                <content>${#TestCase#paymentId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="fb1787fe-de6a-4d62-bf43-146875fe6fbb" name="Match content of [paymentSubStatus]">
+              <con:configuration>
+                <path>$['response']['paymentSubStatus']</path>
+                <content>INITIALIZED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="eba498fc-260a-4667-9ab3-9bd513b567b5" name="Match content of [paymentStatus]">
+              <con:configuration>
+                <path>$['response']['paymentStatus']</path>
+                <content>INITIALIZED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="paymentId" value="${#TestCase#paymentId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Start" id="7ad4e49f-4c99-46ce-949e-0082cb7d0fb0">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/start" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Start" id="6fdd01fb-5a77-47ca-93dd-6737e4697d6e" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+   "paymentId" : "${#TestCase#paymentId}",
+   "currencyCode" : "SEK",
+   "order" : {
+      "items" : ${#TestCase#newItems}
+   },
+   "details" : {},
+   "centAmount" : ${#TestCase#amountToCharge}
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/3.0/transactions/start</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="531bfe99-2d53-4e78-ae35-b578c9c98fa6" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="732cd0fe-8b8e-49c3-90e2-0a3507223b29" name="Match content of [orderId]">
+              <con:configuration>
+                <path>$['response']['orderId']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ebd28e3f-01d9-4745-bd86-068e91966da5" name="Match content of [paymentId]">
+              <con:configuration>
+                <path>$['response']['paymentId']</path>
+                <content>${#TestCase#paymentId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0ab11323-e2f4-45ab-b8b1-7783055dcc3c" name="Match content of [centAmount]">
+              <con:configuration>
+                <path>$['response']['centAmount']</path>
+                <content>${#TestCase#amountToCharge}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7022df10-66c4-459f-a5d9-33b176b81882" name="Match content of [paymentStatus]">
+              <con:configuration>
+                <path>$['response']['paymentStatus']</path>
+                <content>ENDED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="5d400416-442e-4fd0-aa1d-6c5044513726" name="Match content of [paymentSubStatus]">
+              <con:configuration>
+                <path>$['response']['paymentSubStatus']</path>
+                <content>SUCCEEDED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="sellerId" value="${#TestSuite#sellerId}"/><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>sellerId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="f9a2e350-5514-45ab-b04f-e664318b7825">
+                <con:authProfile>admin</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payment - Get payment by id after payment started" id="c2dbe52d-4eaa-411a-b874-5ca62eb35bda">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/{paymentId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payment - Get payment by id after payment started" id="9004475e-3190-4af6-86ac-0cfbd07bdb0f" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/1aef7c6f-f525-412f-9589-144da3489c1b</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5ae3920a-7e58-42a3-992f-dbcb3a49600c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6982575a-b842-4276-8207-5700ecac4420" name="Match content of [orderId]">
+              <con:configuration>
+                <path>$['response']['orderId']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="37b54065-774a-422c-af1d-7cbf09ed34e6" name="Match content of [paymentId]">
+              <con:configuration>
+                <path>$['response']['paymentId']</path>
+                <content>${#TestCase#paymentId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="aa839517-2af3-41ca-91db-3f98412ff057" name="Match content of [paymentStatus]">
+              <con:configuration>
+                <path>$['response']['paymentStatus']</path>
+                <content>ENDED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e5b51364-1b6e-4343-930f-96ce967c2fae" name="Match content of [paymentSubStatus]">
+              <con:configuration>
+                <path>$['response']['paymentSubStatus']</path>
+                <content>SUCCEEDED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="paymentId" value="${#TestCase#paymentId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Get order by orderId after payment added" id="2a6d519f-b25b-442c-9416-6addcee48dde">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/{orderId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Get order by orderId after payment added" id="4a7e631c-4483-4f9b-95b5-046f160d3d26" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/order/DE3F8EDF-A76D-4F10-888C-F69761C69C37</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b4031e91-c9dd-4925-bc8d-bef0c3da6bd7" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="693a9dce-b2e4-44a4-bbcd-27a96128d150" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response']['order']['payments'][*]</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f67c356a-d5a8-43d2-8953-f3d2b0ef47fc" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response']['order']['identifier']['id']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f76599a0-2187-4cbd-8e35-9ff1cea9d1a6" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response']['order']['payments'][0]['id']</path>
+                <content>${#TestCase#paymentId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="orderId" value="${#TestCase#orderId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer - get order response body to apply basket request" id="cc002345-9a05-415e-a926-f8604c0d83fd">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>response</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Order - Get order by orderId after payment added</con:sourceStep>
+            <con:sourcePath>$['response']</con:sourcePath>
+            <con:targetType>Request</con:targetType>
+            <con:targetStep>Order - Apply basket</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Order - Apply basket" id="b82775ce-a4b9-49aa-a68b-3528d05951b0">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/order/apply-basket" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Order - Apply basket" id="5b6b77c9-cc85-4267-9c89-163988e04b58" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{"order":{"currency":"SEK","notDeliveredItems":[],"identifier":{"sellerIDs":["592E3B43-7F95-4DF0-90EE-E354744D9B87"],"id":"6D51348E-0BB9-4E01-B1A5-82802A9E76C4","number":"200303-2A9E76C4","warehouseIDs":[],"userIDs":["592E3B43-7F95-4DF0-90EE-E354744D9B87"],"organizationID":"755FF39E-C872-41A8-AA9F-2B2A461B8491","deviceIDs":["10C0A774-8878-4307-A500-8A0068DFC6BA"],"storeIDs":["235E8BFF-EB7A-4A95-A729-EF18535D6487"]},"deliveredItems":[],"cancelledItems":[],"priceModifierGroups":[],"reservedStockItems":[],"payments":[{"roundingAmount":0,"isFulfilled":true,"paymentConfigID":"B23AD37F-EEC6-4C2F-B25E-75BCB96C2A5D","id":"3096E388-C9A8-4E35-A91C-65DE71E9649E","serviceType":"Card ( non-integrated)","currency":"SEK","amount":17999,"serviceTypeValue":"Card ( non-integrated)","extraInfo":""}],"deliveredStockItems":[],"itemPayments":[],"irregularItems":[],"sessions":[{"paymentIDs":["3096E388-C9A8-4E35-A91C-65DE71E9649E"],"deliveringItemIDs":[],"itemPayments":[],"addingItemIDs":[],"removingItemIDs":[],"cancellingIrregularItemIDs":[],"actionIDs":[],"startedOn":"2020-03-03T14:59:26Z","addingIrregularItemIDs":[],"id":"9919B564-6D8B-4566-82CA-8B5C19DE0519","returningItemIDs":[]}],"cancelledIrregularItems":[],"returnedStockItems":[]},"basket":{"currency":"SEK","removingItemIDs":[],"orderID":"6D51348E-0BB9-4E01-B1A5-82802A9E76C4","deliveringItemsUniqueIdentifiers":[],"specifiedItemPayments":[],"cancellingIrregularItemIDs":[],"priceModifierGroups":[],"returningItems":[],"deliveringItemsFromWarehouses":[{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"C6186106-2668-49C7-A3B2-8656489A6F38"},{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"1F751E68-7BA5-4846-AB8E-D7810DB2148F"},{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"0195277B-A716-496A-B76B-E7B87EC360E6"},{"warehouseID":"523A479A-23C9-4A12-91FE-7B1B07E535FB","itemID":"727FA9E6-6A79-463A-A612-1BBD6D77F070"}],"reservingStockItems":[],"unreservingItemIDs":[],"newItems":[{"unitPrice":{"currency":"SEK","amountExcludingTax":9600,"tax":{"totalAmount":2400,"groupID":"VAT25","detailPercentage":{},"detailAmount":{},"totalPercentage":2500000,"groupDisplayName":"VAT 25 %"}},"quantity":1,"price":{"tax":{"totalAmount":2400,"groupID":"VAT25","detailPercentage":{},"detailAmount":{},"totalPercentage":2500000,"groupDisplayName":"VAT 25 %"},"amountExcludingTax":9600,"currency":"SEK"},"id":"C6186106-2668-49C7-A3B2-8656489A6F38","product":{"externalReference":"88d70ce6-d92c-4686-bc7c-c729c566a651","isFlexiblePrice":false,"isService":false,"groupID":"D9921190-42B9-4061-8A93-1087606C0937","topGroupID":"6878830C-2539-4B6B-8022-D07F85FAD0BE","groupName":"Vegetarian","measurementUnitCode":"piece","name":"Kale Caesar ","measurementPrecisionDecimalCount":0,"description":"croutons, lemon, garlic, parmesan ","topGroupName":" Lunch","sku":"333333333333","imageURL":"https://mittkok.expressen.se/wp-content/uploads/2014/03/fotolia_157570276_subscription_monthly_m-700x700.jpg","id":"88d70ce6-d92c-4686-bc7c-c729c566a651"}},{"unitPrice":{"tax":{"totalAmount":1000,"groupID":"VAT25","detailPercentage":{},"detailAmount":{},"totalPercentage":2500000,"groupDisplayName":"VAT 25 %"},"currency":"SEK","amountExcludingTax":4000},"quantity":200,"price":{"amountExcludingTax":800,"currency":"SEK","tax":{"totalAmount":200,"groupID":"VAT25","detailPercentage":{},"detailAmount":{},"totalPercentage":2500000,"groupDisplayName":"VAT 25 %"}},"id":"1F751E68-7BA5-4846-AB8E-D7810DB2148F","product":{"externalReference":"04d1a7d0-9386-4264-b8a3-7f58dd4d1650","isService":false,"id":"04d1a7d0-9386-4264-b8a3-7f58dd4d1650","name":"Buttered Spätzle","sku":"8888888888","measurementPrecisionDecimalCount":3,"measurementUnitCode":"kg","description":"","isFlexiblePrice":false}},{"unitPrice":{"tax":{"detailAmount":{},"totalAmount":0,"totalPercentage":0,"groupID":"VAT0","groupDisplayName":"VAT 0 %","detailPercentage":{}},"flexiblePrice":{"minAmountExcludingTax":4530,"maxAmountExcludingTax":9000},"amountExcludingTax":5050,"currency":"SEK"},"quantity":1,"price":{"tax":{"totalAmount":0,"groupID":"VAT0","detailPercentage":{},"detailAmount":{},"totalPercentage":0,"groupDisplayName":"VAT 0 %"},"currency":"SEK","amountExcludingTax":4999},"id":"0195277B-A716-496A-B76B-E7B87EC360E6","product":{"measurementUnitCode":"piece","sku":"121212121212","id":"94975a71-e07c-4198-8b62-7371ec779d29","isFlexiblePrice":true,"externalReference":"94975a71-e07c-4198-8b62-7371ec779d29","name":"Apfel strudel","description":"","measurementPrecisionDecimalCount":0,"groupID":"4474A680-96AB-4584-B4A1-A17D398C3E3C","topGroupName":"Desserts","topGroupID":"4474A680-96AB-4584-B4A1-A17D398C3E3C","groupName":"Desserts","isService":false}},{"unitPrice":{"currency":"SEK","amountExcludingTax":0,"tax":{"totalAmount":0,"groupID":"VAT0","detailPercentage":{},"detailAmount":{},"totalPercentage":0,"groupDisplayName":"VAT 0 %"}},"quantity":1,"price":{"tax":{"groupID":"VAT0","totalAmount":0,"detailPercentage":{},"detailAmount":{},"totalPercentage":0,"groupDisplayName":"VAT 0 %"},"currency":"SEK","amountExcludingTax":0},"id":"727FA9E6-6A79-463A-A612-1BBD6D77F070","product":{"isService":false,"externalReference":"230b90c6-771c-4f59-b304-4b071cdd809e","id":"230b90c6-771c-4f59-b304-4b071cdd809e","name":"Water","sku":"15151515151","measurementPrecisionDecimalCount":0,"measurementUnitCode":"piece","description":"","isFlexiblePrice":false}}],"id":"407576FD-787C-4BCA-BDF1-569276C06B9C","newIrregularItems":[]}}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/orders/order/apply-basket</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="12fa1f4a-1698-4fe1-8b2d-a44fcacbec66" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a9e1717f-481e-442d-9388-5dba138cba1a" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response']['identifier']['id']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2dadc665-a593-47d0-81d2-e0ddf5005e58" name="Match content of [id]">
+              <con:configuration>
+                <path>$['response']['payments'][0]['id']</path>
+                <content>${#TestCase#paymentId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="d1a60daa-70ac-45f4-9a40-97d3e226344f" name="Match content of [amount]">
+              <con:configuration>
+                <path>$['response']['payments'][0]['amount']</path>
+                <content>${#TestCase#amountToCharge}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="3ecf93e5-eb62-4a28-960f-c6cf0ba0fb7b" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response']['payments'][*]</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple NotContains" id="a2fda585-a331-406d-bc51-f6f4bfe1321a" name="Not Contains">
+              <con:configuration>
+                <token>basket</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="storeId" value="${#TestCase#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>storeId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Basket - delete basket after order paid" id="51dc271a-07fb-4387-8f67-4082e250a07b">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/orders/basket/{basketId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Basket - delete basket after order paid" id="8bab7f67-5a98-4d0c-914d-603c6ac7911d" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/orders/basket/670F3609-ED6F-4352-B0FE-84854148031D</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="88695c3e-f57b-414e-ad30-e04f6308c71c" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="basketId" value="${#TestCase#basketId}"/><con:entry key="storeId" value="${#TestSuite#storeId}"/><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>basketId</con:entry>
+              <con:entry>storeId</con:entry>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Payments - Get all transactions for order and verify their statuses" id="b87c7586-d17c-4482-a2e9-0dd3d2f08b81">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/payments/transactions/order/{orderId}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Payments - Get all transactions for order and verify their statuses" id="d859d033-11b2-4f4e-a494-d09e42a63e7f" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/payments/transactions/order/AF87F074-B05A-4E1D-BD8A-31F09DA37C5B</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7207e13e-c6aa-45d9-a762-7b41db125f49" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f727ad44-048e-460b-b3d8-b7d0227e3878" name="Match content of [orderId]">
+              <con:configuration>
+                <path>$['response'][0]['orderId']</path>
+                <content>${#TestCase#orderId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e7518b89-b184-4735-b5a2-8c5cde154377" name="Match content of [paymentSubStatus]">
+              <con:configuration>
+                <path>$['response'][0]['paymentSubStatus']</path>
+                <content>SUCCEEDED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="1b0eb0af-1314-4fcb-a7e3-e9f4f526fddc" name="Match content of [paymentStatus]">
+              <con:configuration>
+                <path>$['response'][0]['paymentStatus']</path>
+                <content>ENDED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="084cf528-b30b-4b41-b961-dd39ab54ca73" name="Match content of [paymentId]">
+              <con:configuration>
+                <path>$['response'][0]['paymentId']</path>
+                <content>${#TestCase#paymentId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Count" id="8a6aa2e5-7fe0-47db-8c0b-b64e17221f5c" name="Check count of [0]">
+              <con:configuration>
+                <path>$['response'][*]</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters><con:entry key="orderId" value="${#TestCase#orderId}"/></con:parameters>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>storeId</con:name>
+          <con:value>235e8bff-eb7a-4a95-a729-ef18535d6487</con:value>
+        </con:property>
+        <con:property>
+          <con:name>orderId</con:name>
+          <con:value>6D51348E-0BB9-4E01-B1A5-82802A9E76C4</con:value>
+        </con:property>
+        <con:property>
+          <con:name>orderNumber</con:name>
+          <con:value>200303-2A9E76C4</con:value>
+        </con:property>
+        <con:property>
+          <con:name>basketId</con:name>
+          <con:value>407576FD-787C-4BCA-BDF1-569276C06B9C</con:value>
+        </con:property>
+        <con:property>
+          <con:name>paymentId</con:name>
+          <con:value>3096E388-C9A8-4E35-A91C-65DE71E9649E</con:value>
+        </con:property>
+        <con:property>
+          <con:name>amountToCharge</con:name>
+          <con:value>17999</con:value>
+        </con:property>
+        <con:property>
+          <con:name>newItems</con:name>
+          <con:value>[{ 			"quantity": 1, 			"id": "C6186106-2668-49C7-A3B2-8656489A6F38", 			"product": { 				"id": "88d70ce6-d92c-4686-bc7c-c729c566a651", 				"isService": false, 				"measurementUnitCode": "piece", 				"description": "croutons, lemon, garlic, parmesan ", 				"isFlexiblePrice": false, 				"topGroupID": "6878830C-2539-4B6B-8022-D07F85FAD0BE", 				"groupID": "D9921190-42B9-4061-8A93-1087606C0937", 				"sku": "333333333333", 				"measurementPrecisionDecimalCount": 0, 				"imageURL": "https:\/\/mittkok.expressen.se\/wp-content\/uploads\/2014\/03\/fotolia_157570276_subscription_monthly_m-700x700.jpg", 				"groupName": "Vegetarian", 				"topGroupName": " Lunch", 				"name": "Kale Caesar ", 				"externalReference": "88d70ce6-d92c-4686-bc7c-c729c566a651" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 9600, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 2400, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 9600, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 2400, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 200, 			"id": "1F751E68-7BA5-4846-AB8E-D7810DB2148F", 			"product": { 				"measurementUnitCode": "kg", 				"id": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 				"measurementPrecisionDecimalCount": 3, 				"isService": false, 				"sku": "8888888888", 				"isFlexiblePrice": false, 				"description": "", 				"externalReference": "04d1a7d0-9386-4264-b8a3-7f58dd4d1650", 				"name": "Buttered Spätzle" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 4000, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 1000, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 800, 				"tax": { 					"groupDisplayName": "VAT 25 %", 					"groupID": "VAT25", 					"totalAmount": 200, 					"totalPercentage": 2500000, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 1, 			"id": "0195277B-A716-496A-B76B-E7B87EC360E6", 			"product": { 				"id": "94975a71-e07c-4198-8b62-7371ec779d29", 				"isService": false, 				"measurementUnitCode": "piece", 				"description": "", 				"topGroupID": "4474A680-96AB-4584-B4A1-A17D398C3E3C", 				"isFlexiblePrice": true, 				"groupID": "4474A680-96AB-4584-B4A1-A17D398C3E3C", 				"sku": "121212121212", 				"measurementPrecisionDecimalCount": 0, 				"groupName": "Desserts", 				"topGroupName": "Desserts", 				"externalReference": "94975a71-e07c-4198-8b62-7371ec779d29", 				"name": "Apfel strudel" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 5050, 				"flexiblePrice": { 					"maxAmountExcludingTax": 9000, 					"minAmountExcludingTax": 4530 				}, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 4999, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}, { 			"quantity": 1, 			"id": "727FA9E6-6A79-463A-A612-1BBD6D77F070", 			"product": { 				"measurementUnitCode": "piece", 				"id": "230b90c6-771c-4f59-b304-4b071cdd809e", 				"measurementPrecisionDecimalCount": 0, 				"isService": false, 				"sku": "15151515151", 				"isFlexiblePrice": false, 				"description": "", 				"externalReference": "230b90c6-771c-4f59-b304-4b071cdd809e", 				"name": "Water" 			}, 			"unitPrice": { 				"currency": "SEK", 				"amountExcludingTax": 0, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			}, 			"price": { 				"currency": "SEK", 				"amountExcludingTax": 0, 				"tax": { 					"groupDisplayName": "VAT 0 %", 					"groupID": "VAT0", 					"totalAmount": 0, 					"totalPercentage": 0, 					"detailPercentage": {}, 					"detailAmount": {} 				} 			} 		}]</con:value>
+        </con:property>
+        <con:property>
+          <con:name>deliveringItemsFromWarehouses</con:name>
+          <con:value>[{          "itemID": "C6186106-2668-49C7-A3B2-8656489A6F38",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "1F751E68-7BA5-4846-AB8E-D7810DB2148F",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "0195277B-A716-496A-B76B-E7B87EC360E6",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }, {          "itemID": "727FA9E6-6A79-463A-A612-1BBD6D77F070",          "warehouseID": "523A479A-23C9-4A12-91FE-7B1B07E535FB"       }]</con:value>
+        </con:property>
+        <con:property>
+          <con:name>itemId1</con:name>
+          <con:value>C6186106-2668-49C7-A3B2-8656489A6F38</con:value>
+        </con:property>
+        <con:property>
+          <con:name>itemId2</con:name>
+          <con:value>1F751E68-7BA5-4846-AB8E-D7810DB2148F</con:value>
+        </con:property>
+        <con:property>
+          <con:name>itemId3</con:name>
+          <con:value>0195277B-A716-496A-B76B-E7B87EC360E6</con:value>
+        </con:property>
+        <con:property>
+          <con:name>itemId4</con:name>
+          <con:value>727FA9E6-6A79-463A-A612-1BBD6D77F070</con:value>
+        </con:property>
+        <con:property>
+          <con:name>paymentConfigId</con:name>
+          <con:value>b23ad37f-eec6-4c2f-b25e-75bcb96c2a5d</con:value>
+        </con:property>
+        <con:property>
+          <con:name>nonIntegratedPaymentMethodName</con:name>
+          <con:value>Card ( non-integrated)</con:value>
+        </con:property>
+        <con:property>
+          <con:name>details</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>requiresReference</con:name>
+          <con:value>false</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>cd62e69c-2b11-44b5-9aea-57d328f503d9</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>809701c1-4346-4f07-bace-c8085e4368a7</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e0108a08-5af3-468c-b8a5-bc26a492c92b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>d54ca3af-79c5-44b7-9e4a-96142694c109</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>87f5c62d-1ba2-4c11-92b0-d24ac4f358af</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ec719f65-9b8d-45de-87a8-191b9bc96253</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ebd52952-bb33-4359-b7d6-9f62069b1597</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>fb449a39-cac2-40cc-b013-778a490ba923</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>5158feb7-0e23-420c-8b1e-d3d9c0f96e82</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>50f0d1f7-3fd5-4700-89cb-983f06bdd2ff</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>10d52f30-8067-4c19-93f1-b1468f33839e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ded6d964-565f-4966-9154-8cbf563e2059</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>5450d511-eabc-4cb6-8e0e-78ca5bbf90a8</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>b9f50827-cfb9-4d3b-8bd3-51d3e8bbfa42</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>5afbd814-e307-49d9-82bb-083f32a7cfa1</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>6a7b4f31-2986-41bf-bcea-95775135cd4e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>f3e5ae15-cbac-42b4-a718-18f9c6371b10</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ecd3e573-70bd-4c5a-ada8-816cf0bea0a1</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>

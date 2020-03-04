@@ -1,0 +1,1604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="849fab4b-a17f-4ce7-bccd-de5a440567e4" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Products - create products with different prices from csv file" searchProperties="true" timeout="0" maxResults="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="ef58f245-b68a-483d-adc0-2d7b5ad02f56fileName">Products---create%2Fget%2Fupdate%2Fdelete-by-admin-user</con:setting>
+        <con:setting id="849fab4b-a17f-4ce7-bccd-de5a440567e4fileName">Products---create-products-with-different-prices-from-csv-file</con:setting>
+        <con:setting id="IncludeOverview">false</con:setting>
+        <con:setting id="IncludeResults">true</con:setting>
+        <con:setting id="FlowLayout">false</con:setting>
+        <con:setting id="ErrorDetails">true</con:setting>
+        <con:setting id="IncludeCoverage">true</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="datasource" name="DataSource - load product details from csv" id="0ddb32ca-2ec2-4158-a24f-4e0b87c6b169">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="File">
+            <con:configuration><fileName>${projectDir}/valid_product_test_kaching with all, but unitOfMeasure = false.csv</fileName><separator>,</separator><trim>true</trim><charset>UTF-8</charset><quotedValues>false</quotedValues></con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>name</con:property>
+          <con:property>sku</con:property>
+          <con:property>unitOfMeasure</con:property>
+          <con:property>isService</con:property>
+          <con:property>requiresUniqueId</con:property>
+          <con:property>sellable</con:property>
+          <con:property>visible</con:property>
+          <con:property>isStocked</con:property>
+          <con:startRow>1</con:startRow>
+          <con:endRow/>
+          <con:recordsPerIteration>1</con:recordsPerIteration>
+          <con:completeLastOperation>true</con:completeLastOperation>
+          <con:trimValues>false</con:trimValues>
+          <con:entitizeValues>false</con:entitizeValues>
+          <con:restartOnRun>true</con:restartOnRun>
+          <con:expandProperties>false</con:expandProperties>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Set up test case properties" id="0a61b364-ecab-4c66-a50d-d4c202030788">
+        <con:settings/>
+        <con:config>
+          <script>def ds = testRunner.testCase.testSteps["DataSource - load product details from csv"];
+
+def name = ds.getPropertyValue("name")
+testRunner.testCase.setPropertyValue( "name" , name)
+
+def sku = ds.getPropertyValue("sku")
+testRunner.testCase.setPropertyValue( "sku" , sku)
+
+def unitOfMeasure = ds.getPropertyValue("unitOfMeasure")
+testRunner.testCase.setPropertyValue( "unitOfMeasure" , unitOfMeasure)
+
+if (unitOfMeasure == "piece"){
+	testRunner.testCase.setPropertyValue( "quantityPrecision" , "0" )
+} else if (unitOfMeasure == "kg"){
+	testRunner.testCase.setPropertyValue( "quantityPrecision" , "3" )
+} else {
+	context.testRunner.fail("New unitOfMeasure is added $unitOfMeasure")
+}
+
+def isService = ds.getPropertyValue("isService")
+testRunner.testCase.setPropertyValue( "isService" , isService)
+
+def requiresUniqueId = ds.getPropertyValue("requiresUniqueId")
+testRunner.testCase.setPropertyValue( "requiresUniqueId" , requiresUniqueId)
+
+def sellable = ds.getPropertyValue("sellable")
+testRunner.testCase.setPropertyValue( "sellable" , sellable)
+
+def visible = ds.getPropertyValue("visible")
+testRunner.testCase.setPropertyValue( "visible" , visible)
+
+def isStocked = ds.getPropertyValue("isStocked")
+testRunner.testCase.setPropertyValue( "isStocked" , isStocked)</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - Create Product with info from csv file" id="e034906a-cecf-431e-9eb9-e11a04c6fbfc">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product" methodName="Product" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - Create Product with info from csv file" id="c370019d-2fa4-47a0-a91c-a0706128b70b" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+  "isStocked": ${#TestCase#isStocked},
+  "visible": ${#TestCase#visible},
+  "name": "${#TestCase#name}",
+  "sellable": ${#TestCase#sellable},
+  "sku": "${#TestCase#sku}",
+  "requiresUniqueId": ${#TestCase#requiresUniqueId},
+  "unitOfMeasure": "${#TestCase#unitOfMeasure}",
+  "isService": ${#TestCase#isService} 
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="59e4fa2f-1091-4b46-acc2-5c191075602e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="ba80a959-2652-4310-86b5-5396934fda95" name="Check for existence of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c9a89153-16a5-47f7-90f7-6fedfb0a3612" name="Match content of [sellable]">
+              <con:configuration>
+                <path>$['response']['sellable']</path>
+                <content>${#TestCase#sellable}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ee59b29c-2d43-4a49-a068-d3d252319c4b" name="Match content of [visible]">
+              <con:configuration>
+                <path>$['response']['visible']</path>
+                <content>${#TestCase#visible}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3e5ffb69-2156-4c18-8374-bdc544e4683a" name="Match content of [isStocked]">
+              <con:configuration>
+                <path>$['response']['isStocked']</path>
+                <content>${#TestCase#isStocked}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="91c42f95-af26-4dbe-bc86-b0530f56165f" name="Match content of [isService]">
+              <con:configuration>
+                <path>$['response']['isService']</path>
+                <content>${#TestCase#isService}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a25308d2-2f8c-4bf4-91ec-a75626f47a7b" name="Match content of [requiresUniqueId]">
+              <con:configuration>
+                <path>$['response']['requiresUniqueId']</path>
+                <content>${#TestCase#requiresUniqueId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7d5e888b-8e68-42ba-9807-73f2a79d5906" name="Match content of [name]">
+              <con:configuration>
+                <path>$['response']['name']</path>
+                <content>${#TestCase#name}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2704dadb-5974-4bfd-90a4-831477770deb" name="Match content of [sku]">
+              <con:configuration>
+                <path>$['response']['sku']</path>
+                <content>${#TestCase#sku}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4baeb97d-2294-4519-92ca-e2a6b33e3f1f" name="Match content of [unitOfMeasure]">
+              <con:configuration>
+                <path>$['response']['unitOfMeasure']</path>
+                <content>${#TestCase#unitOfMeasure}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c227667b-1acd-4fe2-8f8f-1bfb8188fd7f" name="Match content of [quantityPrecision]">
+              <con:configuration>
+                <path>$['response']['quantityPrecision']</path>
+                <content>${#TestCase#quantityPrecision}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property transfer - productId" id="b2f6784d-2e3f-46b9-901d-70092439e3b3">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>ProductId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Product - Create Product with info from csv file</con:sourceStep>
+            <con:sourcePath>$['response']['productId']</con:sourcePath>
+            <con:targetType>productId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasource" name="DataSource - load prices details from cvs" id="1ead43c2-1073-42db-9b06-d1389583a2f8">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="File">
+            <con:configuration><fileName>${projectDir}/valid_prices_test_kaching.csv</fileName><separator>,</separator><trim>true</trim><charset>UTF-8</charset><quotedValues>false</quotedValues></con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>countryCode</con:property>
+          <con:property>currencyCode</con:property>
+          <con:property>centAmountExcludingVAT</con:property>
+          <con:property>taxPercentage</con:property>
+          <con:property>flexible</con:property>
+          <con:property>minCentAmountExcludingVAT</con:property>
+          <con:property>maxCentAmountExcludingVAT</con:property>
+          <con:startRow>1</con:startRow>
+          <con:endRow/>
+          <con:recordsPerIteration>1</con:recordsPerIteration>
+          <con:completeLastOperation>true</con:completeLastOperation>
+          <con:trimValues>false</con:trimValues>
+          <con:entitizeValues>false</con:entitizeValues>
+          <con:restartOnRun>true</con:restartOnRun>
+          <con:expandProperties>false</con:expandProperties>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Set up properties and don't create flexible price for product, that is not piece" id="4daff91c-72ed-4a98-a8ec-af0520ae8217">
+        <con:settings/>
+        <con:config>
+          <script>def ds = testRunner.testCase.testSteps["DataSource - load prices details from cvs"];
+
+def unitOfMeasure =  testRunner.testCase.getPropertyValue("unitOfMeasure")
+
+def flexible= ds.getPropertyValue("flexible")
+testRunner.testCase.setPropertyValue( "flexible" , flexible)
+if (unitOfMeasure != "piece" &amp;&amp;  flexible == "true")
+{
+	testRunner.gotoStepByName('DataSource Loop - prices')	
+} 
+
+def countryCode = ds.getPropertyValue("countryCode")
+testRunner.testCase.setPropertyValue( "countryCode" , countryCode)
+
+def currencyCode = ds.getPropertyValue("currencyCode")
+testRunner.testCase.setPropertyValue( "currencyCode" , currencyCode)
+
+def centAmountExcludingVAT = ds.getPropertyValue("centAmountExcludingVAT")
+testRunner.testCase.setPropertyValue( "centAmountExcludingVAT" , centAmountExcludingVAT)
+
+def taxPercentage = ds.getPropertyValue("taxPercentage")
+testRunner.testCase.setPropertyValue( "taxPercentage" , taxPercentage)
+
+def minCentAmountExcludingVAT = ds.getPropertyValue("minCentAmountExcludingVAT")
+testRunner.testCase.setPropertyValue( "minCentAmountExcludingVAT" , minCentAmountExcludingVAT)
+
+def maxCentAmountExcludingVAT = ds.getPropertyValue("maxCentAmountExcludingVAT")
+testRunner.testCase.setPropertyValue( "maxCentAmountExcludingVAT" , maxCentAmountExcludingVAT)</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Execute corressponding create price request based on flexible param" id="506ef26c-e174-4c02-bb46-ee4f1a1b1e8c">
+        <con:settings/>
+        <con:config>
+          <script>def flexible =  testRunner.testCase.getPropertyValue("flexible")
+log.info flexible
+
+if (flexible == "true"){
+	log.info "Will create flexible price"
+	testRunner.runTestStepByName('Price - Create flexible price for product')	
+} else if (flexible == "false"){
+	log.info "Will create non flexible price"
+	testRunner.runTestStepByName('Price - Create non flexible price for product')	
+} else {
+	context.testRunner.fail("Incorrect data for flexible param is loaded: $flexible")
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - Create non flexible price for product" id="848226c0-5836-4647-8242-1f3dab0a6772" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - Create non flexible price for product" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#TestCase#currencyCode}",
+        "countryCode": "${#TestCase#countryCode}",
+        "taxPercentage": ${#TestCase#taxPercentage}
+      }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="0699e7ea-0d5f-4314-a022-1d7789c7c676" name="Check for existence of [priceId]">
+              <con:configuration>
+                <path>$['response']['priceId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a0e4faed-babb-465a-8227-174b8ef61b0b" name="Match content of [currencyCode]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['currencyCode']</path>
+                <content>${#TestCase#currencyCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f51897e9-5f9a-425f-9b2b-74f030dea37e" name="Match content of [countryCode]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['countryCode']</path>
+                <content>${#TestCase#countryCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f8cf58af-9d6c-4e96-b5be-a1ac17d92c11" name="Match content of [centAmountExcludingVAT]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['centAmountExcludingVAT']</path>
+                <content>${#TestCase#centAmountExcludingVAT}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="02e07002-742e-408c-ada4-14f673bea97e" name="Match content of [taxPercentage]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['taxPercentage']</path>
+                <content>${#TestCase#taxPercentage}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - Create flexible price for product" id="7f4a0f68-83a6-4c8b-a414-0977e032233f" disabled="true">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price" methodName="Price" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - Create flexible price for product" id="ea5d06b9-358b-4926-8463-57c8ed3e237a" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    "productId": "${#TestCase#productId}",
+    "prices": [
+      { "centAmountExcludingVAT": ${#TestCase#centAmountExcludingVAT},
+        "currencyCode": "${#TestCase#currencyCode}",
+        "countryCode": "${#TestCase#countryCode}",
+        "taxPercentage": ${#TestCase#taxPercentage},
+        "flexible": {
+        	"minCentAmountExcludingVAT": ${#TestCase#minCentAmountExcludingVAT},
+        	"maxCentAmountExcludingVAT": ${#TestCase#maxCentAmountExcludingVAT}
+        	}
+        }
+    ]
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="da3ae4b8-006a-4881-84df-c194ea220fb2" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="0699e7ea-0d5f-4314-a022-1d7789c7c676" name="Check for existence of [priceId]">
+              <con:configuration>
+                <path>$['response']['priceId']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a0e4faed-babb-465a-8227-174b8ef61b0b" name="Match content of [currencyCode]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['currencyCode']</path>
+                <content>${#TestCase#currencyCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f51897e9-5f9a-425f-9b2b-74f030dea37e" name="Match content of [countryCode]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['countryCode']</path>
+                <content>${#TestCase#countryCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f8cf58af-9d6c-4e96-b5be-a1ac17d92c11" name="Match content of [centAmountExcludingVAT]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['centAmountExcludingVAT']</path>
+                <content>${#TestCase#centAmountExcludingVAT}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="02e07002-742e-408c-ada4-14f673bea97e" name="Match content of [taxPercentage]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['taxPercentage']</path>
+                <content>${#TestCase#taxPercentage}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - Get price by productId" id="ec5838ca-25e0-4a60-998d-1e602b2b1486">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price/{productId}" methodName="ProductId 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - Get price by productId" id="f0e44647-49b2-4734-8d98-d7ff5b0f27da" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price/122e36b5-0228-426b-8397-e1b03dfac23c</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="ffab2ce2-82dc-456b-a585-a202216db9f9" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e73a6dee-cd8e-418b-bff4-417166978e38" name="Match content of [productId]">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestCase#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b93eff4d-3d79-4651-b10b-617191e6a552" name="Match content of [centAmountExcludingVAT]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['centAmountExcludingVAT']</path>
+                <content>${#TestCase#centAmountExcludingVAT}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b70d5d56-91c9-4d10-b851-1bed295737a9" name="Match content of [currencyCode]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['currencyCode']</path>
+                <content>${#TestCase#currencyCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8edec74a-5d8d-48c7-9096-0e36256134ef" name="Match content of [countryCode]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['countryCode']</path>
+                <content>${#TestCase#countryCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7d9d64fc-56a3-4ae1-a9ac-2c87bcff272f" name="Match content of [taxPercentage]">
+              <con:configuration>
+                <path>$['response']['prices'][0]['taxPercentage']</path>
+                <content>${#TestCase#taxPercentage}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="productId" value="${#TestCase#productId}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>productId</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - Get product by productId" id="ea158ef4-cde0-4618-aeed-831ee502a1d2">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product/{productId}" methodName="ProductId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - Get product by productId" id="1bf11807-4454-4199-bae8-b7ef3a741082" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="519c713a-432a-466e-bebf-fd59db457c33" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4d83e347-6a41-4361-b66f-4c39d5fb3b98" name="Validate productId">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestCase#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="MessageContentAssertion" name="Message Content Assertion" id="879936df-bf98-4b44-8a92-45fb3462ef93">
+              <con:configuration xsi:type="con:MessageContentAssertion">
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:images[1]/ns1:default[1]</con:xpath>
+                  <con:element>default</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#image}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:images[1]/ns1:small[1]</con:xpath>
+                  <con:element>small</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#image}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:images[1]/ns1:large[1]</con:xpath>
+                  <con:element>large</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#image}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:descriptions[1]/ns1:default[1]</con:xpath>
+                  <con:element>default</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#description}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:descriptions[1]/ns1:short[1]</con:xpath>
+                  <con:element>short</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#description}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:descriptions[1]/ns1:long[1]</con:xpath>
+                  <con:element>long</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#description}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:productGroupIds[1]</con:xpath>
+                  <con:element>productGroupIds</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue xsi:nil="true"/>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:sellable[1]</con:xpath>
+                  <con:element>sellable</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#sellable}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:visible[1]</con:xpath>
+                  <con:element>visible</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#visible}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:isStocked[1]</con:xpath>
+                  <con:element>isStocked</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#isStocked}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:isService[1]</con:xpath>
+                  <con:element>isService</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#isService}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:requiresUniqueId[1]</con:xpath>
+                  <con:element>requiresUniqueId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#requiresUniqueId}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:isRemoved[1]</con:xpath>
+                  <con:element>isRemoved</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>false</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:productId[1]</con:xpath>
+                  <con:element>productId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>e7db99ae-a2b5-48fc-85ea-322be813ceae</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:organizationId[1]</con:xpath>
+                  <con:element>organizationId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>${#Project#organizationId}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:name[1]</con:xpath>
+                  <con:element>name</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#name}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:sku[1]</con:xpath>
+                  <con:element>sku</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#sku}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:articleNumbers[1]/ns1:eans[1]/ns1:e[1]</con:xpath>
+                  <con:element>e</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#eans}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:specifications[1]</con:xpath>
+                  <con:element>specifications</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue xsi:nil="true"/>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:unitOfMeasure[1]</con:xpath>
+                  <con:element>unitOfMeasure</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#unitOfMeasure}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:quantityPrecision[1]</con:xpath>
+                  <con:element>quantityPrecision</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#quantityPrecision}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:externalIds[1]</con:xpath>
+                  <con:element>externalIds</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>true</con:enabled>
+                  <con:expectedValue>${#TestCase#externalIds}</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:dateCreated[1]</con:xpath>
+                  <con:element>dateCreated</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>2020-01-21T10:31:16.540Z</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:response[1]/ns1:dateModified[1]</con:xpath>
+                  <con:element>dateModified</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>2020-01-21T10:31:16.540Z</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:elements>
+                  <con:xpath>declare namespace ns1='https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c';
+//ns1:Response[1]/ns1:traceId[1]</con:xpath>
+                  <con:element>traceId</con:element>
+                  <con:type xsi:nil="true"/>
+                  <con:operator>=</con:operator>
+                  <con:enabled>false</con:enabled>
+                  <con:expectedValue>df2efef9-de87-4a52-b220-f1a2dfa52959</con:expectedValue>
+                  <con:hasValue>false</con:hasValue>
+                  <con:numberType>false</con:numberType>
+                </con:elements>
+                <con:originalMessage><![CDATA[<Response xmlns="https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c">
+   <response>
+      <images>
+         <default>https://tse4.mm.bing.net/th?id=OIP.lMxa5PR0dhYNCC4p4lIhGgHaHa&amp;pid=Api&amp;P=0&amp;w=300&amp;h=300</default>
+         <small>https://tse4.mm.bing.net/th?id=OIP.lMxa5PR0dhYNCC4p4lIhGgHaHa&amp;pid=Api&amp;P=0&amp;w=300&amp;h=300</small>
+         <large>https://tse4.mm.bing.net/th?id=OIP.lMxa5PR0dhYNCC4p4lIhGgHaHa&amp;pid=Api&amp;P=0&amp;w=300&amp;h=300</large>
+      </images>
+      <descriptions>
+         <default>This is description of test product without price 608667815. Best product ever!</default>
+         <short>This is description of test product without price 608667815. Best product ever!</short>
+         <long>This is description of test product without price 608667815. Best product ever!</long>
+      </descriptions>
+      <productGroupIds/>
+      <sellable>true</sellable>
+      <visible>true</visible>
+      <isStocked>true</isStocked>
+      <isService>false</isService>
+      <requiresUniqueId>false</requiresUniqueId>
+      <isRemoved>false</isRemoved>
+      <productId>e7db99ae-a2b5-48fc-85ea-322be813ceae</productId>
+      <organizationId>755ff39e-c872-41a8-aa9f-2b2a461b8491</organizationId>
+      <name>Test product without price 608667815</name>
+      <sku>608667815</sku>
+      <articleNumbers>
+         <eans>
+            <e>12345</e>
+         </eans>
+      </articleNumbers>
+      <specifications/>
+      <unitOfMeasure>piece</unitOfMeasure>
+      <quantityPrecision>0</quantityPrecision>
+      <externalIds/>
+      <dateCreated>2020-01-21T10:31:16.540Z</dateCreated>
+      <dateModified>2020-01-21T10:31:16.540Z</dateModified>
+   </response>
+   <traceId>df2efef9-de87-4a52-b220-f1a2dfa52959</traceId>
+</Response>]]></con:originalMessage>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="productId" value="${#TestCase#productId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>productId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Price - Delete price by productId" id="c5a572fb-e0cf-490c-bb11-f67b0ff1ab1f">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/price/{productId}" methodName="ProductId 3" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Price - Delete price by productId" id="c9b0df20-d4e4-4ecf-8106-273e4b20ce92" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request>{
+    
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/price/122e36b5-0228-426b-8397-e1b03dfac23c</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="9e57eeb1-0f38-49ca-b639-3d9f59579272" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="623a9431-3f35-4e66-8b2e-bd645a4d4e02" name="Validate the deleted productId">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestCase#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="productId" value="${#TestCase#productId}"/><con:entry key="Content-Type" value="application/json"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>productId</con:entry>
+              <con:entry>Content-Type</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="DataSource Loop - prices" id="9b272375-fd6a-4652-a632-676ea4ab3a2f">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource - load prices details from cvs</dataSourceStep>
+          <targetStep>Set up properties and don't create flexible price for product, that is not piece</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product - Delete product" id="81271f75-4ebf-41f5-9963-45e8fa3230b7">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product/{productId}" methodName="ProductId 4" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product - Delete product" id="a14b2953-e2d6-4ca7-a990-310add8cdf30" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product/122e36b5-0228-426b-8397-e1b03dfac23c</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="8c6c9e06-8625-4fa0-81a8-add67e0259e1" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c55a2198-ad3a-412f-8e72-689c902ba23e" name="Validate deleted productid">
+              <con:configuration>
+                <path>$['response']['productId']</path>
+                <content>${#TestCase#productId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="productId" value="${#TestCase#productId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>productId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="DataSource Loop - product" id="de542086-83be-43c4-a843-c88497768bb0">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource - load product details from csv</dataSourceStep>
+          <targetStep>Set up test case properties</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>productId</con:name>
+          <con:value>556e5f3b-84bb-4069-8e9b-535347ca32d1</con:value>
+        </con:property>
+        <con:property>
+          <con:name>quantityPrecision</con:name>
+          <con:value>3</con:value>
+        </con:property>
+        <con:property>
+          <con:name>name</con:name>
+          <con:value>TestProduct63</con:value>
+        </con:property>
+        <con:property>
+          <con:name>unitOfMeasure</con:name>
+          <con:value>kg</con:value>
+        </con:property>
+        <con:property>
+          <con:name>isService</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>requiresUniqueId</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sellable</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>visible</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>isStocked</con:name>
+          <con:value>false</con:value>
+        </con:property>
+        <con:property>
+          <con:name>sku</con:name>
+          <con:value>testsku63</con:value>
+        </con:property>
+        <con:property>
+          <con:name>flexible</con:name>
+          <con:value>true</con:value>
+        </con:property>
+        <con:property>
+          <con:name>countryCode</con:name>
+          <con:value>SE</con:value>
+        </con:property>
+        <con:property>
+          <con:name>currencyCode</con:name>
+          <con:value>SEK</con:value>
+        </con:property>
+        <con:property>
+          <con:name>centAmountExcludingVAT</con:name>
+          <con:value>100</con:value>
+        </con:property>
+        <con:property>
+          <con:name>taxPercentage</con:name>
+          <con:value>2500000</con:value>
+        </con:property>
+        <con:property>
+          <con:name>minCentAmountExcludingVAT</con:name>
+          <con:value>100</con:value>
+        </con:property>
+        <con:property>
+          <con:name>maxCentAmountExcludingVAT</con:name>
+          <con:value>null</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>c588f3cb-01de-4871-a7d3-222550fba217</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>71dd1bfd-c5f2-4838-9de4-6a98d515a690</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>cda4b0a2-552f-4838-aeb1-3ba53cb67a54</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>456dd32f-b6a1-46c0-9f7b-08b4b9589c56</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>36b88caa-fe2f-4fff-9f1a-9d99793f8f7b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>566ab9a0-87e2-4c77-8ace-34ddda9dc884</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>df25a376-986e-4787-8405-94b90ab2e4ff</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e6139005-12c5-4a06-97b8-8dd5a93b0e8b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9d74f700-d8a0-4964-8a12-17fb99558b2f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>c8530c6c-3360-4c7c-ae5c-7ba3ca8a6059</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>3c097c8b-ee8e-4511-9aa5-fff2794f2aa8</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e7c79d86-50ba-46ec-a721-985f0077ea2d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>6f643ca9-d70f-4e57-b822-aaff84b1d7a5</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9853407c-2929-49bc-a8aa-00662da616bd</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>b28775b2-ce6a-4ba9-9dab-9d378c9cea3f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>c4aa7a1e-d715-4b30-a87d-c776c5f4e265</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>8b326df3-c9cd-4d95-96b3-f6e3e0521ae2</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>7f591ec0-cc81-487d-be5e-9dd50cacc152</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>df0d2b5f-4dda-41b4-9545-6cdd6f0a8014</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>32d2cf2f-d328-4b18-90a4-2831031153a1</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>cb23a24c-56fa-4c2e-abf7-9c7d48a83c06</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>3515d510-c9f1-49dd-bfaf-7449974dbfc9</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>8f016b60-9530-412c-aa08-01f95488be5c</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>7c50a24b-b525-42f0-a933-d3ea69a130cb</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>d45a4deb-dbe7-4793-a63b-ae2ab0f1ca52</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>f7620edd-0a1d-4de8-99dd-d2bbf23e7846</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>2edd9f88-6ff9-4395-b949-ab0cea2c3c2f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>835139c2-356b-43c2-9063-66585325460b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>60c43556-3d53-4420-9e03-75ebb4769872</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>4902231e-c133-4c02-8dd1-db10304e69fb</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>52df0cf0-0630-4ef2-829a-4bd2752c7eb5</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>dadc38ba-3cd0-421b-9cfd-014398a5f91e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>49059479-cdd6-4dc1-90dd-def337c5c214</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>46637c53-29e3-40dd-9fbf-15800687f06d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>5af85972-c453-4ab9-93f3-d6e6718b2ba0</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e8d349e9-63e1-4400-8e44-62ede6bb9782</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e065999a-c395-44a9-acea-68314f3cef6e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>1003b315-7f1f-45be-a06b-3bcf4322f6ac</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>cf36a4ab-bf84-43e1-959b-78c0d3d06764</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>1d0c8a27-9e80-4c0d-91d0-812f111a20ab</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e06b146e-72ff-426b-abdf-719c181dabff</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>fff1f1f8-f48e-41c1-a125-50235ee5a132</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>8339560d-a998-43f3-bcda-0b2bfea8c356</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>c7ea9316-7c0e-4357-b889-46588df25989</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ba9ee947-9e7a-4acd-9af4-40c9640779e2</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9ca1aa4c-20c2-4853-957e-3a2fabdb859b</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>254f3133-c658-4a46-9e1a-96cea2e9a5e8</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>38c89bc3-1b0d-452c-aa43-c1df87767257</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>28c2e1c0-98df-4ab2-a61c-7b44a59eb04e</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>2fac74c9-614e-4d60-b47b-610a8b4aefde</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9b272375-fd6a-4652-a632-676ea4ab3a2f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>0ddb32ca-2ec2-4158-a24f-4e0b87c6b169</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>e034906a-cecf-431e-9eb9-e11a04c6fbfc</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>b2f6784d-2e3f-46b9-901d-70092439e3b3</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>848226c0-5836-4647-8242-1f3dab0a6772</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ea158ef4-cde0-4618-aeed-831ee502a1d2</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>c5a572fb-e0cf-490c-bb11-f67b0ff1ab1f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>4daff91c-72ed-4a98-a8ec-af0520ae8217</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>0a61b364-ecab-4c66-a50d-d4c202030788</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>7f4a0f68-83a6-4c8b-a414-0977e032233f</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>506ef26c-e174-4c02-bb46-ee4f1a1b1e8c</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>ec5838ca-25e0-4a60-998d-1e602b2b1486</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>de542086-83be-43c4-a843-c88497768bb0</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:environmentSpec>
+        <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:testCase>

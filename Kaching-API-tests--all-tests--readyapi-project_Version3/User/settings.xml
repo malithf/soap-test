@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="eb1c1a24-f5cd-44f7-aa53-5eae0e009140" name="User" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="eb1c1a24-f5cd-44f7-aa53-5eae0e009140fileName">User</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>randomNo</con:name>
+        <con:value>4884616350000000000000000000000000000000</con:value>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    <con:environmentSpec>
+      <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+    
+    
+    
+    
+    
+    
+    
+  </con:testSuite>

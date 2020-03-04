@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="1b43cfd7-9c29-4c9a-ba37-d0616b100501" name="Payments - Cash payments scenarious" disabled="true" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+      <con:setting id="d8b300bf-9200-417a-a982-2bb6d7062656fileName">Payments---Mock-payments-scenarious</con:setting>
+      <con:setting id="1b43cfd7-9c29-4c9a-ba37-d0616b100501fileName">Payments---Cash-payments-scenarious</con:setting>
+    </con:settings>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:properties>
+      <con:property>
+        <con:name>sellerId</con:name>
+        <con:value>3c222a7c-5f3e-4318-9d89-d8d074d51db9</con:value>
+      </con:property>
+      <con:property>
+        <con:name>method</con:name>
+        <con:value>cash</con:value>
+      </con:property>
+      <con:property>
+        <con:name>details</con:name>
+        <con:value/>
+      </con:property>
+    </con:properties>
+    <con:reportParameters/>
+    
+    
+    
+    
+  </con:testSuite>

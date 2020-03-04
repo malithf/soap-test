@@ -1,0 +1,3 @@
+Store---get%2Fcreate%2Fupdate%2Fdelete-by-admin-user.xml
+Store---get%2Fcreate%2Fupdate%2Fdelete-by-super-admin.xml
+Store---incorrect-payload-when-create-store.xml

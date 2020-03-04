@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="2ac24a14-9af4-4b3e-9d59-f5c02d0e74c3" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Handshake - request by store manager user" searchProperties="true" timeout="0" maxResults="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="51d894c1-e747-464f-a4aa-03fae4cf69bcfileName">Handshake--create%2Fget%2Fupdate%2Fdelete-by-admin-user</con:setting>
+        <con:setting id="61ea0bc5-4a1c-42cb-b2c3-91622b95d2bdfileName">Handshake---request-by-seller-user</con:setting>
+        <con:setting id="2ac24a14-9af4-4b3e-9d59-f5c02d0e74c3fileName">Handshake---request-by-store-manager-user</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Request - Handshake" id="795ed973-a20a-49bc-9d12-5a2d782aa178">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/handshakes/handshake/request" methodName="Request" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request - Handshake" id="ea65b7bb-c428-4aa5-bde5-9febdcfd6dff" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/handshake/request</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="a875b592-09ff-440f-b182-9e17b43ed1fc" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [usesFCU]" id="999461de-ff22-410c-9f9a-d7d535c52c95">
+              <con:configuration>
+                <path>$['response']['organization']['usesFCU']</path>
+                <content>${#Project#usesFCU}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [name]" id="0d623e81-a637-48ff-839e-225879e68e3a">
+              <con:configuration>
+                <path>$['response']['organization']['name']</path>
+                <content>${#Project#name}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [organizationNumber]" id="e5970f92-b88f-4f3e-84d9-30d39e57fe1c">
+              <con:configuration>
+                <path>$['response']['organization']['organizationNumber']</path>
+                <content>${#Project#organizationNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [vatRegistrationNumber]" id="d08077d7-1260-45a9-b37d-b59aac640d5b">
+              <con:configuration>
+                <path>$['response']['organization']['vatRegistrationNumber']</path>
+                <content>${#Project#vatRegistrationNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [website]" id="1845bc7e-caad-4b9b-a4d1-bc781ad798e7">
+              <con:configuration>
+                <path>$['response']['organization']['website']</path>
+                <content>${#Project#website}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [returnPolicy]" id="157d4a78-4f42-48e4-83e6-e1a582b2a1c5">
+              <con:configuration>
+                <path>$['response']['organization']['returnPolicy']</path>
+                <content>${#Project#returnPolicy}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [contactName]" id="087a9922-210b-4d3c-810f-ab57a8d0a124">
+              <con:configuration>
+                <path>$['response']['organization']['contactName']</path>
+                <content>${#Project#contactName}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [contactEmail]" id="3a64ae21-86e1-4750-88c6-338e4d9217c8">
+              <con:configuration>
+                <path>$['response']['organization']['contactEmail']</path>
+                <content>${#Project#contactEmail}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [contactEmailSignatureUrl]" id="f847d1ef-d0a6-47f7-8388-f57df360abca">
+              <con:configuration>
+                <path>$['response']['organization']['contactEmailSignatureUrl']</path>
+                <content>${#Project#contactEmailSignatureUrl}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [receiptEmailContentText]" id="7809a277-ac70-4d5e-88e0-62fb7e5944df">
+              <con:configuration>
+                <path>$['response']['organization']['receiptEmailContentText']</path>
+                <content>${#Project#receiptEmailContentText}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [receiptEmailSubjectText]" id="d1c3402b-07de-4b6c-8be2-a2b63cb60e0a">
+              <con:configuration>
+                <path>$['response']['organization']['receiptEmailSubjectText']</path>
+                <content>${#Project#receiptEmailSubjectText}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [returnReceiptEmailSubjectText]" id="fec57f29-6b20-4126-b150-acb1ba0f5f8d">
+              <con:configuration>
+                <path>$['response']['organization']['returnReceiptEmailSubjectText']</path>
+                <content>${#Project#returnReceiptEmailSubjectText}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [countryCode]" id="f9a73de3-8af1-4b64-8aae-3dbf92ccb9e0">
+              <con:configuration>
+                <path>$['response']['organization']['countryCode']</path>
+                <content>${#Project#countryCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [currencyCode]" id="040a9677-d9b4-47a2-83f0-5b8829ba2a82">
+              <con:configuration>
+                <path>$['response']['organization']['currencyCode']</path>
+                <content>${#Project#currencyCode}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [phoneNumber]" id="a17921cb-8b33-4a18-9c48-eb4187539a2b">
+              <con:configuration>
+                <path>$['response']['organization']['phoneNumber']</path>
+                <content>${#Project#phoneNumber}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [logoUrl]" id="34c38cf3-ab37-4bdd-afd5-74eac333b5fe">
+              <con:configuration>
+                <path>$['response']['organization']['logoUrl']</path>
+                <content>${#Project#logoUrl}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [documentLogoDataURI]" id="e8475f36-7435-4d79-9508-b18c9ba8e191">
+              <con:configuration>
+                <path>$['response']['organization']['documentLogoDataURI']</path>
+                <content>${#Project#documentLogoDataURI}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [id]" id="cb0f29a7-64dc-4be9-bdcb-b0fe5feb56f6">
+              <con:configuration>
+                <path>$['response']['organization']['id']</path>
+                <content>${#Project#organizationId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [dateCreated]" id="4e91e553-2942-4f12-9e89-1de2e88de722">
+              <con:configuration>
+                <path>$['response']['organization']['dateCreated']</path>
+                <content>${#Project#dateCreated}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="c581d2f8-21ac-4491-ba1b-f96eccd159cd" name="Check for existence of [stores]">
+              <con:configuration>
+                <path>$['response']['stores']</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" name="Match content of [organizationId]" id="f1c900f3-a98c-4560-806a-ceb60e1ff1e0">
+              <con:configuration>
+                <path>$['response']['register']['organizationId']</path>
+                <content>${#Project#organizationId}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" name="Contains" id="a5b24c47-35e0-4cf9-944c-bbc58d27bb3c">
+              <con:configuration>
+                <token>${#Project#deviceId}</token>
+                <ignoreCase>true</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters><con:entry key="deviceId" value="${#Project#deviceId}"/></con:parameters>
+            <con:parameterOrder>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Request - Fail Request handshake with empty deviceId" id="c1796781-3568-4eee-b9fd-de5a5c18bc3d">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/handshakes/handshake/request" methodName="Request" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request - Fail Request handshake with empty deviceId" id="ea65b7bb-c428-4aa5-bde5-9febdcfd6dff" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseURL}</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/handshake/request</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="a875b592-09ff-440f-b182-9e17b43ed1fc" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="60e3b4b4-3bd7-49f8-9cad-7cf98a6f4f0b" name="Match content of [en]">
+              <con:configuration>
+                <path>$['errors'][0]['errorMessage']['en']</path>
+                <content>Missing required header: deviceId</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>AdminUser</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+            <con:parameterOrder>
+              <con:entry>deviceId</con:entry>
+            </con:parameterOrder>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+                <con:authProfile>Inherit From Parent</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="d0be80ff-b21f-4b1b-a546-3ae21dc001f8">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="7cdd7c08-5bb6-4018-8dcf-234bef6b659f">
+                <con:authProfile>SellerUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>StoreManager</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="5d5a89dc-8908-4184-a97f-26ff52a15fcf">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:testCase>

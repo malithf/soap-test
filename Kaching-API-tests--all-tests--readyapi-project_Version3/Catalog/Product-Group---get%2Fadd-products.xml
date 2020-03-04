@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="c7839eb9-c15a-44b8-a1c1-e7df21c438b6" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Product Group - get/add products" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+      <con:settings>
+        <con:setting id="c7839eb9-c15a-44b8-a1c1-e7df21c438b6fileName">Product-Group---get%2Fadd-products</con:setting>
+      </con:settings>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="Product Group - get all product groups" id="acea5a80-6403-44a0-b421-ea0f18353fc8">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product-group" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product Group - get all product groups" id="da2564a9-827e-468c-967c-5aee51d0159f" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request/>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product-group</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="6aefd2a1-c6da-455e-b476-fc5ddc308e72" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200,404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="Transfer productGroups info based if they are exist" id="d9fc70c2-7204-4e07-913b-30a1e58e28af">
+        <con:settings/>
+        <con:config>
+          <script>def response = context.expand('${Product Group - get all product groups#Response}')
+
+if (response) {
+	def productGroups = context.expand( '${Product Group - get all product groups#Response#$[\'response\'][\'productGroups\']}' ).toString()
+	if (productGroups){
+		testRunner.testCase.setPropertyValue( "productGroups" , productGroups )
+		testRunner.testCase.setPropertyValue( "hasProductGroups" , "true" )
+	} else {
+		log.info "No groups found"
+		testRunner.testCase.setPropertyValue( "productGroups" , "" )
+		testRunner.testCase.setPropertyValue( "hasProductGroups" , "false" )
+		
+		def responseCode = context.expand( '${Product Group - get all product groups#Response#$[\'errors\'][0][\'errorCode\']}' ).toString()
+		log.info "responseCode: "+responseCode
+		if (responseCode !="404"){
+			context.testRunner.fail("No groups found, but response code is incorrect: $responseCode instead of 404") 
+		}
+	}
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Product Group - update with same info" id="741a6dca-d178-4fa4-8a5c-526dad58b25c">
+        <con:settings/>
+        <con:config service="${#Project#baseURL}" resourcePath="/catalog/product-group" methodName="Method 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Product Group - update with same info" id="d051c517-40c9-4b10-84a5-8506b1b8554e" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:request>{
+      "productGroups" : ${#TestCase#productGroups}
+}</con:request>
+            <con:originalUri>https://api-dev.kachingretail.com/api/catalog/product-group</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="26bbdcf0-a9d6-4865-8919-8d1b0331e738" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="44d73e04-f385-455f-a02c-1c36fd812992" name="Match content of [productGroups]">
+              <con:configuration>
+                <path>$['response']['productGroups']</path>
+                <content>${#TestCase#productGroups}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+            <con:environmentSpec>
+              <con:entry environmentId="12fa4514-9cd8-4cfa-bdff-13f963c9009f">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="a93747eb-45aa-4311-b15c-943ff5e2b2cf">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="ac23af5a-9c6e-4b53-85cc-1d18eb01f584">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="50d0f472-59e6-40a3-b900-b2d9ce4c7ef1">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="36448cc6-8d95-475e-b8fb-678302c2cb95">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="aa6ca34e-6a45-42ae-985b-fe4793cc70f0">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+              <con:entry environmentId="08fc71af-2286-45e7-bcc6-3d7935822b9b">
+                <con:authProfile>AdminUser</con:authProfile>
+              </con:entry>
+            </con:environmentSpec>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>productGroups</con:name>
+          <con:value>[{"productGroups":[{"productGroupId":"d9921190-42b9-4061-8a93-1087606c0937","name":{"en":"Vegetarian","sv":"Vegetarian"},"GL":"","color":"#B5D1FA","imageUrl":"","productIds":["3c750172-b06e-4068-8e25-3e5a2f2192f7","88d70ce6-d92c-4686-bc7c-c729c566a651"],"externalId":"123","productGroups":null,"topProductGroupId":"6878830c-2539-4b6b-8022-d07f85fad0be","topProductGroupName":{"en":" Lunch","sv":" Lunch"}},{"productGroupId":"4b426a87-938f-423b-89bf-d7a79cd847f6","name":{"en":"Meat","sv":"Meat"},"GL":"","color":"#C0FFE6","imageUrl":"","productIds":["b306dae7-c89e-4a2d-aeca-a9489132856f","5ae23d69-48a4-4601-801a-b8e25b082de2"],"externalId":"123","productGroups":null,"topProductGroupId":"6878830c-2539-4b6b-8022-d07f85fad0be","topProductGroupName":{"en":" Lunch","sv":" Lunch"}},{"productGroupId":"e06cf2a3-3634-41ff-8b8c-49603ef38c67","name":{"en":"Fish","sv":"Fish"},"GL":"","color":"#CAEDFF","imageUrl":"","productIds":["27c5551c-bab0-4aeb-80c9-5b5208efef9a"],"externalId":"123","productGroups":null,"topProductGroupId":"6878830c-2539-4b6b-8022-d07f85fad0be","topProductGroupName":{"en":" Lunch","sv":" Lunch"}}],"productIds":null,"_id":"5e569d24ae6025aa0c8c85c6","productGroupId":"6878830c-2539-4b6b-8022-d07f85fad0be","name":{"en":" Lunch","sv":" Lunch"},"GL":"","color":"#C1ACFC","imageUrl":"","externalId":"123","topProductGroupId":"6878830c-2539-4b6b-8022-d07f85fad0be","topProductGroupName":{"en":" Lunch","sv":" Lunch"}},{"productGroups":null,"productIds":["ea6695ea-5415-44de-9c49-97384e535f49","f6e7b521-ca18-4b68-917f-2ec59bf66988"],"_id":"5e569d24ae602597c38c85c5","productGroupId":"661340c8-ba1a-471a-b980-0d939ea05e3f","name":{"en":"Side dishes","sv":"Side dishes"},"GL":"","color":"#DFFFC0","imageUrl":"","externalId":"123","topProductGroupId":"661340c8-ba1a-471a-b980-0d939ea05e3f","topProductGroupName":{"en":"Side dishes","sv":"Side dishes"}},{"productGroups":[{"name":{"en":"Soft","sv":"Soft"},"GL":"","color":"#FED9B0","imageUrl":"","externalId":"123","productIds":["8c7dd310-d824-4bc9-b4c4-0f8b8714130f","98294efc-10d2-4517-b251-bb6b40b67249"],"productGroupId":"1dc18608-0ce2-4e7e-a8b1-64b71929a98f","productGroups":null,"topProductGroupId":"d77accb6-aa12-421c-97d2-595a2a02855c","topProductGroupName":{"en":"Drinks","sv":"Drinks"}},{"name":{"en":"Wine","sv":"Wine"},"GL":"","color":"","imageUrl":"","externalId":"123","productIds":["3ebaf68f-a817-4b2c-af4a-bc0a77a35109","0cb10a3d-210e-47ed-b8c8-258cbdf1bf6c"],"productGroupId":"35d2efeb-e3af-4648-8e13-d8cf41091650","productGroups":null,"topProductGroupId":"d77accb6-aa12-421c-97d2-595a2a02855c","topProductGroupName":{"en":"Drinks","sv":"Drinks"}},{"name":{"en":"Beer","sv":"Beer"},"GL":"","color":"#FFA6A6","imageUrl":"","externalId":"123","productIds":[],"productGroupId":"7b524df9-0871-4d71-af70-e01201fdb46e","productGroups":null,"topProductGroupId":"d77accb6-aa12-421c-97d2-595a2a02855c","topProductGroupName":{"en":"Drinks","sv":"Drinks"}}],"productIds":null,"_id":"5e569d24ae602576988c85c4","productGroupId":"d77accb6-aa12-421c-97d2-595a2a02855c","name":{"en":"Drinks","sv":"Drinks"},"GL":"","color":"#FCFAB0","imageUrl":"","externalId":"123","topProductGroupId":"d77accb6-aa12-421c-97d2-595a2a02855c","topProductGroupName":{"en":"Drinks","sv":"Drinks"}},{"productGroups":null,"productIds":["1ca51150-4243-490f-aed7-126670290cfa","94975a71-e07c-4198-8b62-7371ec779d29"],"_id":"5e569d24ae60257a518c85c3","name":{"en":"Desserts","sv":"Desserts"},"GL":"","color":"","imageUrl":"","externalId":"123","productGroupId":"4474a680-96ab-4584-b4a1-a17d398c3e3c","topProductGroupId":"4474a680-96ab-4584-b4a1-a17d398c3e3c","topProductGroupName":{"en":"Desserts","sv":"Desserts"}}]</con:value>
+        </con:property>
+        <con:property>
+          <con:name>hasProductGroups</con:name>
+          <con:value>true</con:value>
+        </con:property>
+      </con:properties>
+      <con:reportParameters/>
+    </con:testCase>
